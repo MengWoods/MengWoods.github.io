@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Meng blog</title>
+    <link>https://mengwoods.github.io/post/</link>
+    <description>Recent content in Posts on Meng blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>Copyright © 2008–2018, Steve Francia and the Hugo Authors; all rights reserved.</copyright>
+    <lastBuildDate>Tue, 06 Feb 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://mengwoods.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ROS2 commands record</title>
+      <link>https://mengwoods.github.io/post/2024-02-06-ros2/</link>
+      <pubDate>Tue, 06 Feb 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://mengwoods.github.io/post/2024-02-06-ros2/</guid>
+      <description>
+        
+          
+            The blog collects some useful ROS2 commands.
+Workspace 1# Source setup 2source /opt/ros/&amp;lt;ros2-distro&amp;gt;/setup.bash 3# Create workspace 4mkdir -p ~/ros2_ws/src 5# build workspace 6colcon build 7# Source workspace 8source ~/ros2_ws/install/setup.bash 9ros2 launch &amp;lt;package_name&amp;gt; &amp;lt;launch_file_name&amp;gt; Node and Topic 1ros2 node list 2ros2 node info /&amp;lt;node_name&amp;gt; 3ros2 topic list 4ros2 topic info /&amp;lt;topic_name&amp;gt; 5ros2 topic echo /&amp;lt;topic_name&amp;gt; 6ros2 service call /&amp;lt;service_name&amp;gt; &amp;lt;service_type&amp;gt; &amp;#34;&amp;lt;request_data&amp;gt;&amp;#34; Rosbag 1ros2 bag record -a 2ros2 bag play &amp;lt;bag_file_name&amp;gt;.db3 RViz 1# Install 2sudo apt-get install ros-&amp;lt;distro&amp;gt;-rviz2 
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>How I start monthly S&amp;P500 investment via Nordnet.</title>
+      <link>https://mengwoods.github.io/post/2024-01-30-fund/en/</link>
+      <pubDate>Sat, 02 Dec 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://mengwoods.github.io/post/2024-01-30-fund/en/</guid>
+      <description>
+        
+          
+            The article records operation steps of monthly saving with Nordnet. and records the questions during the whole process.
+Background questions Why choose index fund? I don&#39;t want pay too much time on investments, I don&#39;t have more knowledge of investment. And I want to have some level return from deposit. S&amp;amp;P 500 index fund includes most profitable 500 companys in the US, and people trust their ability to make money. So I chose the one as the target for my month saving.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Some Useful Docker Commands</title>
+      <link>https://mengwoods.github.io/post/2023-11-04-some-docker-commands/en/</link>
+      <pubDate>Sat, 04 Nov 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://mengwoods.github.io/post/2023-11-04-some-docker-commands/en/</guid>
+      <description>
+        
+          
+            The blog collects some useful Docker commands.
+Basic Concept of Docker container and Docker image:
+Docker container is a running instance of a Docker image, providing an isolated environment that can be started, stopped and detelted. Docker image is a static, read-only file containing everything needed to create containers. It serves as the source file for starting a Docker container. Check Docker Username Check the username and registry of the logged in Docker account.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>MMDetection3D Library Installation Guide</title>
+      <link>https://mengwoods.github.io/post/2023-10-30-install-openmm3d-lib/en/</link>
+      <pubDate>Mon, 30 Oct 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://mengwoods.github.io/post/2023-10-30-install-openmm3d-lib/en/</guid>
+      <description>
+        
+          
+            Prepare The installation is tested in environment: Ubuntu 20.04, CUDA-11.6, PyTorch v1.13.1.
+Miniconda The installation is inside a conda virtual envrionment, so be sure Miniconda is installed.
+Installation on Linux:
+1mkdir -p ~/miniconda3 2wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh 3bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3 4rm -rf ~/miniconda3/miniconda.sh And initialization:
+1~/miniconda3/bin/conda init bash 2~/miniconda3/bin/conda init zsh CUDA Toolkit CUDA 11.6 and Nvidia driver 510.39.01 are recommended in the guide. The Nvidia driver can be installed along with CUDA.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Build Personal Blog with Hugo</title>
+      <link>https://mengwoods.github.io/post/2023-10-28-build-hugo-site/en/</link>
+      <pubDate>Sat, 28 Oct 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://mengwoods.github.io/post/2023-10-28-build-hugo-site/en/</guid>
+      <description>
+        
+          
+            Install Hugo Install the latest version from Hugo Github releases page. E.g. download the *.deb file and install by dpkg -i *.deb.
+Or use the official installation Guide (not recommended)
+Step 1: Create the Required Repositories On GitHub, create two repositories, both with the Add a README file option selected:
+Blog source file repository: Store web source files used to generate the blog site (e.g., name it blog-resources). Pages repository: Used to store the generated web files and can be accessed via a URL (name it &amp;lt;username&amp;gt;.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>TODO List</title>
+      <link>https://mengwoods.github.io/post/todolist/</link>
+      <pubDate>Wed, 04 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://mengwoods.github.io/post/todolist/</guid>
+      <description>
+        
+          
+             Driver license school Tooth check 
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

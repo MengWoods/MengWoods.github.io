@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Andriod on Meng blog</title>
+    <link>https://mengwoods.github.io/cn/categories/andriod/</link>
+    <description>Recent content in Andriod on Meng blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>cn</language>
+    <copyright>Copyright © 2008–2018, Steve Francia and the Hugo Authors; all rights reserved.</copyright>
+    <lastBuildDate>Tue, 05 Dec 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://mengwoods.github.io/cn/categories/andriod/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>了解 Andriod Studio 项目目录各文件功能</title>
+      <link>https://mengwoods.github.io/cn/post/2023-12-05-as-folder-functios/cn/</link>
+      <pubDate>Tue, 05 Dec 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://mengwoods.github.io/cn/post/2023-12-05-as-folder-functios/cn/</guid>
+      <description>
+        
+          
+            当使用 Android Studio 新建一个工程时，会出现如下图所示的目录结构：
+自上而下各个文件夹功能的介绍如下：
+.gradle 文件夹是 Gradle 构建系统生成的目录，用于存储构建过程中的各种临时文件和缓存文件。这个目录通常不需要手动干预，Gradle 会自动管理其中的文件。
+Gradle 是一种易于使用的构建工具，用于自动化编译、打包、测试和部署软件项目。其支持多种编程语言，包括 Java、Kotlin、Groovy 等。 在安卓开发过程中其可通过一系列构建规则帮助开发 app 的过程。在创建工程时，Android Studio 会根据默认的通用构建规则来完成 app 的构建。 .idea 包含 Android Studio 项目的配置文件，包括项目的工作区设置和其他配置信息，例如工作区布局、运行配置、代码风格等信息。由于这些信息是 IDE 特定的，与项目源代码和构建输出等内容分开存储，因此使用了一个隐藏的目录。文件夹命名源于开发环境 IntelliJ IDEA 的名字。
+app 为项目的主要工作目录，包含项目的源代码以及资源文件，如 app 布局、图像等，以及程序的元数据。
+libs 用于存放应用程序所使用的第三方库（JAR 文件）。 Java Archive（JAR）是一种压缩文件格式，通常用于将一组相关的类文件、资源文件和元数据打包到一个单独的文件中。 src/androidTest 包含用于执行 Android 测试的代码。这里的测试主要是针对应用程序的功能和用户界面的集成测试。 src/main/java 中包含项目的源代码，通常以包的形式组织在这个目录下。Android 应用的主要逻辑和功能实现都在这里。 src/main/res 中包含资源文件，如 app 布局、字符串、图像等。定义了应用程序的用户界面和其他非代码相关的方面。 src/main/AndroidManifest.xml 应用程序的清单文件，其中包含了有关应用程序的元数据，如应用程序的包名、版本号、权限声明、组件声明（活动、服务、接收器等）等。这个文件是 Android 系统了解应用程序结构和要求的重要文件。 src/test 应用程序的单元测试代码。这里的测试主要是针对应用程序中各个单元（类、方法等）的功能进行测试。 build.gradle 该文件是 Gradle 构建文件，用于配置 app 模块的构建过程。其中包含了应用程序的依赖项、编译选项、签名配置等。 proguard-rules.pro ProGuard 是一个代码缩小（minification）和混淆工具，用于减小 APK 文件的大小并增加安全性。该文件用于配置 ProGuard 规则，指定哪些代码应该被缩小或混淆。 gradle 包含 Gradle 构建系统的配置文件
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

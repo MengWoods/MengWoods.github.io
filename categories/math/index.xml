@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Math on Menghao blog</title>
+    <link>https://mengwoods.github.io/categories/math/</link>
+    <description>Recent content in Math on Menghao blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>Copyright © 2024, Meng blog; all rights reserved.</copyright>
+    <lastBuildDate>Sat, 04 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://mengwoods.github.io/categories/math/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Vector Cross Product and Dot Product</title>
+      <link>https://mengwoods.github.io/post/2023-12-06-vector-cross-product/</link>
+      <pubDate>Sat, 04 Nov 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://mengwoods.github.io/post/2023-12-06-vector-cross-product/</guid>
+      <description>
+        
+          
+            &lt;p&gt;Introduce vector mutiplication with applications.&lt;/p&gt;
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

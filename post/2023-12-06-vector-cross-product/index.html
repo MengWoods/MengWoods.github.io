@@ -9,7 +9,7 @@
   
   >
   <head>
-<title>Search | Menghao blog</title>
+<title>Vector Cross Product and Dot Product | Menghao blog</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -28,21 +28,21 @@
 <meta property="og:locale" content="en" />
 
 <meta property="og:type" content="article">
-<meta name="description" content="" />
+<meta name="description" content="Introduce vector mutiplication with applications." />
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:creator" content="@janedoe">
-<meta name="twitter:title" content="Search" />
+<meta name="twitter:title" content="Vector Cross Product and Dot Product" />
 <meta name="twitter:image" content="https://mengwoods.github.io/images/thumbnail.png"/>
-<meta property="og:url" content="https://mengwoods.github.io/search/" />
-<meta property="og:title" content="Search" />
-<meta property="og:description" content="" />
+<meta property="og:url" content="https://mengwoods.github.io/post/2023-12-06-vector-cross-product/" />
+<meta property="og:title" content="Vector Cross Product and Dot Product" />
+<meta property="og:description" content="Introduce vector mutiplication with applications." />
 <meta property="og:image" content="https://mengwoods.github.io/images/thumbnail.png" />
 
 <link rel="apple-touch-icon" sizes="180x180" href="https://mengwoods.github.io/icons/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://mengwoods.github.io/icons/favicon-32x32.png">
 <link rel="manifest" href="https://mengwoods.github.io/icons/site.webmanifest">
 
-<link rel="canonical" href="https://mengwoods.github.io/search/">
+<link rel="canonical" href="https://mengwoods.github.io/post/2023-12-06-vector-cross-product/">
 
 
 
@@ -145,8 +145,139 @@
 </header>
 
     <main>
-<div id="results" class="content pt-2 pb-2">
-  <div class="results pt-2" id="searchpage"></div>
+  
+<div class="grid-inverse wrap content">
+  <article class="post_content">
+    <h1 class="post_title">Vector Cross Product and Dot Product</h1>
+  <div class="post_meta">
+    <span><svg class="icon">
+  <title>calendar</title>
+  <use xlink:href="#calendar"></use>
+</svg>
+</span>
+    <span class="post_date">
+      Nov 4, 2023</span>
+    <span class="post_time"> · 2 min read</span>
+    <span class="page_only">&nbsp;·
+  <div class="post_share">
+    Share on:
+    <a href="https://twitter.com/intent/tweet?text=Vector%20Cross%20Product%20and%20Dot%20Product&url=https%3a%2f%2fmengwoods.github.io%2fpost%2f2023-12-06-vector-cross-product%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
+      <svg class="icon">
+  <title>twitter</title>
+  <use xlink:href="#twitter"></use>
+</svg>
+
+    </a>
+    <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fmengwoods.github.io%2fpost%2f2023-12-06-vector-cross-product%2f&t=Vector%20Cross%20Product%20and%20Dot%20Product" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
+      <svg class="icon">
+  <title>facebook</title>
+  <use xlink:href="#facebook"></use>
+</svg>
+
+    </a>
+    <a href="#linkedinshare" id = "linkedinshare" class="linkedin" title="Share on LinkedIn" rel="nofollow">
+      <svg class="icon">
+  <title>linkedin</title>
+  <use xlink:href="#linkedin"></use>
+</svg>
+
+    </a>
+    <a href="https://mengwoods.github.io/post/2023-12-06-vector-cross-product/" title="Copy Link" class="link link_yank">
+      <svg class="icon">
+  <title>copy</title>
+  <use xlink:href="#copy"></use>
+</svg>
+
+    </a>
+  </div>
+  </span>
+  </div>
+
+      <div class="post_toc">
+        <h2>Overview</h2>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#cross-product">Cross Product</a></li>
+    <li><a href="#dot-product">Dot Product</a></li>
+  </ul>
+</nav>
+      </div>
+    
+    <div class="post_body"><p>Introduce vector mutiplication with applications.</p>
+<h1 id="vector">Vector</h1>
+<p>Vector has <strong>magnitude</strong> and <strong>direction</strong>.
+Collinear vectors: vectors are parallel.</p>
+<h2 id="cross-product">Cross Product</h2>
+<p>$$\vec{a}\times\vec{b}=|A||B|\sin{\theta}\vec{n}$$</p>
+<p>\theta is the angle between vectors, \vec{n} is unit vector at right angles to vectors, direction follows right hand rule.</p>
+<p>The Cross Product of two vector is another vector that is at right angles to both. The magnitude of the cross product equals the areas of parallelogram with both vectors. The magnitude reaches maximum length when both vectos are at right angles.</p>
+<p>The cross product is the <strong>determinant</strong> of 3x3 matrix.</p>
+<p>$$
+a\times b=\det(i,j,k;a_1,a_2,a_3,b_1,b_2,b_3)
+$$
+$$=(a_2b_3 - a_3,b_2)i+(a_3b_1 - a_1,b_3)j+(a_1b_2 - a_2,b_1)k$$</p>
+<h2 id="dot-product">Dot Product</h2>
+<p>Cross product gives a vector answer, but Dot Product gives a <strong>scalar</strong> answer.
+It multiplies vectors' lengths together but only when they point in the same direction, so using \cos{\theta}. So if two vector are at right angle, result is zero.</p>
+<p>$$
+a\cdot b = |a||b|\cos{\theta}
+$$</p>
+<h1 id="application">Application</h1>
+<ol>
+<li>To determine whether two vectors are:
+<ol>
+<li><strong>collinear</strong>: A=k*B, and k is a scalar; Cross product is zero vector (only applied to three-dimensional or spatial problems); Ratio of corresponding coordinates are equal.</li>
+<li><strong>perpendicular</strong>: Dot product is zero.</li>
+</ol>
+</li>
+<li>Calcualte the projection point C of point P onto the line segment AB.
+<ol>
+<li>Vector AB, AP, dot product is D.</li>
+<li>D/|AB| = |AC|</li>
+<li>k = |AC|/|AB| = D/{|AB|^2}</li>
+<li>C = A + k\vec{AB}</li>
+</ol>
+</li>
+<li>How to verify C is projection point:
+<ol>
+<li>AC = k AB</li>
+<li>PCxAB=zero vector</li>
+</ol>
+</li>
+</ol>
+<p><a href="./projection.cpp">Code implementation</a></p>
+    </div>
+<div class="post_comments">
+  
+    <div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "https-mengwoods-github-io-1" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  
+  
+  
+</div>
+
+
+
+
+  </article>
 </div>
     </main><svg width="0" height="0" class="hidden">
   <symbol viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" id="facebook">

@@ -7,7 +7,23 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Copyright © 2024, Meng blog; all rights reserved.</copyright>
-    <lastBuildDate>Sat, 09 Mar 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://mengwoods.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 05 Mar 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://mengwoods.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Operator in C&#43;&#43;</title>
+      <link>https://mengwoods.github.io/post/code/001-operator/</link>
+      <pubDate>Tue, 05 Mar 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://mengwoods.github.io/post/code/001-operator/</guid>
+      <description>
+        
+          
+            &lt;p&gt;Operator operates variable and constants.&lt;/p&gt;
+          
+          
+        
+      </description>
+    </item>
+    
     <item>
       <title>Vector Cross Product and Dot Product</title>
       <link>https://mengwoods.github.io/post/math/001-vector-cross-product/</link>

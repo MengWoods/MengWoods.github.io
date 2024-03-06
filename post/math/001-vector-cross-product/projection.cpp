@@ -69,10 +69,12 @@ bool verifyProjection(Point A, Point B, Point P, Point C)
 
 int main()
 {
+    // Line segment AB
     Point A = {1, 2, 3};
     Point B = {4, 5, 6};
+    // Point P
     Point P = {2, 3, 4};
-    
+    // Project P to AB and get point C
     Point C = calcProjection(A, B, P);
 
     cout << "Projection Point C: (" << C.x << ", " << C.y << ", " << C.z << ")" << endl;

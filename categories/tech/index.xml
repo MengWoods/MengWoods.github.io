@@ -52,11 +52,7 @@ Docker container is a running instance of a Docker image, providing an isolated 
       <description>
         
           
-            Prepare The installation is tested in environment: Ubuntu 20.04, CUDA-11.6, PyTorch v1.13.1.
-Miniconda The installation is inside a conda virtual envrionment, so be sure Miniconda is installed.
-Installation on Linux:
-1mkdir -p ~/miniconda3 2wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh 3bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3 4rm -rf ~/miniconda3/miniconda.sh And initialization:
-1~/miniconda3/bin/conda init bash 2~/miniconda3/bin/conda init zsh CUDA Toolkit CUDA 11.6 and Nvidia driver 510.39.01 are recommended in the guide. The Nvidia driver can be installed along with CUDA.
+            &lt;p&gt;Cuda, Conda, MMDetection3D and test.&lt;/p&gt;
           
           
         

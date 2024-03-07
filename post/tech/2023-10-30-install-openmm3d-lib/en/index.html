@@ -28,16 +28,14 @@
 <meta property="og:locale" content="en" />
 
 <meta property="og:type" content="article">
-<meta name="description" content="Prepare The installation is tested in environment: Ubuntu 20.04, CUDA-11.6, PyTorch v1.13.1.
-Miniconda The installation is inside a conda virtual envrionment, …" />
+<meta name="description" content="Cuda, Conda, MMDetection3D and test." />
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:creator" content="@janedoe">
 <meta name="twitter:title" content="MMDetection3D Library Installation Guide" />
 <meta name="twitter:image" content="https://mengwoods.github.io/images/thumbnail.png"/>
 <meta property="og:url" content="https://mengwoods.github.io/post/tech/2023-10-30-install-openmm3d-lib/en/" />
 <meta property="og:title" content="MMDetection3D Library Installation Guide" />
-<meta property="og:description" content="Prepare The installation is tested in environment: Ubuntu 20.04, CUDA-11.6, PyTorch v1.13.1.
-Miniconda The installation is inside a conda virtual envrionment, …" />
+<meta property="og:description" content="Cuda, Conda, MMDetection3D and test." />
 <meta property="og:image" content="https://mengwoods.github.io/images/thumbnail.png" />
 
 <link rel="apple-touch-icon" sizes="180x180" href="https://mengwoods.github.io/icons/apple-touch-icon.png">
@@ -199,27 +197,28 @@ Miniconda The installation is inside a conda virtual envrionment, …" />
         <h2>Overview</h2>
         <nav id="TableOfContents">
   <ul>
-    <li><a href="#prepare">Prepare</a>
+    <li><a href="#1-prepare">1. Prepare</a>
       <ul>
-        <li><a href="#miniconda">Miniconda</a></li>
-        <li><a href="#cuda-toolkit">CUDA Toolkit</a></li>
+        <li><a href="#11-miniconda">1.1 Miniconda</a></li>
+        <li><a href="#12-cuda-toolkit">1.2 CUDA Toolkit</a></li>
       </ul>
     </li>
-    <li><a href="#install-dependencies">Install dependencies</a></li>
-    <li><a href="#install-mmdetection3d">Install MMDetection3D</a>
+    <li><a href="#2-install-dependencies">2. Install dependencies</a></li>
+    <li><a href="#3-install-mmdetection3d">3. Install MMDetection3D</a>
       <ul>
-        <li><a href="#install-mm-dependencies">Install MM* dependencies</a></li>
-        <li><a href="#install-mmdetection3d-library">Install MMDetection3D library</a></li>
-        <li><a href="#test">Test</a></li>
+        <li><a href="#31-install-mm-dependencies">3.1 Install MM* dependencies</a></li>
+        <li><a href="#32-install-mmdetection3d-library">3.2 Install MMDetection3D library</a></li>
+        <li><a href="#33-test">3.3 Test</a></li>
       </ul>
     </li>
   </ul>
 </nav>
       </div>
     
-    <div class="post_body"><h2 id="prepare">Prepare</h2>
+    <div class="post_body"><p>Cuda, Conda, MMDetection3D and test.</p>
+<h2 id="1-prepare">1. Prepare</h2>
 <p>The installation is tested in environment: Ubuntu 20.04, CUDA-11.6, PyTorch v1.13.1.</p>
-<h3 id="miniconda">Miniconda</h3>
+<h3 id="11-miniconda">1.1 Miniconda</h3>
 <p>The installation is inside a conda virtual envrionment, so be sure <a href="https://docs.conda.io/projects/miniconda/en/latest/#quick-command-line-install">Miniconda</a> is installed.</p>
 <p>Installation on Linux:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">mkdir -p ~/miniconda3
@@ -229,27 +228,24 @@ Miniconda The installation is inside a conda virtual envrionment, …" />
 </span></span></code></pre></div><p>And initialization:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">~/miniconda3/bin/conda init bash
 </span></span><span class="line"><span class="ln">2</span><span class="cl">~/miniconda3/bin/conda init zsh
-</span></span></code></pre></div><h3 id="cuda-toolkit">CUDA Toolkit</h3>
+</span></span></code></pre></div><h3 id="12-cuda-toolkit">1.2 CUDA Toolkit</h3>
 <p><a href="https://developer.nvidia.com/cuda-11-6-0-download-archive">CUDA 11.6</a> and Nvidia driver 510.39.01 are recommended in the guide. The Nvidia driver can be installed along with CUDA.</p>
 <ul>
 <li>Check cuda version: <code>nvcc --version</code></li>
 <li>Remove cuda:
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">sudo apt-get --purge remove <span class="s2">&#34;*cuda*&#34;</span> <span class="s2">&#34;*cublas*&#34;</span> <span class="s2">&#34;*cufft*&#34;</span> <span class="s2">&#34;*cufile*&#34;</span> <span class="s2">&#34;*curand*&#34;</span> <span class="se">\
-</span></span></span></code></pre></div></li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">sudo apt-get --purge remove <span class="s2">&#34;*cuda*&#34;</span> <span class="s2">&#34;*cublas*&#34;</span> <span class="s2">&#34;*cufft*&#34;</span> <span class="s2">&#34;*cufile*&#34;</span> <span class="s2">&#34;*curand*&#34;</span> <span class="s2">&#34;*cusolver*&#34;</span> <span class="s2">&#34;*cusparse*&#34;</span> <span class="s2">&#34;*gds-tools*&#34;</span> <span class="s2">&#34;*npp*&#34;</span> <span class="s2">&#34;*nvjpeg*&#34;</span> <span class="s2">&#34;nsight*&#34;</span> <span class="s2">&#34;*nvvm*&#34;</span>
+</span></span></code></pre></div></li>
+<li>or <code>sudo /usr/local/cuda-11.x/bin/cuda-uninstaller</code> (replace <code>x</code> with the version of cuda)</li>
+<li>Check nvidia driver version: <code>nvidia-smi</code></li>
+<li>Remove nvidia driver: <code>sudo /usr/bin/nvidia-uninstall</code> or <code>sudo apt-get --purge remove &quot;*nvidia*&quot; &quot;libxnvctrl*&quot;</code></li>
+<li><code>sudo apt-get autoremove</code></li>
 </ul>
-<p>&quot;<em>cusolver</em>&quot; &quot;<em>cusparse</em>&quot; &quot;<em>gds-tools</em>&quot; &quot;<em>npp</em>&quot; &quot;<em>nvjpeg</em>&quot; &quot;nsight*&quot; &quot;<em>nvvm</em>&quot;</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-mysql" data-lang="mysql"><span class="line"><span class="ln">1</span><span class="cl"><span class="o">-</span><span class="w"> </span><span class="o">``</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="o">`</span><span class="n">sudo</span><span class="w"> </span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">cuda</span><span class="o">-</span><span class="mi">11</span><span class="p">.</span><span class="n">x</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">cuda</span><span class="o">-</span><span class="n">uninstaller</span><span class="o">`</span><span class="w"> </span><span class="p">(</span><span class="k">replace</span><span class="w"> </span><span class="o">`</span><span class="n">x</span><span class="o">`</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">cuda</span><span class="p">)</span><span class="w">
-</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="w"></span><span class="o">-</span><span class="w"> </span><span class="k">Check</span><span class="w"> </span><span class="n">nvidia</span><span class="w"> </span><span class="n">driver</span><span class="w"> </span><span class="n">version</span><span class="p">:</span><span class="w"> </span><span class="o">`</span><span class="n">nvidia</span><span class="o">-</span><span class="n">smi</span><span class="o">`</span><span class="w">
-</span></span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="w"></span><span class="o">-</span><span class="w"> </span><span class="n">Remove</span><span class="w"> </span><span class="n">nvidia</span><span class="w"> </span><span class="n">driver</span><span class="p">:</span><span class="w"> </span><span class="o">`</span><span class="n">sudo</span><span class="w"> </span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">nvidia</span><span class="o">-</span><span class="n">uninstall</span><span class="o">`</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="o">`</span><span class="n">sudo</span><span class="w"> </span><span class="n">apt</span><span class="o">-</span><span class="n">get</span><span class="w"> </span><span class="o">--</span><span class="k">purge</span><span class="w"> </span><span class="n">remove</span><span class="w"> </span><span class="s2">&#34;*nvidia*&#34;</span><span class="w"> </span><span class="s2">&#34;libxnvctrl*&#34;</span><span class="o">`</span><span class="w">
-</span></span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="w"></span><span class="o">-</span><span class="w"> </span><span class="o">`</span><span class="n">sudo</span><span class="w"> </span><span class="n">apt</span><span class="o">-</span><span class="n">get</span><span class="w"> </span><span class="n">autoremove</span><span class="o">`</span><span class="w">
-</span></span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="ln">6</span><span class="cl"><span class="w"></span><span class="n">Install</span><span class="w"> </span><span class="n">CUDA</span><span class="w"> </span><span class="mi">11</span><span class="p">.</span><span class="mi">6</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">driver</span><span class="w"> </span><span class="mi">510</span><span class="p">.</span><span class="mi">39</span><span class="p">.</span><span class="mi">01</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="ln">7</span><span class="cl"><span class="w"></span><span class="o">```</span><span class="n">bash</span><span class="w">
-</span></span></span><span class="line"><span class="ln">8</span><span class="cl"><span class="w"></span><span class="n">wget</span><span class="w"> </span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">developer</span><span class="p">.</span><span class="n">download</span><span class="p">.</span><span class="n">nvidia</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">compute</span><span class="o">/</span><span class="n">cuda</span><span class="o">/</span><span class="mi">11</span><span class="p">.</span><span class="mi">6</span><span class="p">.</span><span class="mi">0</span><span class="o">/</span><span class="n">local_installers</span><span class="o">/</span><span class="n">cuda_11</span><span class="p">.</span><span class="mi">6</span><span class="p">.</span><span class="mi">0</span><span class="n">_510</span><span class="p">.</span><span class="mi">39</span><span class="p">.</span><span class="mi">01</span><span class="n">_linux</span><span class="p">.</span><span class="n">run</span><span class="w">
-</span></span></span><span class="line"><span class="ln">9</span><span class="cl"><span class="w"></span><span class="n">sudo</span><span class="w"> </span><span class="n">sh</span><span class="w"> </span><span class="n">cuda_11</span><span class="p">.</span><span class="mi">6</span><span class="p">.</span><span class="mi">0</span><span class="n">_510</span><span class="p">.</span><span class="mi">39</span><span class="p">.</span><span class="mi">01</span><span class="n">_linux</span><span class="p">.</span><span class="n">run</span><span class="w">
-</span></span></span></code></pre></div><p>Select the Nvidia driver during CUDA installation in Terminal.</p>
+<p>Install CUDA 11.6 and driver 510.39.01:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">wget https://developer.download.nvidia.com/compute/cuda/11.6.0/local_installers/cuda_11.6.0_510.39.01_linux.run
+</span></span><span class="line"><span class="ln">2</span><span class="cl">sudo sh cuda_11.6.0_510.39.01_linux.run
+</span></span></code></pre></div><p>Select the Nvidia driver during CUDA installation in Terminal.</p>
 <p>For other versions, check method from Nvidia toolkit <a href="https://developer.nvidia.com/cuda-toolkit-archive">website</a>.</p>
-<h2 id="install-dependencies">Install dependencies</h2>
+<h2 id="2-install-dependencies">2. Install dependencies</h2>
 <p>Create a virtual environment:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">conda create --name openmmlab <span class="nv">python</span><span class="o">=</span>3.8 -y
 </span></span><span class="line"><span class="ln">2</span><span class="cl">conda activate openmmlab
@@ -257,15 +253,15 @@ Miniconda The installation is inside a conda virtual envrionment, …" />
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">conda install <span class="nv">pytorch</span><span class="o">==</span>1.13.1 <span class="nv">torchvision</span><span class="o">==</span>0.14.1 <span class="nv">torchaudio</span><span class="o">==</span>0.13.1 pytorch-cuda<span class="o">=</span>11.6 -c pytorch -c nvidia
 </span></span></code></pre></div><p>Install <a href="https://github.com/traveller59/spconv#spconv-spatially-sparse-convolution-library">SpConv</a>:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">pip install spconv-cu116
-</span></span></code></pre></div><h2 id="install-mmdetection3d">Install MMDetection3D</h2>
+</span></span></code></pre></div><h2 id="3-install-mmdetection3d">3. Install MMDetection3D</h2>
 <blockquote>
 <p>See more from: <a href="https://mmdetection3d.readthedocs.io/en/latest/get_started.html">https://mmdetection3d.readthedocs.io/en/latest/get_started.html</a></p>
 </blockquote>
-<h3 id="install-mm-dependencies">Install MM* dependencies</h3>
+<h3 id="31-install-mm-dependencies">3.1 Install MM* dependencies</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1"># Install mim</span>
 </span></span><span class="line"><span class="ln">2</span><span class="cl">pip install -U openmim
 </span></span><span class="line"><span class="ln">3</span><span class="cl">mim install mmengine <span class="s1">&#39;mmcv&gt;=2.0.0rc4&#39;</span> <span class="s1">&#39;mmdet&gt;=3.0.0&#39;</span>
-</span></span></code></pre></div><h3 id="install-mmdetection3d-library">Install MMDetection3D library</h3>
+</span></span></code></pre></div><h3 id="32-install-mmdetection3d-library">3.2 Install MMDetection3D library</h3>
 <p>Case one: use mmdet3d as a dependency or third-party package:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1"># Install mmdet3d</span>
 </span></span><span class="line"><span class="ln">2</span><span class="cl">mim install <span class="s2">&#34;mmdet3d&gt;=1.1.0&#34;</span>
@@ -274,7 +270,7 @@ Miniconda The installation is inside a conda virtual envrionment, …" />
 </span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="nb">cd</span> mmdetection3d
 </span></span><span class="line"><span class="ln">3</span><span class="cl">pip install -v -e .
 </span></span></code></pre></div><p>After installation, verify the package location by <code>pip show mmdet3d</code>.</p>
-<h3 id="test">Test</h3>
+<h3 id="33-test">3.3 Test</h3>
 <p>To test the result, try to import libraries from it in a Python IDE, for example:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">from mmdet3d.apis import init_model, inference_detector
 </span></span></code></pre></div><p>or</p>

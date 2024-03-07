@@ -197,37 +197,37 @@
         <h2>Overview</h2>
         <nav id="TableOfContents">
   <ul>
-    <li><a href="#vector">Vector</a>
+    <li><a href="#1-vector">1 Vector</a>
       <ul>
-        <li><a href="#cross-product">Cross Product</a></li>
-        <li><a href="#dot-product">Dot Product</a></li>
+        <li><a href="#11-cross-product">1.1 Cross Product</a></li>
+        <li><a href="#12-dot-product">1.2 Dot Product</a></li>
       </ul>
     </li>
-    <li><a href="#application">Application</a></li>
+    <li><a href="#2-application">2 Application</a></li>
   </ul>
 </nav>
       </div>
     
     <div class="post_body"><p>Introduce vector mutiplication with applications.</p>
-<h2 id="vector">Vector</h2>
+<h2 id="1-vector">1 Vector</h2>
 <p>Vector has <strong>magnitude</strong> and <strong>direction</strong>.
 Collinear vectors: vectors are parallel.</p>
-<h3 id="cross-product">Cross Product</h3>
+<h3 id="11-cross-product">1.1 Cross Product</h3>
 <p>$$\vec{a}\times\vec{b}=|A||B|\sin{\theta}\vec{n}$$</p>
 <p>\theta is the angle between vectors, \vec{n} is unit vector at right angles to vectors, direction follows right hand rule.</p>
-<p>The Cross Product of two vector is another vector that is at right angles to both. The magnitude of the cross product equals the areas of parallelogram with both vectors. The magnitude reaches maximum length when both vectos are at right angles.</p>
+<p>The Cross Product of two vector is another vector that is at right angles to both. <strong>The magnitude of the cross product equals the areas of parallelogram with both vectors</strong>. The magnitude reaches maximum length when both vectos are at right angles.</p>
 <p>The cross product is the <strong>determinant</strong> of 3x3 matrix.</p>
 <p>$$
 a\times b=\det(i,j,k;a_1,a_2,a_3,b_1,b_2,b_3)
 $$
 $$=(a_2b_3 - a_3,b_2)i+(a_3b_1 - a_1,b_3)j+(a_1b_2 - a_2,b_1)k$$</p>
-<h3 id="dot-product">Dot Product</h3>
+<h3 id="12-dot-product">1.2 Dot Product</h3>
 <p>Cross product gives a vector answer, but Dot Product gives a <strong>scalar</strong> answer.
 It multiplies vectors' lengths together but only when they point in the same direction, so using \cos{\theta}. So if two vector are at right angle, result is zero.</p>
 <p>$$
 a\cdot b = |a||b|\cos{\theta}
 $$</p>
-<h2 id="application">Application</h2>
+<h2 id="2-application">2 Application</h2>
 <ol>
 <li>To determine whether two vectors are:
 <ol>
@@ -250,7 +250,20 @@ $$</p>
 </ol>
 </li>
 </ol>
-<p><a href="./projection.cpp">Code implementation</a></p>
+<p>Code implementation of above steps:</p>
+<ul>
+<li><a href="./projection.cpp">Raw implementation</a></li>
+<li><a href="./projection_eigen.cpp">Implementation with Eigen lib</a></li>
+</ul>
+<ol start="4">
+<li>How to calculate the distance d between a point P to a line AB
+<ol>
+<li>Cross product's norm is the area of the parallelogram spanned by two vectors. (AB X AP)</li>
+<li>The area also equas to distance d * |AB|</li>
+<li>d = |AB X AP|/|AB|</li>
+</ol>
+</li>
+</ol>
     </div>
 <div class="post_comments">
   

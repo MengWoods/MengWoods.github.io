@@ -7,7 +7,23 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Copyright © 2024, Meng blog; all rights reserved.</copyright>
-    <lastBuildDate>Tue, 05 Mar 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://mengwoods.github.io/tags/c++/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 07 Mar 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://mengwoods.github.io/tags/c++/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>C&#43;&#43; general qestions collection</title>
+      <link>https://mengwoods.github.io/post/code/000-general-question/</link>
+      <pubDate>Thu, 07 Mar 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://mengwoods.github.io/post/code/000-general-question/</guid>
+      <description>
+        
+          
+            &lt;p&gt;General knowledge recordings.&lt;/p&gt;
+          
+          
+        
+      </description>
+    </item>
+    
     <item>
       <title>Operator in C&#43;&#43;</title>
       <link>https://mengwoods.github.io/post/code/001-operator/</link>

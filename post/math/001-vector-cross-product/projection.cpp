@@ -39,6 +39,11 @@ Point crossProduct(Point A, Point B)
             A.x * B.y - A.y * B.x};
 }
 
+float calcNorm(Point A)
+{
+    return sqrt(A.x * A.x + A.y * A.y + A.z * A.z);
+}
+
 Point calcProjection(Point A, Point B, Point P)
 {
     Point AB = {B.x - A.x, B.y - A.y, B.z - A.z};
@@ -67,13 +72,22 @@ bool verifyProjection(Point A, Point B, Point P, Point C)
     }
 }
 
+float calcDistance(Point A, Point B, Point P)
+{
+    Point AB = {B.x - A.x, B.y - A.y, B.z - A.z};
+    Point AP = {P.x - A.x, P.y - A.y, P.z - A.z};
+    Point cross_product = crossProduct(AB, AP);
+    float area_parallelogram = calcNorm(cross_product);
+    return (area_parallelogram / calcNorm(AB));
+}
+
 int main()
 {
     // Line segment AB
-    Point A = {1, 2, 3};
-    Point B = {4, 5, 6};
+    Point A = {0, 0, 0};
+    Point B = {4, 0, 0};
     // Point P
-    Point P = {2, 3, 4};
+    Point P = {5, 8, 0};
     // Project P to AB and get point C
     Point C = calcProjection(A, B, P);
 
@@ -87,6 +101,8 @@ int main()
     {
         cout << "Incorrect." << endl;
     }
+
+    cout << "Distance from P to AB is: " << calcDistance(A, B, P) << endl;
 
     return 0;
 }

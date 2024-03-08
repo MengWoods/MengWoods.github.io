@@ -35,6 +35,15 @@ bool verifyProjection(Vector3d A, Vector3d B, Vector3d P, Vector3d C)
     // return (dot_product == 0 && cross_product.isApprox(zero_vec));
 }
 
+float calcDistance(const Vector3d A, const Vector3d B, const Vector3d P)
+{
+    Vector3d AB = B - A;
+    Vector3d AP = P - A;
+    Vector3d cross_product = AB.cross(AP);
+    float area_parallelogram = cross_product.norm();
+    return area_parallelogram / AB.norm();
+}
+
 int main()
 {
     Eigen::Vector3d A = {0, 0, 0};
@@ -51,6 +60,8 @@ int main()
     {
         cout << "Verification failed." << endl;
     }
+
+    cout << "Distance from P to AB is: " << calcDistance(A, B, P) << endl;
 
 }
 

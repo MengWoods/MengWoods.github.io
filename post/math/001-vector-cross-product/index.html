@@ -229,13 +229,15 @@ a\cdot b = |a||b|\cos{\theta}
 $$</p>
 <h2 id="2-application">2 Application</h2>
 <ol>
-<li>To determine whether two vectors are:
+<li>
+<p>To determine whether two vectors are:</p>
 <ol>
 <li><strong>collinear</strong>: A=k*B, and k is a scalar; Cross product is zero vector (only applied to three-dimensional or spatial problems); Ratio of corresponding coordinates are equal.</li>
 <li><strong>perpendicular</strong>: Dot product is zero.</li>
 </ol>
 </li>
-<li>Calcualte the projection point C of point P onto the line segment AB.
+<li>
+<p>Calcualte the projection point C of point P onto the line segment AB.</p>
 <ol>
 <li>Vector AB, AP, dot product is D.</li>
 <li>D/|AB| = |AC|</li>
@@ -243,10 +245,19 @@ $$</p>
 <li>C = A + k\vec{AB}</li>
 </ol>
 </li>
-<li>How to verify C is projection point:
+<li>
+<p>How to verify C is projection point:</p>
 <ol>
 <li>AC = k AB</li>
 <li>PCxAB=zero vector</li>
+</ol>
+</li>
+<li>
+<p>How to calculate the distance d between a point P to a line AB</p>
+<ol>
+<li>Cross product's norm is the area of the parallelogram spanned by two vectors. (AB X AP)</li>
+<li>The area also equas to distance d * |AB|</li>
+<li>d = |AB X AP|/|AB|</li>
 </ol>
 </li>
 </ol>
@@ -255,15 +266,6 @@ $$</p>
 <li><a href="./projection.cpp">Raw implementation</a></li>
 <li><a href="./projection_eigen.cpp">Implementation with Eigen lib</a></li>
 </ul>
-<ol start="4">
-<li>How to calculate the distance d between a point P to a line AB
-<ol>
-<li>Cross product's norm is the area of the parallelogram spanned by two vectors. (AB X AP)</li>
-<li>The area also equas to distance d * |AB|</li>
-<li>d = |AB X AP|/|AB|</li>
-</ol>
-</li>
-</ol>
     </div>
 <div class="post_comments">
   

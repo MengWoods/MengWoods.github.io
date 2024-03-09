@@ -157,7 +157,7 @@
 </span>
     <span class="post_date">
       Mar 8, 2024</span>
-    <span class="post_time"> · 2 min read</span><span>&nbsp;· <a href='https://mengwoods.github.io/tags/leetcode/' title="Leetcode" class="post_tag button button_translucent">Leetcode
+    <span class="post_time"> · 3 min read</span><span>&nbsp;· <a href='https://mengwoods.github.io/tags/leetcode/' title="Leetcode" class="post_tag button button_translucent">Leetcode
         </a>
     </span>
     <span class="page_only">&nbsp;·
@@ -199,15 +199,22 @@
         <h2>Overview</h2>
         <nav id="TableOfContents">
   <ul>
-    <li><a href="#leetcode">Leetcode</a>
+    <li><a href="#1-leetcode">1 Leetcode</a>
       <ul>
-        <li><a href="#code">Code</a></li>
+        <li><a href="#11-code">1.1 Code</a></li>
       </ul>
     </li>
-    <li><a href="#c-sequence-container">C++ Sequence Container</a>
+    <li><a href="#2-c-sequence-container">2 C++ Sequence Container</a>
       <ul>
-        <li><a href="#array">Array</a></li>
-        <li><a href="#vector">Vector</a></li>
+        <li><a href="#21-array">2.1 Array</a></li>
+        <li><a href="#22-vector">2.2 Vector</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-associative-container">3 Associative Container</a>
+      <ul>
+        <li><a href="#31-unordered-map">3.1 Unordered Map</a></li>
+        <li><a href="#32-unordered-set">3.2 Unordered Set</a></li>
+        <li><a href="#33-application">3.3 Application</a></li>
       </ul>
     </li>
   </ul>
@@ -215,7 +222,7 @@
       </div>
     
     <div class="post_body"><p>3005 Count Elements With Maximum Frequency</p>
-<h2 id="leetcode">Leetcode</h2>
+<h2 id="1-leetcode">1 Leetcode</h2>
 <p>You are given an array nums consisting of positive integers.
 Return the total frequencies of elements in nums such that those elements all have the maximum frequency.
 The frequency of an element is the number of occurrences of that element in the array.</p>
@@ -232,9 +239,10 @@ So the number of elements in the array with maximum frequency is 5.</p>
 <p>Constraints:
 1 &lt;= nums.length &lt;= 100
 1 &lt;= nums[i] &lt;= 100</p>
-<h3 id="code">Code</h3>
-<p><a href="./count_frequency.cpp">My implementation</a></p>
-<h2 id="c-sequence-container">C++ Sequence Container</h2>
+<h3 id="11-code">1.1 Code</h3>
+<p><a href="./count_frequency.cpp">Implementation with vector</a>
+<a href="./count_frequency_unordered_map.cpp">Implementation with unordered map</a> <a href="https://leetcode.com/problems/count-elements-with-maximum-frequency/solutions/4839796/beat-83-69-full-explanation-with-pictures">reference</a></p>
+<h2 id="2-c-sequence-container">2 C++ Sequence Container</h2>
 <p>Refers to a group of container class templates in the standar library that implement storage of data elements. It includes array, vector, list, forword_list, deque.</p>
 <ul>
 <li>Array: compile-time non-resizable array</li>
@@ -243,13 +251,13 @@ So the number of elements in the array with maximum frequency is 5.</p>
 <li>List: doubly linked list.</li>
 <li>Forward list: singly linked list.</li>
 </ul>
-<h3 id="array">Array</h3>
+<h3 id="21-array">2.1 Array</h3>
 <p>std::array is a container that encapsulates fixed size arrays.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="ln">1</span><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;array&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="cp"></span><span class="n">array</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="mi">3</span><span class="o">&gt;</span> <span class="n">arr</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">};</span>
 </span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="n">arr</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
 </span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
-</span></span></code></pre></div><h3 id="vector">Vector</h3>
+</span></span></code></pre></div><h3 id="22-vector">2.2 Vector</h3>
 <p>std::vector is a class template. It is sequency containers representing arrays that can change in size, it uses contiguous storage locations for their elements. Vector's size can change dynamically, the storage is handled automatically by the container. It allocates array to store elements dynamically.</p>
 <p>Vector consumes more memory to manage storage and grow compare to array.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="ln">1</span><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
@@ -261,6 +269,75 @@ So the number of elements in the array with maximum frequency is 5.</p>
 </span></span><span class="line"><span class="ln">7</span><span class="cl"><span class="n">planets</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="s">&#34;Mercury&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="ln">8</span><span class="cl"><span class="n">planets</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="c1">// return number of elements
 </span></span></span><span class="line"><span class="ln">9</span><span class="cl"><span class="c1"></span><span class="n">planets</span><span class="p">.</span><span class="n">capacity</span><span class="p">()</span>
+</span></span></code></pre></div><h2 id="3-associative-container">3 Associative Container</h2>
+<p>set, map, multiset, multimap.</p>
+<h3 id="31-unordered-map">3.1 Unordered Map</h3>
+<p>Associative containers that store elements formed by the combination of a key value and a mapped value. Fast retrieval of individual elements based on keys. Key value is generally used to uniquely identify the element. Elements are not sorted, faster tham map containers to access elements.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="ln">1</span><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;unordered_map&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="cp"></span><span class="n">std</span><span class="o">::</span><span class="n">unordered_map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">freq_counter</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="n">freq_counter</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+</span></span></code></pre></div><h3 id="32-unordered-set">3.2 Unordered Set</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="ln">1</span><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;unordered_set&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="cp"></span><span class="n">std</span><span class="o">::</span><span class="n">unordered_set</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">mySet</span><span class="p">{</span><span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">};</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="n">mySet</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="n">mySet</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+</span></span></code></pre></div><h3 id="33-application">3.3 Application</h3>
+<p>Store vehicle's last velocity in memory, use last velocity's magnitude if vehicle's currect velocity is not confident.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1">// Init
+</span></span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="c1"></span><span class="n">std</span><span class="o">::</span><span class="n">unordered_map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="o">&gt;</span> <span class="n">obstacles_</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="n">std</span><span class="o">::</span><span class="n">unordered_set</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">obstacle_ids_</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="c1">// Add obstacle
+</span></span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="c1"></span><span class="n">obstacle_ids_</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">id</span><span class="p">);</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="n">obstacles_</span><span class="p">[</span><span class="n">id</span><span class="p">]</span> <span class="o">=</span> <span class="n">velocity</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="c1">// Remove obstacle
+</span></span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="c1"></span><span class="n">obstacles_</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">id</span><span class="p">);</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="n">obstacle_ids_</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">id</span><span class="p">);</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">
+</span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="c1">// Get last velocity
+</span></span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="c1"></span><span class="k">auto</span> <span class="n">it</span> <span class="o">=</span> <span class="n">obstacles_</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">id</span><span class="p">);</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="c1">// Return the velocity if the ID is found
+</span></span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="c1"></span><span class="k">if</span> <span class="p">(</span><span class="n">it</span> <span class="o">!=</span> <span class="n">obstacles_</span><span class="p">.</span><span class="n">end</span><span class="p">())</span> 
+</span></span><span class="line"><span class="ln">15</span><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl">    <span class="k">return</span> <span class="n">it</span><span class="o">-&gt;</span><span class="n">second</span><span class="p">;</span> 
+</span></span><span class="line"><span class="ln">17</span><span class="cl"><span class="p">}</span> 
+</span></span><span class="line"><span class="ln">18</span><span class="cl"><span class="k">else</span> 
+</span></span><span class="line"><span class="ln">19</span><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="ln">20</span><span class="cl">    <span class="c1">// Return Zeros velocity if not found
+</span></span></span><span class="line"><span class="ln">21</span><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="ln">22</span><span class="cl">
+</span></span><span class="line"><span class="ln">23</span><span class="cl"><span class="c1">// Remove unneeded IDs
+</span></span></span><span class="line"><span class="ln">24</span><span class="cl"><span class="c1"></span><span class="n">std</span><span class="o">::</span><span class="n">unordered_set</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">ids_to_remove</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">25</span><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="k">const</span> <span class="k">auto</span><span class="o">&amp;</span> <span class="nl">obstacle</span> <span class="p">:</span> <span class="n">obstacles_</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">26</span><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="ln">27</span><span class="cl">    <span class="kt">int</span> <span class="n">id</span> <span class="o">=</span> <span class="n">obstacle</span><span class="p">.</span><span class="n">first</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">28</span><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">obstacle_ids_</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">id</span><span class="p">)</span> <span class="o">==</span> <span class="n">obstacle_ids_</span><span class="p">.</span><span class="n">end</span><span class="p">())</span>
+</span></span><span class="line"><span class="ln">29</span><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="ln">30</span><span class="cl">        <span class="n">ids_to_remove</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">id</span><span class="p">);</span>
+</span></span><span class="line"><span class="ln">31</span><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="ln">32</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln">33</span><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="nl">id_to_remove</span> <span class="p">:</span> <span class="n">ids_to_remove</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">34</span><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="ln">35</span><span class="cl">    <span class="n">obstacles_</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">id_to_remove</span><span class="p">);</span>
+</span></span><span class="line"><span class="ln">36</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln">37</span><span class="cl">
+</span></span><span class="line"><span class="ln">38</span><span class="cl"><span class="c1">// Clear 
+</span></span></span><span class="line"><span class="ln">39</span><span class="cl"><span class="c1"></span> <span class="n">obstacle_ids_</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+</span></span><span class="line"><span class="ln">40</span><span class="cl">
+</span></span><span class="line"><span class="ln">41</span><span class="cl"><span class="c1">// Use magnitude of last_velocity but current direction
+</span></span></span><span class="line"><span class="ln">42</span><span class="cl"><span class="c1"></span><span class="kt">double</span> <span class="n">magnitude</span> <span class="o">=</span> <span class="n">last_velocity</span><span class="p">.</span><span class="n">norm</span><span class="p">();</span>
+</span></span><span class="line"><span class="ln">43</span><span class="cl"><span class="c1">// Normalize the current_velocity to maintain its direction
+</span></span></span><span class="line"><span class="ln">44</span><span class="cl"><span class="c1"></span><span class="k">if</span> <span class="p">(</span><span class="n">current_velocity</span><span class="p">.</span><span class="n">norm</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mf">0.0</span><span class="p">)</span> <span class="c1">// Avoid division by zero
+</span></span></span><span class="line"><span class="ln">45</span><span class="cl"><span class="c1"></span><span class="p">{</span>
+</span></span><span class="line"><span class="ln">46</span><span class="cl">    <span class="n">current_velocity</span><span class="p">.</span><span class="n">normalize</span><span class="p">();</span>
+</span></span><span class="line"><span class="ln">47</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln">48</span><span class="cl"><span class="k">else</span>
+</span></span><span class="line"><span class="ln">49</span><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="ln">50</span><span class="cl">    <span class="c1">// If current_velocity is zero, just return it
+</span></span></span><span class="line"><span class="ln">51</span><span class="cl"><span class="c1"></span>    <span class="k">return</span> <span class="n">current_velocity</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">52</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln">53</span><span class="cl"><span class="c1">// Scale the normalized current_velocity by the magnitude of last_velocity
+</span></span></span><span class="line"><span class="ln">54</span><span class="cl"><span class="c1"></span><span class="n">current_velocity</span> <span class="o">*=</span> <span class="n">magnitude</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">55</span><span class="cl"><span class="k">return</span> <span class="n">current_velocity</span><span class="p">;</span>
 </span></span></code></pre></div>
     </div>
 <div class="post_comments">

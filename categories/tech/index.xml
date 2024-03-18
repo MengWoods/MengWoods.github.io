@@ -10,15 +10,14 @@
     <lastBuildDate>Tue, 06 Feb 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://mengwoods.github.io/categories/tech/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>ROS2 commands record</title>
-      <link>https://mengwoods.github.io/post/tech/2024-02-06-ros2/</link>
+      <link>https://mengwoods.github.io/post/tech/005-ros2/</link>
       <pubDate>Tue, 06 Feb 2024 00:00:00 +0000</pubDate>
       
-      <guid>https://mengwoods.github.io/post/tech/2024-02-06-ros2/</guid>
+      <guid>https://mengwoods.github.io/post/tech/005-ros2/</guid>
       <description>
         
           
-            The blog collects some useful ROS2 commands.
-Workspace 1# Source setup 2source /opt/ros/&amp;lt;ros2-distro&amp;gt;/setup.bash 3# Create workspace 4mkdir -p ~/ros2_ws/src 5# build workspace 6colcon build 7# Source workspace 8source ~/ros2_ws/install/setup.bash 9ros2 launch &amp;lt;package_name&amp;gt; &amp;lt;launch_file_name&amp;gt; Node and Topic 1ros2 node list 2ros2 node info /&amp;lt;node_name&amp;gt; 3ros2 topic list 4ros2 topic info /&amp;lt;topic_name&amp;gt; 5ros2 topic echo /&amp;lt;topic_name&amp;gt; 6ros2 service call /&amp;lt;service_name&amp;gt; &amp;lt;service_type&amp;gt; &amp;#34;&amp;lt;request_data&amp;gt;&amp;#34; Rosbag 1ros2 bag record -a 2ros2 bag play &amp;lt;bag_file_name&amp;gt;.db3 RViz 1# Install 2sudo apt-get install ros-&amp;lt;distro&amp;gt;-rviz2 
+            &lt;p&gt;The blog collects some useful ROS2 commands.&lt;/p&gt;
           
           
         
@@ -27,16 +26,14 @@ Workspace 1# Source setup 2source /opt/ros/&amp;lt;ros2-distro&amp;gt;/setup.bas
     
     <item>
       <title>Some Useful Docker Commands</title>
-      <link>https://mengwoods.github.io/post/tech/2023-11-04-some-docker-commands/en/</link>
+      <link>https://mengwoods.github.io/post/tech/003-some-docker-commands/en/</link>
       <pubDate>Sat, 04 Nov 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://mengwoods.github.io/post/tech/2023-11-04-some-docker-commands/en/</guid>
+      <guid>https://mengwoods.github.io/post/tech/003-some-docker-commands/en/</guid>
       <description>
         
           
-            The blog collects some useful Docker commands.
-Basic Concept of Docker container and Docker image:
-Docker container is a running instance of a Docker image, providing an isolated environment that can be started, stopped and detelted. Docker image is a static, read-only file containing everything needed to create containers. It serves as the source file for starting a Docker container. Check Docker Username Check the username and registry of the logged in Docker account.
+            &lt;p&gt;The blog collects some useful Docker commands.&lt;/p&gt;
           
           
         
@@ -45,14 +42,14 @@ Docker container is a running instance of a Docker image, providing an isolated 
     
     <item>
       <title>MMDetection3D Library Installation Guide</title>
-      <link>https://mengwoods.github.io/post/tech/2023-10-30-install-openmm3d-lib/en/</link>
+      <link>https://mengwoods.github.io/post/tech/001-install-openmm3d-lib/en/</link>
       <pubDate>Mon, 30 Oct 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://mengwoods.github.io/post/tech/2023-10-30-install-openmm3d-lib/en/</guid>
+      <guid>https://mengwoods.github.io/post/tech/001-install-openmm3d-lib/en/</guid>
       <description>
         
           
-            &lt;p&gt;Cuda, Conda, MMDetection3D and test.&lt;/p&gt;
+            &lt;p&gt;Cuda, Conda, MMDetection3D installation and test.&lt;/p&gt;
           
           
         
@@ -61,10 +58,10 @@ Docker container is a running instance of a Docker image, providing an isolated 
     
     <item>
       <title>Build Personal Blog with Hugo</title>
-      <link>https://mengwoods.github.io/post/tech/2023-10-28-build-hugo-site/en/</link>
+      <link>https://mengwoods.github.io/post/tech/000-build-hugo-site/en/</link>
       <pubDate>Sat, 28 Oct 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://mengwoods.github.io/post/tech/2023-10-28-build-hugo-site/en/</guid>
+      <guid>https://mengwoods.github.io/post/tech/000-build-hugo-site/en/</guid>
       <description>
         
           

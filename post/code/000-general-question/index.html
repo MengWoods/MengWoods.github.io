@@ -9,7 +9,7 @@
   
   >
   <head>
-<title>C&#43;&#43; general qestions collection | Menghao blog</title>
+<title>C&#43;&#43; general knowledge | Menghao blog</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -31,10 +31,10 @@
 <meta name="description" content="General knowledge recordings." />
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:creator" content="@janedoe">
-<meta name="twitter:title" content="C&#43;&#43; general qestions collection" />
+<meta name="twitter:title" content="C&#43;&#43; general knowledge" />
 <meta name="twitter:image" content="https://mengwoods.github.io/images/thumbnail.png"/>
 <meta property="og:url" content="https://mengwoods.github.io/post/code/000-general-question/" />
-<meta property="og:title" content="C&#43;&#43; general qestions collection" />
+<meta property="og:title" content="C&#43;&#43; general knowledge" />
 <meta property="og:description" content="General knowledge recordings." />
 <meta property="og:image" content="https://mengwoods.github.io/images/thumbnail.png" />
 
@@ -148,7 +148,7 @@
   
 <div class="grid-inverse wrap content">
   <article class="post_content">
-    <h1 class="post_title">C++ general qestions collection</h1>
+    <h1 class="post_title">C++ general knowledge</h1>
   <div class="post_meta">
     <span><svg class="icon">
   <title>calendar</title>
@@ -157,20 +157,20 @@
 </span>
     <span class="post_date">
       Mar 7, 2024</span>
-    <span class="post_time"> · 1 min read</span><span>&nbsp;· <a href='https://mengwoods.github.io/tags/c&#43;&#43;/' title="C&#43;&#43;" class="post_tag button button_translucent">C&#43;&#43;
+    <span class="post_time"> · 2 min read</span><span>&nbsp;· <a href='https://mengwoods.github.io/tags/c&#43;&#43;/' title="C&#43;&#43;" class="post_tag button button_translucent">C&#43;&#43;
         </a>
     </span>
     <span class="page_only">&nbsp;·
   <div class="post_share">
     Share on:
-    <a href="https://twitter.com/intent/tweet?text=C%2b%2b%20general%20qestions%20collection&url=https%3a%2f%2fmengwoods.github.io%2fpost%2fcode%2f000-general-question%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
+    <a href="https://twitter.com/intent/tweet?text=C%2b%2b%20general%20knowledge&url=https%3a%2f%2fmengwoods.github.io%2fpost%2fcode%2f000-general-question%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
       <svg class="icon">
   <title>twitter</title>
   <use xlink:href="#twitter"></use>
 </svg>
 
     </a>
-    <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fmengwoods.github.io%2fpost%2fcode%2f000-general-question%2f&t=C%2b%2b%20general%20qestions%20collection" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
+    <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fmengwoods.github.io%2fpost%2fcode%2f000-general-question%2f&t=C%2b%2b%20general%20knowledge" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
       <svg class="icon">
   <title>facebook</title>
   <use xlink:href="#facebook"></use>
@@ -200,7 +200,13 @@
         <nav id="TableOfContents">
   <ul>
     <li><a href="#1-class">1 Class</a></li>
-    <li><a href="#containers">Containers</a></li>
+    <li><a href="#2-containers">2 Containers</a></li>
+    <li><a href="#3-operator">3 Operator</a>
+      <ul>
+        <li><a href="#31-overview">3.1 Overview</a></li>
+        <li><a href="#32-operator-overloading">3.2 Operator overloading</a></li>
+      </ul>
+    </li>
     <li><a href="#todo">TODO</a></li>
   </ul>
 </nav>
@@ -234,7 +240,7 @@ Those are access specifiers, defining how the class members can be accessed.</p>
 <p>Virtual function (methods) is a member function declared in base class, redefined (overridden) by derived class. Mainly used to achieve runtime polymorphism (多态)?</p>
 </li>
 </ul>
-<h2 id="containers">Containers</h2>
+<h2 id="2-containers">2 Containers</h2>
 <p>Holds object and stores collection of other objects.</p>
 <ul>
 <li>Sequence containers: array, vector, deque, forward_list, list</li>
@@ -243,6 +249,21 @@ Those are access specifiers, defining how the class members can be accessed.</p>
 <li>Unordered associative containers: unordered_set, unordered_multiset, unordered_map, unordered_multimap.
 vector, queue, stack, priority_queue, list, set, map, etc.</li>
 </ul>
+<h2 id="3-operator">3 Operator</h2>
+<h3 id="31-overview">3.1 Overview</h3>
+<p>Assignment operator <code>=</code>.<br>
+Arithmetic operators: addition <code>+</code>; subtraction <code>-</code>; multiplication <code>*</code>; division <code>/</code>; modulo <code>%</code>(gives the remainder of a division of two values).<br>
+Compound assignment: <code>+=, -=, *=, /=, %=, &gt;&gt;=, &amp;=, ^=, |=</code>.<br>
+Increment and decrement:<code>+=, --</code>.<br>
+Relational and comparison: <code>==, !=, &gt;, &lt;, &gt;= &lt;=</code>. (Equal to, not equal to, less than, greater than, less than or equal to, greater than or equal to).<br>
+Logical operators: <code>!, &amp;&amp;, ||</code>.<br>
+Conditional ternary operator (三元运算子): <code>?</code>.<br>
+Comma (<code>,</code>) to separate two or more expressions.\
+Bitwise operators: <code>&amp;, |, ^, ~, &lt;&lt;, &gt;&gt;</code> (and, or, xor, not, shl, shr)
+Explicit type casting: <code>(), (int)</code>
+Size of: <code>sizeof()</code>, parameter can be type or variable, returns the size in bytes.</p>
+<h3 id="32-operator-overloading">3.2 Operator overloading</h3>
+<p>Giving special meaning to an existing operator without changing its original meaning.</p>
 <h2 id="todo">TODO</h2>
 <ul>
 <li>static function</li>

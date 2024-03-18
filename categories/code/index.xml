@@ -7,7 +7,23 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Copyright © 2024, Meng blog; all rights reserved.</copyright>
-    <lastBuildDate>Fri, 08 Mar 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://mengwoods.github.io/categories/code/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 14 Mar 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://mengwoods.github.io/categories/code/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Leetcode-Max area of longest diagnoal rectangle</title>
+      <link>https://mengwoods.github.io/post/code/001-leetcode-max-area/</link>
+      <pubDate>Thu, 14 Mar 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://mengwoods.github.io/post/code/001-leetcode-max-area/</guid>
+      <description>
+        
+          
+            &lt;p&gt;3000 Maximum Area of Longest Diagonal Rectangle&lt;/p&gt;
+          
+          
+        
+      </description>
+    </item>
+    
     <item>
       <title>Leetcode-Count Frequency</title>
       <link>https://mengwoods.github.io/post/code/002-leetcode-count-frequency/</link>
@@ -25,7 +41,7 @@
     </item>
     
     <item>
-      <title>C&#43;&#43; general qestions collection</title>
+      <title>C&#43;&#43; general knowledge</title>
       <link>https://mengwoods.github.io/post/code/000-general-question/</link>
       <pubDate>Thu, 07 Mar 2024 00:00:00 +0000</pubDate>
       
@@ -34,22 +50,6 @@
         
           
             &lt;p&gt;General knowledge recordings.&lt;/p&gt;
-          
-          
-        
-      </description>
-    </item>
-    
-    <item>
-      <title>Operator in C&#43;&#43;</title>
-      <link>https://mengwoods.github.io/post/code/001-operator/</link>
-      <pubDate>Tue, 05 Mar 2024 00:00:00 +0000</pubDate>
-      
-      <guid>https://mengwoods.github.io/post/code/001-operator/</guid>
-      <description>
-        
-          
-            &lt;p&gt;Operator operates variable and constants.&lt;/p&gt;
           
           
         

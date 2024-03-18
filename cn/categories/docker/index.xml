@@ -10,10 +10,10 @@
     <lastBuildDate>Sat, 04 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://mengwoods.github.io/cn/categories/docker/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>一些实用的Docker命令</title>
-      <link>https://mengwoods.github.io/cn/post/tech/2023-11-04-some-docker-commands/cn/</link>
+      <link>https://mengwoods.github.io/cn/post/tech/003-some-docker-commands/cn/</link>
       <pubDate>Sat, 04 Nov 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://mengwoods.github.io/cn/post/tech/2023-11-04-some-docker-commands/cn/</guid>
+      <guid>https://mengwoods.github.io/cn/post/tech/003-some-docker-commands/cn/</guid>
       <description>
         
           
@@ -32,16 +32,14 @@ Docker container 是Docker镜像的运行实例，提供了一个可以启动、
     
     <item>
       <title>在Docker中使用conda虚拟环境</title>
-      <link>https://mengwoods.github.io/cn/post/tech/2023-10-31-run-conda-in-dockerfile/</link>
+      <link>https://mengwoods.github.io/cn/post/tech/002-run-conda-in-dockerfile/</link>
       <pubDate>Tue, 31 Oct 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://mengwoods.github.io/cn/post/tech/2023-10-31-run-conda-in-dockerfile/</guid>
+      <guid>https://mengwoods.github.io/cn/post/tech/002-run-conda-in-dockerfile/</guid>
       <description>
         
           
-            使用常规方法创建Conda虚拟环境并激活的过程会遇到很多错误，经过查找资料，总结了可行的方法。本文方法的参考文章。
-1. 保存虚拟环境yml文件 在本地激活你想放入Docker中的Conda虚拟环境：conda activate &amp;lt;myenv&amp;gt;。 输出Conda环境配置文件：conda env export &amp;gt; environment.yml。 删除配置文件中位于pip之后的内容。 在我的Docker生成过程中，环境配置文件中若包含pip安装包，则会报错。所以需要删除相关的包，在Dockerfile中，可以在conda环境激活后重新使用pip手动安装所需的。 下面是一个典型的environment.yml文件： 1name: myenv 2channels: 3 - pytorch 4 - nvidia 5 - ... 6dependencies: 7 - _libgcc_mutex=0.1=main 8 - blas=1.0=mkl 9 - ... 10- pip: # 删除此行及以下的内容并保存文件 11 - addict==2.4.0 12 - aliyun-python-sdk-core==2.14.0 13 - ... 14prefix: /home/*/miniconda3/envs/myenv 2. 编写Dockerfile 在你的Dockerfile中添加如下内容：
-1# 使用带有conda的镜像 2FROM continuumio/miniconda3 3 4WORKDIR /app 5 6# 使用上一节的环境文件创建虚拟环境: 7COPY environment.yml . 8RUN conda env create -f environment.
+            &lt;p&gt;Dockerfile, Conda&lt;/p&gt;
           
           
         

@@ -65,10 +65,7 @@
       <description>
         
           
-            Install Hugo Install the latest version from Hugo Github releases page. E.g. download the *.deb file and install by dpkg -i *.deb.
-Or use the official installation Guide (not recommended)
-Step 1: Create the Required Repositories On GitHub, create two repositories, both with the Add a README file option selected:
-Blog source file repository: Store web source files used to generate the blog site (e.g., name it blog-resources). Pages repository: Used to store the generated web files and can be accessed via a URL (name it &amp;lt;username&amp;gt;.
+            &lt;p&gt;Hugo, blog&lt;/p&gt;
           
           
         

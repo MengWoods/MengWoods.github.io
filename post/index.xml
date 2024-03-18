@@ -97,8 +97,7 @@
       <description>
         
           
-            The article records operation steps of monthly saving with Nordnet. and records the questions during the whole process.
-Background questions Why choose index fund? I don&#39;t want pay too much time on investments, I don&#39;t have more knowledge of investment. And I want to have some level return from deposit. S&amp;amp;P 500 index fund includes most profitable 500 companys in the US, and people trust their ability to make money. So I chose the one as the target for my month saving.
+            &lt;p&gt;SP500, Nordnet usage&lt;/p&gt;
           
           
         
@@ -146,10 +145,7 @@ Background questions Why choose index fund? I don&#39;t want pay too much time o
       <description>
         
           
-            Install Hugo Install the latest version from Hugo Github releases page. E.g. download the *.deb file and install by dpkg -i *.deb.
-Or use the official installation Guide (not recommended)
-Step 1: Create the Required Repositories On GitHub, create two repositories, both with the Add a README file option selected:
-Blog source file repository: Store web source files used to generate the blog site (e.g., name it blog-resources). Pages repository: Used to store the generated web files and can be accessed via a URL (name it &amp;lt;username&amp;gt;.
+            &lt;p&gt;Hugo, blog&lt;/p&gt;
           
           
         

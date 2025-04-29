@@ -30,14 +30,14 @@
 <meta property="og:locale:alternate" content="cn" />
 
 <meta property="og:type" content="article">
-<meta name="description" content="Based on Deep Learning (2017, MIT) book." />
+<meta name="description" content="Probability Knowledge Based on Deep Learning (2017, MIT) book." />
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:creator" content="@janedoe">
 <meta name="twitter:title" content="Probability Knowledge for Deep Learning" />
 <meta name="twitter:image" content="https://mengwoods.github.io/images/thumbnail.png"/>
 <meta property="og:url" content="https://mengwoods.github.io/post/dl/001-probability/" />
 <meta property="og:title" content="Probability Knowledge for Deep Learning" />
-<meta property="og:description" content="Based on Deep Learning (2017, MIT) book." />
+<meta property="og:description" content="Probability Knowledge Based on Deep Learning (2017, MIT) book." />
 <meta property="og:image" content="https://mengwoods.github.io/images/thumbnail.png" />
 
 <link rel="apple-touch-icon" sizes="180x180" href="https://mengwoods.github.io/icons/apple-touch-icon.png">
@@ -222,11 +222,36 @@
 </nav>
       </div>
     
-    <div class="post_body"><p>Based on <em>Deep Learning (2017, MIT)</em> book.</p>
+    <div class="post_body"><p>Probability Knowledge Based on <em>Deep Learning (2017, MIT)</em> book.</p>
 <h2 id="1-overview">1 Overview</h2>
 <p>Probability theory is a mathematical framework for representing uncertain statements. We use probability theory in two major ways in AI domain. First, the laws of probability tell us how AI systems should reason, so we design algorithms to compute or approximate various expressions derived using probability theory. Second, we can use probability and statistics to theoretically analyze the behavior of proposed AI systems.</p>
 <h2 id="2-knowledge">2 Knowledge</h2>
 <h3 id="21-discrete-variables-and-probability-mass-function-pmf">2.1 Discrete Variables and Probability Mass Function (PMF)</h3>
+<p><figure>
+  <picture>
+
+    
+      
+        
+        
+        
+        
+        
+        
+    <img
+      loading="lazy"
+      decoding="async"
+      alt="alt text"
+      
+        class="image_figure image_internal image_unprocessed"
+        src="image.png"
+      
+      
+    />
+
+    </picture>
+</figure>
+</p>
 <p>A probability distribution over discrete variables can be described using a <strong>probability mass function</strong> (PMF).
 Descrete variable $x$ follows distribution $P(x)$: $\mathrm{x}\sim P(x)$.</p>
 <p><strong>Joint probability distribution</strong> is a probability distribution over many variables: $P(\mathrm{x}=x, \mathrm{y}=y)$, or $P(x,y)$.</p>
@@ -244,7 +269,7 @@ Descrete variable $x$ follows distribution $P(x)$: $\mathrm{x}\sim P(x)$.</p>
 <li>$\forall x\in \mathrm{x}, p(x)\geq0$. Note do not require $p(x)\leq 1$.</li>
 <li>$\int p(x)dx=1$.</li>
 </ul>
-<p>PDF is not the probability, and PDF is not the same thing as PMF, PDF can be greater than 1. Discrete and continuous random variables are not defined the same way. For the continuous random variable, the necessary condition is $\int p(x)dx=1$. A PDF does not give the probability of a specific state directly, instead the probability of landing inside an infinitesimal region with volume $\delta x$ is given by $p(x)\delta x$. The probability that $x$ lies in the interval $[a,b]$ is given by $\int_{[a,b]}p(x)dx$.</p>
+<p><strong>PDF is not the probability, and PDF is not the same thing as PMF, PDF can be greater than 1</strong>. Discrete and continuous random variables are not defined the same way. For the continuous random variable, the necessary condition is $\int p(x)dx=1$. A PDF does not give the probability of a specific state directly, instead the probability of landing inside an infinitesimal region with volume $\delta x$ is given by $p(x)\delta x$. The probability that $x$ lies in the interval $[a,b]$ is given by $\int_{[a,b]}p(x)dx$.</p>
 <p><strong>Uniform distribution</strong> $u(x;a,b)=\dfrac{1}{b-a}$, $a$ and $b$ are the endpoints of the interval. The $;$ notation means $parameterized by$. $x$ is the argument of the function, $a$ and $b$ are parameters. $x\sim U(a,b)$ denotes that $x$ follows the uniform distrubtion.</p>
 <h3 id="23-marginal-probability">2.3 Marginal Probability</h3>
 <p>The probability distribution over a subset of variables is known as the <strong>marginal probability</strong> distrubtion. E.g., discrete random variables $\mathrm{x}$ and $\mathrm{y}$, $P(\mathrm{x},\mathrm{y})$ is known, the $P(\mathrm{x})$ can be computed with the <strong>sum rule</strong>: $\forall x\in \mathrm{x}, P(\mathrm{x}=x)=\sum_{y}P(\mathrm{x}=x, \mathrm{y}=y)$. For continuous variables, need to use integration instead of summation: $p(x)=\int p(x,y)dy$.</p>
@@ -377,12 +402,62 @@ $\mathcal{N}(x;\mu,\sigma^2)=\sqrt{\dfrac{1}{2\pi \sigma^2}}\exp(-\dfrac{1}{2\si
 <li>$\zeta (x) - \zeta(-x) = x$</li>
 </ul>
 <h3 id="210-bayes-rule">2.10 Bayes' Rule</h3>
+<p><figure>
+  <picture>
+
+    
+      
+        
+        
+        
+        
+        
+        
+    <img
+      loading="lazy"
+      decoding="async"
+      alt="alt text"
+      
+        class="image_figure image_internal image_unprocessed"
+        src="image-2.png"
+      
+      
+    />
+
+    </picture>
+</figure>
+</p>
 <p>$P(x|y)=\dfrac{P(x)P(y|x)}{P(y)}$</p>
 <p>Calculate $P(x|y)$ via $P(y|x)$, note $P(y)=\sum_xP(y|x)P(x)$. Bayes's rule is a way to figure out how likely something is to happen when have some old information.</p>
 <h2 id="3-application-questions">3 Application Questions</h2>
 <blockquote>
 <p><a href="https://www.nicksingh.com/posts/40-probability-statistics-data-science-interview-questions-asked-by-fang-wall-street">Reference</a></p>
 </blockquote>
+<p><figure>
+  <picture>
+
+    
+      
+        
+        
+        
+        
+        
+        
+    <img
+      loading="lazy"
+      decoding="async"
+      alt="alt text"
+      
+        class="image_figure image_internal image_unprocessed"
+        src="image-3.png"
+      
+      
+    />
+
+    </picture>
+</figure>
+</p>
 <p><strong>Q1</strong>: There is a fair coin (one side heads, one side tails) and an unfair coin (both sides tails). You pick one at random, flip it 5 times, and observe that it comes up as tails all five times. What is the chance that you are flipping the unfair coin?\</p>
 <p>Define $U$ is the case flipping the unfair coin; $F$ denotes flipping a fair coin. $5T$ denotes the event where we flip 5 heads in a row.<br>
 We know $P(U) = P(F) = 0.5$, need to solve the $P(U|5T)$.

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>tech on Menghao blog</title>
+    <link>https://mengwoods.github.io/cn/categories/tech/</link>
+    <description>Recent content in tech on Menghao blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>cn</language>
+    <copyright>Copyright © 2024, Meng blog; all rights reserved.</copyright>
+    <lastBuildDate>Tue, 05 Dec 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://mengwoods.github.io/cn/categories/tech/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>一些实用的Docker命令</title>
+      <link>https://mengwoods.github.io/cn/post/tech/003-some-docker-commands/cn/</link>
+      <pubDate>Sat, 04 Nov 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://mengwoods.github.io/cn/post/tech/003-some-docker-commands/cn/</guid>
+      <description>
+        
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>在Docker中使用conda虚拟环境</title>
+      <link>https://mengwoods.github.io/cn/post/tech/002-run-conda-in-dockerfile/</link>
+      <pubDate>Tue, 31 Oct 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://mengwoods.github.io/cn/post/tech/002-run-conda-in-dockerfile/</guid>
+      <description>
+        
+          
+            &lt;p&gt;Dockerfile, Conda&lt;/p&gt;
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>MMDetection3D库的安装指导</title>
+      <link>https://mengwoods.github.io/cn/post/tech/001-install-openmm3d-lib/cn/</link>
+      <pubDate>Mon, 30 Oct 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://mengwoods.github.io/cn/post/tech/001-install-openmm3d-lib/cn/</guid>
+      <description>
+        
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>使用Hugo搭建个人博客</title>
+      <link>https://mengwoods.github.io/cn/post/tech/000-build-hugo-site/en/</link>
+      <pubDate>Sat, 28 Oct 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://mengwoods.github.io/cn/post/tech/000-build-hugo-site/en/</guid>
+      <description>
+        
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>了解 Andriod Studio 项目目录各文件功能</title>
+      <link>https://mengwoods.github.io/cn/post/tech/004-as-folder-functios/cn/</link>
+      <pubDate>Tue, 05 Dec 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://mengwoods.github.io/cn/post/tech/004-as-folder-functios/cn/</guid>
+      <description>
+        
+          
+            &lt;p&gt;Andriod 项目目录各个文件夹功能详细记录&lt;/p&gt;
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

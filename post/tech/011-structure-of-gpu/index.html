@@ -9,7 +9,7 @@
   
   >
   <head>
-<title>Introduction to ROS2, Key Features and Common Commands | Menghao blog</title>
+<title>GPU Architecture Overview | Menghao blog</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -28,21 +28,21 @@
 <meta property="og:locale" content="en" />
 
 <meta property="og:type" content="article">
-<meta name="description" content="ROS2" />
+<meta name="description" content="GPU Architecture Overview" />
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:creator" content="@janedoe">
-<meta name="twitter:title" content="Introduction to ROS2, Key Features and Common Commands" />
+<meta name="twitter:title" content="GPU Architecture Overview" />
 <meta name="twitter:image" content="https://mengwoods.github.io/images/thumbnail.png"/>
-<meta property="og:url" content="https://mengwoods.github.io/post/tech/005-ros2/" />
-<meta property="og:title" content="Introduction to ROS2, Key Features and Common Commands" />
-<meta property="og:description" content="ROS2" />
+<meta property="og:url" content="https://mengwoods.github.io/post/tech/011-structure-of-gpu/" />
+<meta property="og:title" content="GPU Architecture Overview" />
+<meta property="og:description" content="GPU Architecture Overview" />
 <meta property="og:image" content="https://mengwoods.github.io/images/thumbnail.png" />
 
 <link rel="apple-touch-icon" sizes="180x180" href="https://mengwoods.github.io/icons/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://mengwoods.github.io/icons/favicon-32x32.png">
 <link rel="manifest" href="https://mengwoods.github.io/icons/site.webmanifest">
 
-<link rel="canonical" href="https://mengwoods.github.io/post/tech/005-ros2/">
+<link rel="canonical" href="https://mengwoods.github.io/post/tech/011-structure-of-gpu/">
 
 
 
@@ -163,7 +163,7 @@
   
 <div class="grid-inverse wrap content">
   <article class="post_content">
-    <h1 class="post_title">Introduction to ROS2, Key Features and Common Commands</h1>
+    <h1 class="post_title">GPU Architecture Overview</h1>
   <div class="post_meta">
     <span><svg class="icon">
   <title>calendar</title>
@@ -171,21 +171,21 @@
 </svg>
 </span>
     <span class="post_date">
-      May 6, 2024</span>
-    <span class="post_time"> · 4 min read</span><span>&nbsp;· <a href='https://mengwoods.github.io/tags/ros2/' title="ROS2" class="post_tag button button_translucent">ROS2
+      Feb 18, 2025</span>
+    <span class="post_time"> · 10 min read</span><span>&nbsp;· <a href='https://mengwoods.github.io/tags/ml/' title="ml" class="post_tag button button_translucent">ml
         </a>
     </span>
     <span class="page_only">&nbsp;·
   <div class="post_share">
     Share on:
-    <a href="https://twitter.com/intent/tweet?text=Introduction%20to%20ROS2%2c%20Key%20Features%20and%20Common%20Commands&url=https%3a%2f%2fmengwoods.github.io%2fpost%2ftech%2f005-ros2%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
+    <a href="https://twitter.com/intent/tweet?text=GPU%20Architecture%20Overview&url=https%3a%2f%2fmengwoods.github.io%2fpost%2ftech%2f011-structure-of-gpu%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
       <svg class="icon">
   <title>twitter</title>
   <use xlink:href="#twitter"></use>
 </svg>
 
     </a>
-    <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fmengwoods.github.io%2fpost%2ftech%2f005-ros2%2f&t=Introduction%20to%20ROS2%2c%20Key%20Features%20and%20Common%20Commands" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
+    <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fmengwoods.github.io%2fpost%2ftech%2f011-structure-of-gpu%2f&t=GPU%20Architecture%20Overview" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
       <svg class="icon">
   <title>facebook</title>
   <use xlink:href="#facebook"></use>
@@ -199,7 +199,7 @@
 </svg>
 
     </a>
-    <a href="https://mengwoods.github.io/post/tech/005-ros2/" title="Copy Link" class="link link_yank">
+    <a href="https://mengwoods.github.io/post/tech/011-structure-of-gpu/" title="Copy Link" class="link link_yank">
       <svg class="icon">
   <title>copy</title>
   <use xlink:href="#copy"></use>
@@ -214,32 +214,143 @@
         <h2>Overview</h2>
         <nav id="TableOfContents">
   <ul>
-    <li><a href="#what-is-ros2">What is ROS2?</a></li>
-    <li><a href="#key-differences-between-ros1-and-ros2">Key Differences Between ROS1 and ROS2</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#1-workspace-setup">1. Workspace Setup</a></li>
-    <li><a href="#2-working-with-nodes-and-topics">2. Working with Nodes and Topics</a>
+    <li><a href="#cpu-and-gpu">CPU and GPU</a></li>
+    <li><a href="#gpu-programming-model">GPU Programming Model</a>
       <ul>
-        <li><a href="#node-commands">Node Commands</a></li>
-        <li><a href="#topic-commands">Topic Commands</a></li>
-        <li><a href="#service-commands">Service Commands</a></li>
+        <li><a href="#key-concepts">Key Concepts</a></li>
+        <li><a href="#advantages-and-disadvantages">Advantages and Disadvantages</a></li>
+        <li><a href="#accelerator-models">Accelerator Models</a></li>
+        <li><a href="#hip">HIP</a></li>
       </ul>
     </li>
-    <li><a href="#3-recording-and-playing-data-with-rosbag">3. Recording and Playing Data with Rosbag</a></li>
-    <li><a href="#4-visualizing-data-with-rviz2">4. Visualizing Data with RViz2</a>
+    <li><a href="#volta-gpu-microarchitecture">Volta GPU Microarchitecture</a>
       <ul>
-        <li><a href="#install-rviz2">Install RViz2</a></li>
-        <li><a href="#launch-rviz2">Launch RViz2</a></li>
+        <li><a href="#gpu-architecture-scheme">GPU Architecture Scheme</a></li>
+        <li><a href="#streaming-multiprocessors">Streaming Multiprocessors</a></li>
       </ul>
     </li>
+    <li><a href="#thread">Thread</a>
+      <ul>
+        <li><a href="#thread-hierarchy">Thread Hierarchy</a></li>
+        <li><a href="#thread-scheduling-simt">Thread Scheduling, SIMT</a></li>
+      </ul>
+    </li>
+    <li><a href="#physical-and-logical-scheme">Physical and Logical Scheme</a></li>
+    <li><a href="#memory-architecture">Memory Architecture</a></li>
   </ul>
 </nav>
       </div>
     
-    <div class="post_body"><p>ROS2</p>
-<hr>
+    <div class="post_body"><h1 id="gpu-architecture-overview">GPU Architecture Overview</h1>
+<p><figure>
+  <picture>
+
+    
+      
+        
+        
+        
+        
+        
+        
+    <img
+      loading="lazy"
+      decoding="async"
+      alt="alt text"
+      
+        class="image_figure image_internal image_unprocessed"
+        src="image-7.png"
+      
+      
+    />
+
+    </picture>
+</figure>
+</p>
+<h2 id="cpu-and-gpu">CPU and GPU</h2>
+<ul>
+<li>CPU is designed to excel at executing a sequence of operations, called a thread. It can execute a few tens of threads in parallel.
+<ul>
+<li>General purpose, good for serial processing, great for task parallelism, large area dedicated cache and control.</li>
+</ul>
+</li>
+<li>GPU is designed to excel at executing many thousands of them in parallel.
+<ul>
+<li>Highly specialized for parallelism, good for parallel processing, great for data parallelism, high throughput, hundreds of floating point execution units.</li>
+</ul>
+</li>
+</ul>
+<h2 id="gpu-programming-model">GPU Programming Model</h2>
+<h3 id="key-concepts">Key Concepts</h3>
+<ul>
+<li><strong>Host</strong> and <strong>Device</strong>: Host is CPU and device is GPU, CPU runs the main program and is responsible for offloading parallel tasks to the GPU. GPU performs the computations.</li>
+<li><strong>Kernel</strong>: Function that runs on the GPU. It is code will be executed by many GPU threads in parallel. The host program launches a kernel on the device.</li>
+<li>Data Transfer: Data must be explicitly transferred between the host's main memory and the GPU's memory. The host allocates memory on the device, copies data from the host to the device, launches the kernel, and then copies the results back from the device to the host.</li>
+<li>Execution Model: The accelerator model uses a data-parallel execution model. A single kernel is launched to process a large dataset, with each thread handling a small piece of the data. For example in a vector addition, each thread would be responsible for adding a single pair of elements.</li>
+</ul>
+<h3 id="advantages-and-disadvantages">Advantages and Disadvantages</h3>
+<p>Advantages:</p>
+<ul>
+<li>It simplifies GPU programming by abstracting away the hardware complexities.</li>
+<li>Code is more portable across different GPU architectures.</li>
+<li>Allows developers to focus on the parallel algorithms rather than low-level implementation details.</li>
+</ul>
+<p>Disadvantages:</p>
+<ul>
+<li>Data transfer between host and device can introduce significant <strong>overhead</strong>, which can be a <strong>bottleneck</strong>.</li>
+<li>High-level abstraction may not be suitable for application that require fine-grained control over hardware resources for optimal performance.</li>
+<li>Debugging can be more challenging due to the asynchronous nature of host-device execution.</li>
+</ul>
+<h3 id="accelerator-models">Accelerator Models</h3>
+<p><figure>
+  <picture>
+
+    
+      
+        
+        
+        
+        
+        
+        
+    <img
+      loading="lazy"
+      decoding="async"
+      alt="alt text"
+      
+        class="image_figure image_internal image_unprocessed"
+        src="image-8.png"
+      
+      
+    />
+
+    </picture>
+</figure>
+</p>
+<ul>
+<li><strong>CUDA</strong>: NVIDIA's proprietary programming model for its GPUs.</li>
+<li><strong>OpenCL</strong>: An open standard for parallel programming of heterogeneous systems, including GPUs, CPUs, and other processors. It provides a vendor-neutral approach.</li>
+<li><strong>HIP</strong> (Heterogeneous-Compute Interface for Portability): A C++ <strong>runtime</strong> API and kernel language designed to port CUDA applications to AMD GPUs. It acts as a layer that translates CUDA code to run on AMD hardware.</li>
+</ul>
+<h3 id="hip">HIP</h3>
+<p>HIP is designed to be a bridge between CUDA and AMD's GPU platform <strong>ROCm</strong>. It includes a tool called <code>hipify</code> which can automatically convert most CUDA code into HIP code.</p>
+<p>HIP API code is compiled using compiler driver <code>hipcc</code>, it uses the underlying ROCm software stack to compile and run the code on the AMD GPU; It translates the HIP API calls into their corresponding CUDA API calls and then compiles the code with <strong>NVCC</strong> to run on the NVIDIA GPU.</p>
+<p>HIP is a layer on top of CUDA and ROCm. It provides the portability the CUDA lacks, it can run on both AMD and NVIDIA GPUs.</p>
+<h2 id="volta-gpu-microarchitecture">Volta GPU Microarchitecture</h2>
+<p>Volta is a microarchitecture developed by NVIDIA in 2017, it was a significant leap forward in GPU technology, especially for AI and high-performance computing (HPC) workloads. The most prominent product featuring the Volta architecture was the NVIDIA Tesla V100, a high-end accelerator card for data centers.</p>
+<p>Key features:</p>
+<ul>
+<li>Tensor Cores: are specialized hardware units that are highly efficient at performing mixed-precision matrix operations. Tensor cores enabled a massive acceleration of AI training and inference.</li>
+<li>High-Bandwidth Memory (HBM2): This type of memory is stacked in 3D, providing much higher memory bandwidth compared to traditional GDDR memory. This is crucial for handling the large datasets used in AI and HPC.</li>
+<li>NVLink 2.0: New version of high-speed interconnect technology, NVLink. Faster communication link between the GPU and CPU, as well as between multiple GPUs in a multi-GPU system. This was vital for scaling AI and HPC applications across multiple accelerators, preventing data transfer from becoming a bottleneck.</li>
+</ul>
+<p>Volta was a foundational architecture for NVIDIA, newer generations build upon the previous one, adding new features and improving performance:</p>
+<ul>
+<li>Turing 2018: Introduced RT Cores for real-time ray tracing.</li>
+<li>Ampere 2020: Introduced 3rd generation Tensor Cores for enhanced AI performanc. 2nd generation RT Cores, and multi-instance GPU, allows a single GPU to be partitioned into multiple instances to serve different users or applications.</li>
+<li>Hopper 2022: Most recent architecture. 4th generation Tensor Cores, 2nd generation MIG</li>
+</ul>
+<h3 id="gpu-architecture-scheme">GPU Architecture Scheme</h3>
 <p><figure>
   <picture>
 
@@ -265,147 +376,293 @@
     </picture>
 </figure>
 </p>
-<p><strong>ROS2</strong> (Robot Operating System 2) is the modern evolution of the original ROS project, designed for real-time, multi-robot systems with a focus on performance, flexibility, and production-readiness. If you're working with robotics, autonomous vehicles, drones, or intelligent devices, learning ROS2 is an essential skill.</p>
-<p>In this blog, I'll introduce ROS2 and walk through some of the <strong>most common commands</strong> you'll use in daily development — covering <strong>workspace management</strong>, <strong>nodes</strong>, <strong>topics</strong>, <strong>rosbag recording</strong>, and <strong>RViz visualization</strong>.</p>
-<hr>
-<h2 id="what-is-ros2">What is ROS2?</h2>
-<p>ROS2 is a flexible framework for writing robot software. It provides tools, libraries, and conventions to simplify the task of creating complex and robust robot behavior across a wide variety of robotic platforms.</p>
-<p>Compared to ROS1, ROS2 improves in areas like:</p>
+<p>Architecture Scheme:</p>
 <ul>
-<li>Multi-platform support (Linux, Windows, macOS)</li>
-<li>Real-time capability</li>
-<li>Better security</li>
-<li>Middleware flexibility (DDS-based)</li>
-<li>Production-readiness for industrial use</li>
-</ul>
-<hr>
-<h2 id="key-differences-between-ros1-and-ros2">Key Differences Between ROS1 and ROS2</h2>
-<p>While <strong>ROS1</strong> laid the foundation for open-source robotics development, <strong>ROS2</strong> was built to address its limitations and meet modern robotics needs. Here are the main differences:</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Feature</th>
-<th style="text-align:left">ROS1</th>
-<th style="text-align:left">ROS2</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left"><strong>Middleware</strong></td>
-<td style="text-align:left">Custom TCP-based (ROS Master, topics, services)</td>
-<td style="text-align:left">Based on <strong>DDS</strong> (Data Distribution Service), providing decentralized, flexible communication</td>
-</tr>
-<tr>
-<td style="text-align:left"><strong>Real-Time Support</strong></td>
-<td style="text-align:left">Very limited</td>
-<td style="text-align:left">Designed with <strong>real-time</strong> systems in mind (e.g., better scheduling, memory control)</td>
-</tr>
-<tr>
-<td style="text-align:left"><strong>Multi-Robot Support</strong></td>
-<td style="text-align:left">Difficult, requires complex networking setups</td>
-<td style="text-align:left"><strong>Built-in</strong> multi-robot and multi-domain support</td>
-</tr>
-<tr>
-<td style="text-align:left"><strong>Cross-Platform</strong></td>
-<td style="text-align:left">Primarily Linux</td>
-<td style="text-align:left"><strong>Linux</strong>, <strong>Windows</strong>, <strong>macOS</strong> officially supported</td>
-</tr>
-<tr>
-<td style="text-align:left"><strong>Security</strong></td>
-<td style="text-align:left">No official security mechanisms</td>
-<td style="text-align:left">DDS provides built-in <strong>security features</strong> like encryption, authentication</td>
-</tr>
-<tr>
-<td style="text-align:left"><strong>Build System</strong></td>
-<td style="text-align:left"><code>catkin_make</code>, <code>catkin_tools</code></td>
-<td style="text-align:left"><strong>Colcon</strong> build system, more modular and powerful</td>
-</tr>
-<tr>
-<td style="text-align:left"><strong>Launch System</strong></td>
-<td style="text-align:left">XML-based launch files (<code>.launch</code>)</td>
-<td style="text-align:left">Python-based (<code>.py</code>) launch files (more flexible, programmable)</td>
-</tr>
-<tr>
-<td style="text-align:left"><strong>Lifecycle Management</strong></td>
-<td style="text-align:left">Manual node management</td>
-<td style="text-align:left"><strong>Managed nodes</strong> with defined lifecycles for better control (e.g., configurable startup/shutdown states)</td>
-</tr>
-<tr>
-<td style="text-align:left"><strong>Middleware Flexibility</strong></td>
-<td style="text-align:left">Fixed to custom communication layer</td>
-<td style="text-align:left">Pluggable middlewares (e.g., different DDS vendors can be used)</td>
-</tr>
-</tbody>
-</table>
-<p>In short, <strong>ROS2</strong> is not just an &quot;update&quot; of ROS1 — it’s a <strong>fundamental re-architecture</strong> to make ROS ready for the future of robotics.</p>
-<hr>
-<h1 id="essential-ros2-commands">Essential ROS2 Commands</h1>
-<h2 id="1-workspace-setup">1. Workspace Setup</h2>
-<p>A <strong>workspace</strong> is where you organize your ROS2 packages. You’ll build and source your workspace to compile and run your robot applications.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1"># Source ROS2 environment</span>
-</span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="nb">source</span> /opt/ros/&lt;ros2-distro&gt;/setup.bash
-</span></span><span class="line"><span class="ln"> 3</span><span class="cl">
-</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="c1"># Create a workspace</span>
-</span></span><span class="line"><span class="ln"> 5</span><span class="cl">mkdir -p ~/ros2_ws/src
-</span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="nb">cd</span> ~/ros2_ws
-</span></span><span class="line"><span class="ln"> 7</span><span class="cl">
-</span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="c1"># Build the workspace</span>
-</span></span><span class="line"><span class="ln"> 9</span><span class="cl">colcon build
-</span></span><span class="line"><span class="ln">10</span><span class="cl">
-</span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="c1"># Source the workspace (after build)</span>
-</span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="nb">source</span> install/setup.bash
-</span></span><span class="line"><span class="ln">13</span><span class="cl">
-</span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="c1"># Launch a launch file</span>
-</span></span><span class="line"><span class="ln">15</span><span class="cl">ros2 launch &lt;package_name&gt; &lt;launch_file_name&gt;
-</span></span></code></pre></div><p><strong>Notes</strong>:</p>
+<li><strong>GPC</strong> (Graphics processing cluster)
 <ul>
-<li>Replace <code>&lt;ros2-distro&gt;</code> with your installed version, e.g., <code>humble</code>, <code>iron</code>, <code>foxy</code>.</li>
-<li>Always source your workspace after building it so that ROS2 can find your new packages.</li>
+<li>Highest-level cluster on the gpu. It contains all the essential resources for a workload. A GPU chip is made up of multiple GPCs.</li>
+<li>Each GPC typically has its own set of texture processing clusters (TPCs) and a raster engine.</li>
 </ul>
-<hr>
-<h2 id="2-working-with-nodes-and-topics">2. Working with Nodes and Topics</h2>
-<p>In ROS2, <strong>nodes</strong> are basic processes that perform computation. <strong>Topics</strong> are used for sending and receiving messages between nodes.</p>
-<h3 id="node-commands">Node Commands</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1"># List all running nodes</span>
-</span></span><span class="line"><span class="ln">2</span><span class="cl">ros2 node list
-</span></span><span class="line"><span class="ln">3</span><span class="cl">
-</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="c1"># Get detailed info about a specific node</span>
-</span></span><span class="line"><span class="ln">5</span><span class="cl">ros2 node info /&lt;node_name&gt;
-</span></span></code></pre></div><h3 id="topic-commands">Topic Commands</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1"># List all available topics</span>
-</span></span><span class="line"><span class="ln">2</span><span class="cl">ros2 topic list
-</span></span><span class="line"><span class="ln">3</span><span class="cl">
-</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="c1"># Get information about a topic (like message type)</span>
-</span></span><span class="line"><span class="ln">5</span><span class="cl">ros2 topic info /&lt;topic_name&gt;
-</span></span><span class="line"><span class="ln">6</span><span class="cl">
-</span></span><span class="line"><span class="ln">7</span><span class="cl"><span class="c1"># Print (echo) live messages from a topic</span>
-</span></span><span class="line"><span class="ln">8</span><span class="cl">ros2 topic <span class="nb">echo</span> /&lt;topic_name&gt;
-</span></span></code></pre></div><h3 id="service-commands">Service Commands</h3>
-<p>ROS2 services are request-response communication types:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1"># Call a service</span>
-</span></span><span class="line"><span class="ln">2</span><span class="cl">ros2 service call /&lt;service_name&gt; &lt;service_type&gt; <span class="s2">&#34;&lt;request_data&gt;&#34;</span>
-</span></span></code></pre></div><p>Example:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">ros2 service call /reset_robot std_srvs/srv/Empty <span class="s2">&#34;{}&#34;</span>
-</span></span></code></pre></div><hr>
-<h2 id="3-recording-and-playing-data-with-rosbag">3. Recording and Playing Data with Rosbag</h2>
-<p><strong>Rosbag</strong> allows you to record and replay ROS2 messages. It's invaluable for testing and debugging without needing live hardware.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1"># Record all topics</span>
-</span></span><span class="line"><span class="ln">2</span><span class="cl">ros2 bag record -a
-</span></span><span class="line"><span class="ln">3</span><span class="cl">
-</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="c1"># Play back a recorded bag file</span>
-</span></span><span class="line"><span class="ln">5</span><span class="cl">ros2 bag play &lt;bag_file_name&gt;.db3
-</span></span></code></pre></div><p><strong>Tip</strong>: <code>.db3</code> is the default format (SQLite3 database) for ROS2 bag files.</p>
-<hr>
-<h2 id="4-visualizing-data-with-rviz2">4. Visualizing Data with RViz2</h2>
-<p><strong>RViz2</strong> is a powerful visualization tool for ROS2, helping you view sensor data, robot models, and more in a graphical environment.</p>
-<h3 id="install-rviz2">Install RViz2</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1"># Install rviz2 package</span>
-</span></span><span class="line"><span class="ln">2</span><span class="cl">sudo apt-get install ros-&lt;ros2-distro&gt;-rviz2
-</span></span></code></pre></div><p>Example:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">sudo apt-get install ros-humble-rviz2
-</span></span></code></pre></div><h3 id="launch-rviz2">Launch RViz2</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">rviz2
-</span></span></code></pre></div><p>You can load robot models, display sensor topics like point clouds, lasers, maps, and more in real-time.</p>
+</li>
+<li><strong>TPC</strong> (Texture processing cluster)
+<ul>
+<li>Sub-unit of GPC, it groups together multiple streaming multiprocessors (SMs) and other dedicated hardware.</li>
+</ul>
+</li>
+<li><strong>SM</strong> (Streaming Multiprocessor)
+<ul>
+<li>Fundamental building block of a GPU. This is where the actual parallel computation takes place.</li>
+<li><strong>An SM contains a collections of processing cores</strong> (CUDA cores, in Volta, Tensor Cores), a large <strong>register</strong> file, a cache hierarchy (L1 cache and shared memory), and other specialized units. It's the core engine that executes a single thread block of CUDA or OpenCL program.</li>
+</ul>
+</li>
+<li>L2 Cache (Level 2 Cache)
+<ul>
+<li>Large, high-speed memory shared by all the SMs on the GPU. It sits between the individual SM's L1 cache and the slower global memory.</li>
+<li>Its purpose is to reduce latency by storing frequently accessed data, preventing the need to fetch it from global memory, which is much slower. All data access to the global memory must pass through the L2 cache.</li>
+</ul>
+</li>
+<li>Memory Controller
+<ul>
+<li>Dedicated circuit that manages the flow of data between the GPU's processing cores and the on-board memory (Like HBM2 on Volta)</li>
+<li>Controls memory timing, address mapping, and data transfer rates, ensuring high bandwidth and low latency.</li>
+</ul>
+</li>
+</ul>
+<h3 id="streaming-multiprocessors">Streaming Multiprocessors</h3>
+<p><figure>
+  <picture>
+
+    
+      
+        
+        
+        
+        
+        
+        
+    <img
+      loading="lazy"
+      decoding="async"
+      alt="alt text"
+      
+        class="image_figure image_internal image_unprocessed"
+        src="image-1.png"
+      
+      
+    />
+
+    </picture>
+</figure>
+</p>
+<p>NVIDIA Volta SM contains:</p>
+<ul>
+<li>Processing Cores: The heart of SM, including CUDA Cores for general purpose parallel computations. In mordern architectures, Tensor cores for AI tasks, and RT cores for ray tracking.
+<ul>
+<li>64 single precision cores</li>
+<li>32 double precision cores</li>
+<li>64 integer cores</li>
+<li>8 Tensor cores</li>
+</ul>
+</li>
+<li>Memory: Each SM has its own on-chip memory hierarchy, including a large register file for per thread data, a fast L1 cache, and shared memory for inter-thread communication within a thread block.
+<ul>
+<li>128 KB memory block for L1 and shared memory
+<ul>
+<li>0-96 KB can be set to user managed shared memory</li>
+<li>The rest is L1</li>
+</ul>
+</li>
+<li>L0 cache is extremely small and fast cache that sits between the register file and the instruction fetch unit. It acts as a buffer to ensure the warp scheduler always has instructions ready to dispatch, which helps maintain a steady flow of work and prevent stalls.</li>
+<li>Register file is a very large, high=speed memory that stores the private variables for each thread running on the SM.</li>
+</ul>
+</li>
+<li>Warp scheduler is the brain of the SM, managing and scheduling the execution of warps, which are groups of 32 threads.</li>
+<li>Dispatch Unit receives instructions from the warp scheduler and issues them to the execution units.</li>
+<li>65536 registers - enables the GPU to run a very large number of threads.</li>
+<li>Special Function Units (SFUs): Theese are dedicated units that handle complex mathematical operations like square roots and sine functions, which would be slower to compute on standard cores.</li>
+<li>Load/Store Units: These manage all data movement between the SM's memory and the GPU's global memory.</li>
+</ul>
+<h2 id="thread">Thread</h2>
+<h3 id="thread-hierarchy">Thread Hierarchy</h3>
+<p>All loops in which the individual iterations are independent of each other can be parallelized. When a kernel is called tens of thousands of threads are created. Single Instruction Multiple Data parallel programming model. Threads are grouped in blocks which are assigned to the SMs.</p>
+<p><figure>
+  <picture>
+
+    
+      
+        
+        
+        
+        
+        
+        
+    <img
+      loading="lazy"
+      decoding="async"
+      alt="alt text"
+      
+        class="image_figure image_internal image_unprocessed"
+        src="image-2.png"
+      
+      
+    />
+
+    </picture>
+</figure>
+</p>
+<p>Hierarchical programming model:</p>
+<ul>
+<li><strong>Thread is the smallest unit execution</strong>. Single lightweight process that runs a portion of the main parallel function (kernel). Each thread executes the same kernel code but on different piece of data.</li>
+<li><strong>Block is a group of threads</strong>. A key abstraction because all threads within a block can communicate and cooperate with each other.
+<ul>
+<li><strong>Threads in a block share a fast on-chip memory called shared memory</strong>, and can be synchronized using barriers. It allows them to work together on a common task like transposing a matrix.</li>
+</ul>
+</li>
+<li><strong>Grid is a collection of thread blocks</strong>. It represents the entire workload of the kernel. It is highest level of this hierarchy. Grid is launched from CPU, and its blocks are distributed among the available SMs on the GPU. <strong>The blocs in a grid are designed to be independent and have no direct communication with each other</strong>. This allows the GPU to schedule them flexibly and in any order.</li>
+</ul>
+<h3 id="thread-scheduling-simt">Thread Scheduling, SIMT</h3>
+<p>Warp (CUDA) or Wave (HIP) is a group of GPU threads which are grouped physically. Warp contains 32 threads, wave contains 64 threads. <strong>All threads in a warp can only execute the same instruction (SIMT)</strong>.</p>
+<h2 id="physical-and-logical-scheme">Physical and Logical Scheme</h2>
+<p><figure>
+  <picture>
+
+    
+      
+        
+        
+        
+        
+        
+        
+    <img
+      loading="lazy"
+      decoding="async"
+      alt="alt text"
+      
+        class="image_figure image_internal image_unprocessed"
+        src="image-4.png"
+      
+      
+    />
+
+    </picture>
+</figure>
+</p>
+<p>In the picture, there are 16 SMs, each SM contains 32 Cores.</p>
+<p><strong>SPs or cores are main processing units</strong>. Cores are like individual students, one student being one core.</p>
+<p><strong>SM is a collections/grouping of Cores</strong>, like a class. It is higher level unit that manages tasks across the cores.</p>
+<p><figure>
+  <picture>
+
+    
+      
+        
+        
+        
+        
+        
+        
+    <img
+      loading="lazy"
+      decoding="async"
+      alt="alt text"
+      
+        class="image_figure image_internal image_unprocessed"
+        src="image-5.png"
+      
+      
+    />
+
+    </picture>
+</figure>
+</p>
+<p>Thread is a unit of work, each thread represents an individual task.</p>
+<p><strong>Block refers to a collection of threads</strong>. There is a maximum limit on the number of threads in a block, typically 1024 threads.</p>
+<p><strong>Grid refers to a collection or set of blocks</strong>.</p>
+<p>Threads and blocks are fundamental units of parallel execution.</p>
+<p>SM is class room, core is student, thread is task, block is collection of tasks. One core can handle more than 1 thread. To distribute tasks / blocks among the SMs, we need an intermediary called <strong>WARP</strong> to handle the distribution.</p>
+<p><strong>Warp refers to a group of threads that are executed together in parallel</strong>. Typically a warp contains 32 threads. Follows SIMD fashion. All 32 threads execute the same instruction but operate on different data. Warp represents the class monitors, they go and fetch the blocks to bring back to their group for processing; after bringing the blocks to their group, the warps distribute the blocks among the individual students for processing.</p>
+<h2 id="memory-architecture">Memory Architecture</h2>
+<p><strong>Memory architecture is critical for writing efficient program</strong>.</p>
+<p><figure>
+  <picture>
+
+    
+      
+        
+        
+        
+        
+        
+        
+    <img
+      loading="lazy"
+      decoding="async"
+      alt="alt text"
+      
+        class="image_figure image_internal image_unprocessed"
+        src="image-3.png"
+      
+      
+    />
+
+    </picture>
+</figure>
+</p>
+<p>From fastest to slowest, the memory hierarchy is:</p>
+<ol>
+<li>Registers: The fast memory, in each SM. Each thread has its own private set of registers, to store local variables and are managed by compiler</li>
+<li>Shared memory, small, fast, programmer-managed memory on each SM. Threads within a single thread block can use it to cooperate and share data.</li>
+<li>L1 cache: small cache located on each SM, shared by all threads within the SM. It is a hardware-managed cache for frequently accessed data.</li>
+<li>L2 cache: large, unified cache shared by all SMs on the GPU.</li>
+<li>Global memory: Main GPU memory, located on GPU board. Largest and slowest memory, accessible to all threads on the GPU.</li>
+</ol>
+<p><figure>
+  <picture>
+
+    
+      
+        
+        
+        
+        
+        
+        
+    <img
+      loading="lazy"
+      decoding="async"
+      alt="alt text"
+      
+        class="image_figure image_internal image_unprocessed"
+        src="image-6.png"
+      
+      
+    />
+
+    </picture>
+</figure>
+</p>
+<ol>
+<li>Global memory: The largest and slowest memory, accessible by all threads and CPU. Main storage for data transferred to the GPU.</li>
+<li>Register: The fast memory, private to each thread. Variables declared in a kernel are stored here.</li>
+<li>Local memory: Private memory space for each thread that spills to global memory. Used for thread local data that doesn't fit in registers.</li>
+<li>shared memory: fast, on-chip memory shared by threads within a single block.</li>
+<li>constant memory: read only, cached memory space optimized for broadcasting data to all threads.</li>
+<li>texture memory: read only, cached memory optimized for 2D spatial locality.</li>
+</ol>
+<p><figure>
+  <picture>
+
+    
+      
+        
+        
+        
+        
+        
+        
+    <img
+      loading="lazy"
+      decoding="async"
+      alt="alt text"
+      
+        class="image_figure image_internal image_unprocessed"
+        src="image-9.png"
+      
+      
+    />
+
+    </picture>
+</figure>
+</p>
+<p>When training a model:</p>
+<ul>
+<li><strong>Global memory</strong> store entire or mini batch dataset, models weights and bias, and intermediate values like activations and gradients.</li>
+<li><strong>Shared memory</strong>, used for cooperative tasks within a block, such as parallel reduction to sum up gradients or to load a tile of a matrix for multiplication.</li>
+<li>Registers: weights and biases, single instance of the input data. are read from global memory and stored in registers for the fastest possible computation.</li>
+<li>constant memory: hyperparameters.</li>
+<li>texture memory: accelerate data loading from memory.</li>
+</ul>
     </div>
 <div class="post_comments">
   

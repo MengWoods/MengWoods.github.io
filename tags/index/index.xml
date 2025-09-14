@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>index on Menghao blog</title>
+    <title>Index on Menghao blog</title>
     <link>https://mengwoods.github.io/tags/index/</link>
-    <description>Recent content in index on Menghao blog</description>
+    <description>Recent content in Index on Menghao blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <copyright>Copyright © 2024, Meng blog; all rights reserved.</copyright><atom:link href="https://mengwoods.github.io/tags/index/index.xml" rel="self" type="application/rss+xml" />
+    <copyright>Copyright © 2024, Meng blog; all rights reserved.</copyright>
+    <lastBuildDate>Sat, 13 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://mengwoods.github.io/tags/index/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Posts</title>
       <link>https://mengwoods.github.io/post/</link>

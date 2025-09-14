@@ -9,7 +9,7 @@
   
   >
   <head>
-	<meta name="generator" content="Hugo 0.118.2">
+	<meta name="generator" content="Hugo 0.123.7">
 <title>Menghao blog</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -257,7 +257,11 @@
       <div class="excerpt_footer">
         <div class="pale">
           
-            <p></p>
+            <p>本文收集了一些有用的Docker命令。
+0. 基本概念和命令 Docker容器和Docker镜像
+Docker container 是Docker镜像的运行实例，提供了一个可以启动、停止和删除的独立环境。 Docker image 是一个静态、只读文件，包含创建容器所需的一切内容。它是启动Docker容器的源文件。
+基本Docker命令
+1# 通过镜像名拉取Docker镜像 2docker pull &lt;镜像名称&gt; 3 4# 列出本地可用的Docker镜像（镜像ID） 5docker images 6# 列出当前正在运行的Docker容器（容器ID） 7docker ps 8# 列出当前正在运行的Docker容器，包括已停 …</p>
           
           <br>
           <a href="https://mengwoods.github.io/cn/post/tech/003-some-docker-commands/cn/" title="Read More" class="excerpt_more button">Read More</a>
@@ -385,7 +389,10 @@
       <div class="excerpt_footer">
         <div class="pale">
           
-            <p></p>
+            <p>准备 本安装在以下环境中进行了测试：Ubuntu 20.04、CUDA-11.6、PyTorch v1.13.1。
+Miniconda 此安装在conda虚拟环境中进行，因此请确保已安装Miniconda。
+Linux下安装：
+1mkdir -p ~/miniconda3 2wget <a href="https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh">https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh</a> -O ~/miniconda3/miniconda.sh 3bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3 4rm -rf …</p>
           
           <br>
           <a href="https://mengwoods.github.io/cn/post/tech/001-install-openmm3d-lib/cn/" title="Read More" class="excerpt_more button">Read More</a>
@@ -451,7 +458,10 @@
       <div class="excerpt_footer">
         <div class="pale">
           
-            <p></p>
+            <p>安装Hugo 在Github releases页面下载安装最新版本。 例如下载*.deb文件然后使用dpkg -i *.deb安装。
+或者使用官方文档安装：【安装方法】
+第一步：创建所需Repo 在Github创建两个Repo，创建时皆勾选Add a README file选项：
+Blog源文件仓库：存储网页源文件，用于生成博客网站。（参考命名：blog-resources） Pages仓库：用于保存所生成的网页文件，并可通过网址进入博客。（命名需按照：&lt;username&gt;.github.io，其中&lt;username&gt;为Github账户名。【官方说明】） 第二步：使用Hugo命令创建博客文件 源文件仓库名 …</p>
           
           <br>
           <a href="https://mengwoods.github.io/cn/post/tech/000-build-hugo-site/en/" title="Read More" class="excerpt_more button">Read More</a>
@@ -515,7 +525,8 @@
       <div class="excerpt_footer">
         <div class="pale">
           
-            <p></p>
+            <p>简介 《谷物大脑》（Grain Brain）【豆瓣】一书由美国神经科医生、营养学家 David Perlmutter 撰写。该书主要观点为食物中的麸质（Gluten）以及过量的碳水化合物会对身体造成持久的损害，二者也是间接导致糖尿病以及阿尔兹海默症的诱因；而食用健康的脂肪、蛋白质、维生素等则对身体及大脑健康有益。作者在饮食方面的建议是减少对谷物的摄入，食用无麸质食物，降低每日碳水化合物食品摄入，提高肉、蛋、蔬菜等摄入。
+何为麸质？ 麸质是一类蛋白质，存在与许多谷物中，如大麦、小麦、燕麦等。其负责提供面类食物的韧性和弹性，我们所熟知的面筋就是麸质，完全由麸质构成的食品主要有辣条、牛筋面等。麸质蛋白与其他蛋白质不同，人类肠道无法正常消化 …</p>
           
           <br>
           <a href="https://mengwoods.github.io/cn/post/hobby/2023-12-08-grain-brain/" title="Read More" class="excerpt_more button">Read More</a>
@@ -645,7 +656,8 @@
       <div class="excerpt_footer">
         <div class="pale">
           
-            <p></p>
+            <p>Google公司的AK-47 在吴军博士《数学之美》一书中的第13章谈到了Google公司的阿米特辛格（Amit Singhal）博士。Singhal博士被誉为是Google的AK-47，因为其经常能够准确地采用简洁的方法并以超高的效率来解决工程中面临的难题。AK-47突击步枪被誉为枪王之王，该枪的显著优点有：结构简单，制造成本低，易上手操作，故障率低，不易损坏，杀伤力大，且适用于多种苛刻的环境。对于战场环境而言，AK-47的优点让它光芒万丈。作者认为在计算机科学行业，一个优秀的算法也应该具备类似AK-47的特点：简洁，有效，可靠性高而且容易被人读懂。
+吴军博士在与Singhal博士在Google共事时期，有一次面对如何解决网络搜索 …</p>
           
           <br>
           <a href="https://mengwoods.github.io/cn/post/hobby/2023-11-15-beauty-of-math/cn/" title="Read More" class="excerpt_more button">Read More</a>
@@ -955,7 +967,7 @@
 
 <script type="text/javascript" src="https://mengwoods.github.io/cn/js/bundle.355cf69c98ebdc2dfd538b625fe47ecdcb4e20c2138f80e51cf5425011e8235debe8bf35913e718ee1c24fd71d1f40c12f73985c98cc237a2996520f768509af.js" integrity="sha512-NVz2nJjr3C39U4tiX&#43;R&#43;zctOIMITj4DlHPVCUBHoI13r6L81kT5xjuHCT9cdH0DBL3OYXJjMI3opllIPdoUJrw==" crossorigin="anonymous"></script>
 
-  <script src="https://mengwoods.github.io/js/search.min.b19f217359693afb8f0abd75ca8de6becceec41f5304950fc48e165914ef227f44d10005d02a281a66e33b482e2ff27e6eb893111505deb4f072c307e1f887bb.js"></script>
+  <script src="https://mengwoods.github.io/js/search.min.786102b9f5b14ee0b60197dc064e532809aec49bcc43fea72e5a513113f04b44a7241d6683d3993d5b7a48582f4986e0b9a28c72ebc48a2072c52aad8f40a2b3.js"></script>
 
   </body>
 </html>

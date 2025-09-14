@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Gpu on Menghao blog</title>
+    <link>https://mengwoods.github.io/tags/gpu/</link>
+    <description>Recent content in Gpu on Menghao blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>Copyright © 2024, Meng blog; all rights reserved.</copyright>
+    <lastBuildDate>Tue, 18 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://mengwoods.github.io/tags/gpu/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GPU Architecture Overview</title>
+      <link>https://mengwoods.github.io/post/tech/011-structure-of-gpu/</link>
+      <pubDate>Tue, 18 Feb 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://mengwoods.github.io/post/tech/011-structure-of-gpu/</guid>
+      <description>
+        
+          
+            CPU and GPU CPU is designed to excel at executing a sequence of operations, called a thread. It can execute a few tens of threads in parallel. General purpose, good for serial processing, great for task parallelism, large area dedicated cache and control. GPU is designed to excel at executing many thousands of them in parallel. Highly specialized for parallelism, good for parallel processing, great for data parallelism, high throughput, hundreds of floating point execution units.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

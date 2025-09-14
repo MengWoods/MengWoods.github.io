@@ -372,47 +372,47 @@
 </span></span></span><span class="line"><span class="ln">68</span><span class="cl"><span class="w">    </span><span class="l">roslaunch --wait ${env_package} ${env_launchfile}&#34; ]</span><span class="w">
 </span></span></span></code></pre></div><p>The Docker image uses Python3.7 instead of default version which usually Python 3.8.</p>
 <p>Saved Docker script, install python3.7 and use pip3.7 as default.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="ln"> 1</span><span class="cl"># RUN apt-get update &amp;&amp; \
-</span></span><span class="line"><span class="ln"> 2</span><span class="cl">#      # Install system dependencies
-</span></span><span class="line"><span class="ln"> 3</span><span class="cl">#      apt-get install -y wget libxext6 ffmpeg libsm6 libffi-dev &amp;&amp; \
-</span></span><span class="line"><span class="ln"> 4</span><span class="cl">#      # Install Python 3.7
-</span></span><span class="line"><span class="ln"> 5</span><span class="cl">#      apt-get install -y build-essential zlib1g-dev libncurses5-dev libgdbm-dev \
-</span></span><span class="line"><span class="ln"> 6</span><span class="cl">#      libnss3-dev libssl-dev libsqlite3-dev libreadline-dev libffi-dev liblzma-dev &amp;&amp; \
-</span></span><span class="line"><span class="ln"> 7</span><span class="cl">#      cd /usr/src &amp;&amp;\
-</span></span><span class="line"><span class="ln"> 8</span><span class="cl">#      wget https://www.python.org/ftp/python/3.7.17/Python-3.7.17.tgz &amp;&amp;\
-</span></span><span class="line"><span class="ln"> 9</span><span class="cl">#      tar xzf Python-3.7.17.tgz &amp;&amp;\
-</span></span><span class="line"><span class="ln">10</span><span class="cl">#      cd Python-3.7.17 &amp;&amp;\
-</span></span><span class="line"><span class="ln">11</span><span class="cl">#      ./configure --enable-optimizations &amp;&amp;\
-</span></span><span class="line"><span class="ln">12</span><span class="cl">#      make altinstall &amp;&amp;\
-</span></span><span class="line"><span class="ln">13</span><span class="cl">#      # Link Python and Python3 to Python3.7
-</span></span><span class="line"><span class="ln">14</span><span class="cl">#      ln -s -f /usr/local/bin/python3.7 /usr/local/bin/python &amp;&amp;\
-</span></span><span class="line"><span class="ln">15</span><span class="cl">#      rm /usr/bin/python3 &amp;&amp;\
-</span></span><span class="line"><span class="ln">16</span><span class="cl">#      ln -s /usr/local/bin/python3.7 /usr/bin/python3 &amp;&amp;\
-</span></span><span class="line"><span class="ln">17</span><span class="cl">#      # Install Python 3.7 pip
-</span></span><span class="line"><span class="ln">18</span><span class="cl">#      curl https://bootstrap.pypa.io/pip/3.7/get-pip.py -o get-pip.py &amp;&amp; \
-</span></span><span class="line"><span class="ln">19</span><span class="cl">#      python3.7 get-pip.py &amp;&amp; \
-</span></span><span class="line"><span class="ln">20</span><span class="cl">#      ln -s -f /usr/local/bin/pip3.7 /usr/local/bin/pip &amp;&amp; \
-</span></span><span class="line"><span class="ln">21</span><span class="cl">#      # Install pip requirements
-</span></span><span class="line"><span class="ln">22</span><span class="cl">#      pip3.7 install --upgrade pip &amp;&amp; \
-</span></span><span class="line"><span class="ln">23</span><span class="cl">#      pip3.7 install netifaces==0.11.0 matplotlib==3.5.3 cv_bridge rospkg==1.5.1 prettytable==3.7.0 einops==0.6.1 \
-</span></span><span class="line"><span class="ln">24</span><span class="cl">#      backports.lzma defusedxml ftfy==6.1.1 regex==2024.4.16 &amp;&amp; \
-</span></span><span class="line"><span class="ln">25</span><span class="cl">#      pip3.7 install torch torchvision torchaudio --force-reinstall  --extra-index-url https://download.pytorch.org/whl/cu116 &amp;&amp; \
-</span></span><span class="line"><span class="ln">26</span><span class="cl">#      # Install mmcv, mmsegmentation
-</span></span><span class="line"><span class="ln">27</span><span class="cl">#      pip3.7 install mmcv==2.0.0rc4 -f https://download.openmmlab.com/mmcv/dist/cu113/torch1.10/index.html &amp;&amp; \
-</span></span><span class="line"><span class="ln">28</span><span class="cl">#      pip3.7 install mmsegmentation==1.2.2 &amp;&amp; \
-</span></span><span class="line"><span class="ln">29</span><span class="cl">#      # Install mmcv from source code
-</span></span><span class="line"><span class="ln">30</span><span class="cl">#      # cd ~ &amp;&amp; git clone https://github.com/open-mmlab/mmcv.git &amp;&amp; \
-</span></span><span class="line"><span class="ln">31</span><span class="cl">#      # cd mmcv &amp;&amp; \
-</span></span><span class="line"><span class="ln">32</span><span class="cl">#      # git checkout v1.3.16 &amp;&amp; \
-</span></span><span class="line"><span class="ln">33</span><span class="cl">#      # MMCV_WITH_OPS=1 pip install -e . &amp;&amp; \
-</span></span><span class="line"><span class="ln">34</span><span class="cl">#      # Remove the file to be replaced
-</span></span><span class="line"><span class="ln">35</span><span class="cl">#      rm /usr/local/lib/python3.7/lzma.py
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1"># RUN apt-get update &amp;&amp; \</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="c1">#      # Install system dependencies</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="c1">#      apt-get install -y wget libxext6 ffmpeg libsm6 libffi-dev &amp;&amp; \</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="c1">#      # Install Python 3.7</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="c1">#      apt-get install -y build-essential zlib1g-dev libncurses5-dev libgdbm-dev \</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="c1">#      libnss3-dev libssl-dev libsqlite3-dev libreadline-dev libffi-dev liblzma-dev &amp;&amp; \</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="c1">#      cd /usr/src &amp;&amp;\</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="c1">#      wget https://www.python.org/ftp/python/3.7.17/Python-3.7.17.tgz &amp;&amp;\</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="c1">#      tar xzf Python-3.7.17.tgz &amp;&amp;\</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="c1">#      cd Python-3.7.17 &amp;&amp;\</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="c1">#      ./configure --enable-optimizations &amp;&amp;\</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="c1">#      make altinstall &amp;&amp;\</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="c1">#      # Link Python and Python3 to Python3.7</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="c1">#      ln -s -f /usr/local/bin/python3.7 /usr/local/bin/python &amp;&amp;\</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl"><span class="c1">#      rm /usr/bin/python3 &amp;&amp;\</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl"><span class="c1">#      ln -s /usr/local/bin/python3.7 /usr/bin/python3 &amp;&amp;\</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl"><span class="c1">#      # Install Python 3.7 pip</span>
+</span></span><span class="line"><span class="ln">18</span><span class="cl"><span class="c1">#      curl https://bootstrap.pypa.io/pip/3.7/get-pip.py -o get-pip.py &amp;&amp; \</span>
+</span></span><span class="line"><span class="ln">19</span><span class="cl"><span class="c1">#      python3.7 get-pip.py &amp;&amp; \</span>
+</span></span><span class="line"><span class="ln">20</span><span class="cl"><span class="c1">#      ln -s -f /usr/local/bin/pip3.7 /usr/local/bin/pip &amp;&amp; \</span>
+</span></span><span class="line"><span class="ln">21</span><span class="cl"><span class="c1">#      # Install pip requirements</span>
+</span></span><span class="line"><span class="ln">22</span><span class="cl"><span class="c1">#      pip3.7 install --upgrade pip &amp;&amp; \</span>
+</span></span><span class="line"><span class="ln">23</span><span class="cl"><span class="c1">#      pip3.7 install netifaces==0.11.0 matplotlib==3.5.3 cv_bridge rospkg==1.5.1 prettytable==3.7.0 einops==0.6.1 \</span>
+</span></span><span class="line"><span class="ln">24</span><span class="cl"><span class="c1">#      backports.lzma defusedxml ftfy==6.1.1 regex==2024.4.16 &amp;&amp; \</span>
+</span></span><span class="line"><span class="ln">25</span><span class="cl"><span class="c1">#      pip3.7 install torch torchvision torchaudio --force-reinstall  --extra-index-url https://download.pytorch.org/whl/cu116 &amp;&amp; \</span>
+</span></span><span class="line"><span class="ln">26</span><span class="cl"><span class="c1">#      # Install mmcv, mmsegmentation</span>
+</span></span><span class="line"><span class="ln">27</span><span class="cl"><span class="c1">#      pip3.7 install mmcv==2.0.0rc4 -f https://download.openmmlab.com/mmcv/dist/cu113/torch1.10/index.html &amp;&amp; \</span>
+</span></span><span class="line"><span class="ln">28</span><span class="cl"><span class="c1">#      pip3.7 install mmsegmentation==1.2.2 &amp;&amp; \</span>
+</span></span><span class="line"><span class="ln">29</span><span class="cl"><span class="c1">#      # Install mmcv from source code</span>
+</span></span><span class="line"><span class="ln">30</span><span class="cl"><span class="c1">#      # cd ~ &amp;&amp; git clone https://github.com/open-mmlab/mmcv.git &amp;&amp; \</span>
+</span></span><span class="line"><span class="ln">31</span><span class="cl"><span class="c1">#      # cd mmcv &amp;&amp; \</span>
+</span></span><span class="line"><span class="ln">32</span><span class="cl"><span class="c1">#      # git checkout v1.3.16 &amp;&amp; \</span>
+</span></span><span class="line"><span class="ln">33</span><span class="cl"><span class="c1">#      # MMCV_WITH_OPS=1 pip install -e . &amp;&amp; \</span>
+</span></span><span class="line"><span class="ln">34</span><span class="cl"><span class="c1">#      # Remove the file to be replaced</span>
+</span></span><span class="line"><span class="ln">35</span><span class="cl"><span class="c1">#      rm /usr/local/lib/python3.7/lzma.py</span>
 </span></span></code></pre></div>
     </div>
 <div class="post_comments">
   
     <div id="disqus_thread"></div>
-<script type="application/javascript">
+<script>
     window.disqus_config = function () {
     
     
@@ -484,7 +484,7 @@
         <a href="https://mengwoods.github.io/post/tech/007-kitti-introduction/" class="nav-link" title="KITTI Dataset Introduction">KITTI Dataset Introduction</a>
       </li>
       <li>
-        <a href="https://mengwoods.github.io/post/tech/011-structure-of-gpu/" class="nav-link" title="GPU Architecture Overview">GPU Architecture Overview</a>
+        <a href="https://mengwoods.github.io/post/dl/008-drl-summary/" class="nav-link" title="An Introduction to the Fundamentals of Reinforcement Learning">An Introduction to the Fundamentals of Reinforcement Learning</a>
       </li>
     </ul>
     <div>
@@ -541,6 +541,11 @@
           <span class="button_tally">2</span>
         </a>
         
+        <a href='https://mengwoods.github.io/tags/gpu/' class="post_tag button button_translucent" title="gpu">
+          GPU
+          <span class="button_tally">1</span>
+        </a>
+        
         <a href='https://mengwoods.github.io/tags/hugo/' class="post_tag button button_translucent" title="hugo">
           HUGO
           <span class="button_tally">1</span>
@@ -558,11 +563,6 @@
         
         <a href='https://mengwoods.github.io/tags/lidar/' class="post_tag button button_translucent" title="lidar">
           LIDAR
-          <span class="button_tally">1</span>
-        </a>
-        
-        <a href='https://mengwoods.github.io/tags/ml/' class="post_tag button button_translucent" title="ml">
-          ML
           <span class="button_tally">1</span>
         </a>
         
@@ -679,7 +679,7 @@
 
 <script type="text/javascript" src="https://mengwoods.github.io/en/js/bundle.355cf69c98ebdc2dfd538b625fe47ecdcb4e20c2138f80e51cf5425011e8235debe8bf35913e718ee1c24fd71d1f40c12f73985c98cc237a2996520f768509af.js" integrity="sha512-NVz2nJjr3C39U4tiX&#43;R&#43;zctOIMITj4DlHPVCUBHoI13r6L81kT5xjuHCT9cdH0DBL3OYXJjMI3opllIPdoUJrw==" crossorigin="anonymous"></script>
 
-  <script src="https://mengwoods.github.io/js/search.min.b19f217359693afb8f0abd75ca8de6becceec41f5304950fc48e165914ef227f44d10005d02a281a66e33b482e2ff27e6eb893111505deb4f072c307e1f887bb.js"></script>
+  <script src="https://mengwoods.github.io/js/search.min.786102b9f5b14ee0b60197dc064e532809aec49bcc43fea72e5a513113f04b44a7241d6683d3993d5b7a48582f4986e0b9a28c72ebc48a2072c52aad8f40a2b3.js"></script>
 
   </body>
 </html>

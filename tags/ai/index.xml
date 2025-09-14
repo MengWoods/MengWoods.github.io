@@ -17,6 +17,9 @@
       <description>
         
           
+            Overview Building and using a TensorRT engine for inference involves two distinct phases: build time (optimization) and runtime (execution).
+Build time (optimization and compilation) Load model typically from format like ONNX. Parse model, understand network structure and weights. Optimize model, including layer, tensor fusion, precision calibration, kernel auto-tunning. Serialize model into a single, executable engine file. Runtime (Execution) Create Runtime instance. Deserialize engine into an ICudaEngine object Create context IExecutionContext from the engine, it manages a single inference session.
+          
           
         
       </description>

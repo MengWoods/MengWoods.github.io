@@ -17,6 +17,9 @@
       <description>
         
           
+            Overview Building and using a TensorRT engine for inference involves two distinct phases: build time (optimization) and runtime (execution).
+Build time (optimization and compilation) Load model typically from format like ONNX. Parse model, understand network structure and weights. Optimize model, including layer, tensor fusion, precision calibration, kernel auto-tunning. Serialize model into a single, executable engine file. Runtime (Execution) Create Runtime instance. Deserialize engine into an ICudaEngine object Create context IExecutionContext from the engine, it manages a single inference session.
+          
           
         
       </description>
@@ -32,22 +35,6 @@
         
           
             &lt;p&gt;KITTI Detailed Introduction&lt;/p&gt;
-          
-          
-        
-      </description>
-    </item>
-    
-    <item>
-      <title>GPU Architecture Overview</title>
-      <link>https://mengwoods.github.io/post/tech/011-structure-of-gpu/</link>
-      <pubDate>Tue, 18 Feb 2025 00:00:00 +0000</pubDate>
-      
-      <guid>https://mengwoods.github.io/post/tech/011-structure-of-gpu/</guid>
-      <description>
-        
-          
-            &lt;h1 id=&#34;gpu-architecture-overview&#34;&gt;GPU Architecture Overview&lt;/h1&gt;
           
           
         
@@ -295,6 +282,22 @@
     </item>
     
     <item>
+      <title>GPU Architecture Overview</title>
+      <link>https://mengwoods.github.io/post/tech/011-structure-of-gpu/</link>
+      <pubDate>Tue, 18 Feb 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://mengwoods.github.io/post/tech/011-structure-of-gpu/</guid>
+      <description>
+        
+          
+            CPU and GPU CPU is designed to excel at executing a sequence of operations, called a thread. It can execute a few tens of threads in parallel. General purpose, good for serial processing, great for task parallelism, large area dedicated cache and control. GPU is designed to excel at executing many thousands of them in parallel. Highly specialized for parallelism, good for parallel processing, great for data parallelism, high throughput, hundreds of floating point execution units.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
       <title>Driver License Theory</title>
       <link>https://mengwoods.github.io/post/hobby/2024-05-23-driver-license/</link>
       <pubDate>Thu, 23 May 2024 00:00:00 +0000</pubDate>
@@ -334,6 +337,9 @@
       <guid>https://mengwoods.github.io/post/hobby/2024-01-30-fund/en/</guid>
       <description>
         
+          
+            The article records operation steps of monthly saving with Nordnet. and records the questions during the whole process.
+Background questions Why choose index fund? I don&#39;t want pay too much time on investments, I don&#39;t have more knowledge of investment. And I want to have some level return from deposit. S&amp;amp;P 500 index fund includes most profitable 500 companys in the US, and people trust their ability to make money. So I chose the one as the target for my month saving.
           
           
         

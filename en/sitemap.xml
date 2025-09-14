@@ -8,9 +8,6 @@
     <loc>https://mengwoods.github.io/post/tech/007-kitti-introduction/</loc>
     <lastmod>2025-03-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://mengwoods.github.io/post/tech/011-structure-of-gpu/</loc>
-    <lastmod>2025-02-18T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://mengwoods.github.io/post/dl/008-drl-summary/</loc>
     <lastmod>2024-07-07T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -136,6 +133,9 @@
                 href="https://mengwoods.github.io/post/tech/000-build-hugo-site/en/"
                 />
   </url><url>
+    <loc>https://mengwoods.github.io/post/tech/011-structure-of-gpu/</loc>
+    <lastmod>2025-02-18T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://mengwoods.github.io/</loc>
     <lastmod>2025-09-13T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -177,6 +177,9 @@
                 hreflang="en"
                 href="https://mengwoods.github.io/categories/dl/"
                 />
+  </url><url>
+    <loc>https://mengwoods.github.io/tags/index/</loc>
+    <lastmod>2025-09-13T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://mengwoods.github.io/post/</loc>
     <lastmod>2025-09-13T00:00:00+00:00</lastmod>
@@ -220,7 +223,7 @@
                 href="https://mengwoods.github.io/categories/tech/"
                 />
   </url><url>
-    <loc>https://mengwoods.github.io/tags/ml/</loc>
+    <loc>https://mengwoods.github.io/tags/gpu/</loc>
     <lastmod>2025-02-18T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://mengwoods.github.io/post/hobby/2024-05-23-driver-license/</loc>
@@ -307,8 +310,6 @@
   </url><url>
     <loc>https://mengwoods.github.io/archives/</loc>
     <lastmod>2019-05-28T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mengwoods.github.io/tags/index/</loc>
   </url><url>
     <loc>https://mengwoods.github.io/search/</loc>
   </url><url>

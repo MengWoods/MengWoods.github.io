@@ -2,327 +2,327 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/post/dl/014-tensorrt-usage/</loc>
+    <loc>https://mengwoods.github.io/post/dl/014-tensorrt-usage/</loc>
     <lastmod>2025-09-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/post/tech/011-structure-of-gpu/</loc>
+    <loc>https://mengwoods.github.io/post/tech/011-structure-of-gpu/</loc>
     <lastmod>2025-05-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/post/tech/007-kitti-introduction/</loc>
+    <loc>https://mengwoods.github.io/post/tech/007-kitti-introduction/</loc>
     <lastmod>2025-03-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/post/dl/008-drl-summary/</loc>
+    <loc>https://mengwoods.github.io/post/dl/008-drl-summary/</loc>
     <lastmod>2024-07-07T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="cn"
-                href="http://localhost:1313/cn/post/dl/008-drl-summary/"
+                href="https://mengwoods.github.io/cn/post/dl/008-drl-summary/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/post/dl/008-drl-summary/"
+                href="https://mengwoods.github.io/post/dl/008-drl-summary/"
                 />
   </url><url>
-    <loc>http://localhost:1313/post/tech/005-ros2/</loc>
+    <loc>https://mengwoods.github.io/post/tech/005-ros2/</loc>
     <lastmod>2024-05-06T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/post/dl/005-ng-ml/</loc>
+    <loc>https://mengwoods.github.io/post/dl/005-ng-ml/</loc>
     <lastmod>2024-04-25T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/post/dl/001-probability/</loc>
+    <loc>https://mengwoods.github.io/post/dl/001-probability/</loc>
     <lastmod>2024-04-19T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="cn"
-                href="http://localhost:1313/cn/post/dl/001-probability/"
+                href="https://mengwoods.github.io/cn/post/dl/001-probability/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/post/dl/001-probability/"
+                href="https://mengwoods.github.io/post/dl/001-probability/"
                 />
   </url><url>
-    <loc>http://localhost:1313/post/math/003-pca-application/</loc>
+    <loc>https://mengwoods.github.io/post/math/003-pca-application/</loc>
     <lastmod>2024-04-16T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="cn"
-                href="http://localhost:1313/cn/post/math/003-pca-application/"
+                href="https://mengwoods.github.io/cn/post/math/003-pca-application/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/post/math/003-pca-application/"
+                href="https://mengwoods.github.io/post/math/003-pca-application/"
                 />
   </url><url>
-    <loc>http://localhost:1313/post/math/003-pca/</loc>
+    <loc>https://mengwoods.github.io/post/math/003-pca/</loc>
     <lastmod>2024-04-11T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="cn"
-                href="http://localhost:1313/cn/post/math/003-pca/"
+                href="https://mengwoods.github.io/cn/post/math/003-pca/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/post/math/003-pca/"
+                href="https://mengwoods.github.io/post/math/003-pca/"
                 />
   </url><url>
-    <loc>http://localhost:1313/post/tech/002-run-conda-in-dockerfile/</loc>
+    <loc>https://mengwoods.github.io/post/tech/002-run-conda-in-dockerfile/</loc>
     <lastmod>2024-03-28T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="cn"
-                href="http://localhost:1313/cn/post/tech/002-run-conda-in-dockerfile/"
+                href="https://mengwoods.github.io/cn/post/tech/002-run-conda-in-dockerfile/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/post/tech/002-run-conda-in-dockerfile/"
+                href="https://mengwoods.github.io/post/tech/002-run-conda-in-dockerfile/"
                 />
   </url><url>
-    <loc>http://localhost:1313/post/code/003-polygon-operation/</loc>
+    <loc>https://mengwoods.github.io/post/code/003-polygon-operation/</loc>
     <lastmod>2024-03-14T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/post/code/001-leetcode-max-area/</loc>
+    <loc>https://mengwoods.github.io/post/code/001-leetcode-max-area/</loc>
     <lastmod>2024-03-14T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/post/code/002-c&#43;&#43;-containers/</loc>
+    <loc>https://mengwoods.github.io/post/code/002-c&#43;&#43;-containers/</loc>
     <lastmod>2024-03-08T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="cn"
-                href="http://localhost:1313/cn/post/code/002-c&#43;&#43;-containers/"
+                href="https://mengwoods.github.io/cn/post/code/002-c&#43;&#43;-containers/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/post/code/002-c&#43;&#43;-containers/"
+                href="https://mengwoods.github.io/post/code/002-c&#43;&#43;-containers/"
                 />
   </url><url>
-    <loc>http://localhost:1313/post/code/000-general-question/</loc>
+    <loc>https://mengwoods.github.io/post/code/000-general-question/</loc>
     <lastmod>2024-03-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/post/math/001-vector-cross-product/</loc>
+    <loc>https://mengwoods.github.io/post/math/001-vector-cross-product/</loc>
     <lastmod>2024-03-05T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="cn"
-                href="http://localhost:1313/cn/post/math/001-vector-cross-product/"
+                href="https://mengwoods.github.io/cn/post/math/001-vector-cross-product/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/post/math/001-vector-cross-product/"
+                href="https://mengwoods.github.io/post/math/001-vector-cross-product/"
                 />
   </url><url>
-    <loc>http://localhost:1313/post/tech/003-some-docker-commands/en/</loc>
+    <loc>https://mengwoods.github.io/post/tech/003-some-docker-commands/en/</loc>
     <lastmod>2023-11-04T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/post/tech/001-install-openmm3d-lib/en/</loc>
+    <loc>https://mengwoods.github.io/post/tech/001-install-openmm3d-lib/en/</loc>
     <lastmod>2023-10-30T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/post/tech/000-build-hugo-site/en/</loc>
+    <loc>https://mengwoods.github.io/post/tech/000-build-hugo-site/en/</loc>
     <lastmod>2023-10-28T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="cn"
-                href="http://localhost:1313/cn/post/tech/000-build-hugo-site/en/"
+                href="https://mengwoods.github.io/cn/post/tech/000-build-hugo-site/en/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/post/tech/000-build-hugo-site/en/"
+                href="https://mengwoods.github.io/post/tech/000-build-hugo-site/en/"
                 />
   </url><url>
-    <loc>http://localhost:1313/</loc>
+    <loc>https://mengwoods.github.io/</loc>
     <lastmod>2025-10-01T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="cn"
-                href="http://localhost:1313/cn/"
+                href="https://mengwoods.github.io/cn/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/"
+                href="https://mengwoods.github.io/"
                 />
   </url><url>
-    <loc>http://localhost:1313/tags/index/</loc>
+    <loc>https://mengwoods.github.io/tags/index/</loc>
     <lastmod>2025-10-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/post/</loc>
-    <lastmod>2025-10-01T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="cn"
-                href="http://localhost:1313/cn/post/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="http://localhost:1313/post/"
-                />
-  </url><url>
-    <loc>http://localhost:1313/tags/</loc>
+    <loc>https://mengwoods.github.io/post/</loc>
     <lastmod>2025-10-01T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="cn"
-                href="http://localhost:1313/cn/tags/"
+                href="https://mengwoods.github.io/cn/post/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/tags/"
+                href="https://mengwoods.github.io/post/"
                 />
   </url><url>
-    <loc>http://localhost:1313/tags/ai/</loc>
+    <loc>https://mengwoods.github.io/tags/</loc>
+    <lastmod>2025-10-01T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="cn"
+                href="https://mengwoods.github.io/cn/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://mengwoods.github.io/tags/"
+                />
+  </url><url>
+    <loc>https://mengwoods.github.io/tags/ai/</loc>
     <lastmod>2025-09-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/</loc>
-    <lastmod>2025-09-13T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="cn"
-                href="http://localhost:1313/cn/categories/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="http://localhost:1313/categories/"
-                />
-  </url><url>
-    <loc>http://localhost:1313/categories/dl/</loc>
+    <loc>https://mengwoods.github.io/categories/</loc>
     <lastmod>2025-09-13T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="cn"
-                href="http://localhost:1313/cn/categories/dl/"
+                href="https://mengwoods.github.io/cn/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/categories/dl/"
+                href="https://mengwoods.github.io/categories/"
                 />
   </url><url>
-    <loc>http://localhost:1313/tags/gpu/</loc>
+    <loc>https://mengwoods.github.io/categories/dl/</loc>
+    <lastmod>2025-09-13T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="cn"
+                href="https://mengwoods.github.io/cn/categories/dl/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://mengwoods.github.io/categories/dl/"
+                />
+  </url><url>
+    <loc>https://mengwoods.github.io/tags/gpu/</loc>
     <lastmod>2025-05-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/tech/</loc>
+    <loc>https://mengwoods.github.io/categories/tech/</loc>
     <lastmod>2025-05-18T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="cn"
-                href="http://localhost:1313/cn/categories/tech/"
+                href="https://mengwoods.github.io/cn/categories/tech/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/categories/tech/"
+                href="https://mengwoods.github.io/categories/tech/"
                 />
   </url><url>
-    <loc>http://localhost:1313/tags/lidar/</loc>
+    <loc>https://mengwoods.github.io/tags/lidar/</loc>
     <lastmod>2025-03-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/post/hobby/2024-05-23-driver-license/</loc>
+    <loc>https://mengwoods.github.io/post/hobby/2024-05-23-driver-license/</loc>
     <lastmod>2024-05-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/hobby/</loc>
+    <loc>https://mengwoods.github.io/categories/hobby/</loc>
     <lastmod>2024-05-23T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="cn"
-                href="http://localhost:1313/cn/categories/hobby/"
+                href="https://mengwoods.github.io/cn/categories/hobby/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/categories/hobby/"
+                href="https://mengwoods.github.io/categories/hobby/"
                 />
   </url><url>
-    <loc>http://localhost:1313/tags/ros2/</loc>
+    <loc>https://mengwoods.github.io/tags/ros2/</loc>
     <lastmod>2024-05-06T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/math/</loc>
+    <loc>https://mengwoods.github.io/categories/math/</loc>
     <lastmod>2024-04-16T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="cn"
-                href="http://localhost:1313/cn/categories/math/"
+                href="https://mengwoods.github.io/cn/categories/math/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/categories/math/"
+                href="https://mengwoods.github.io/categories/math/"
                 />
   </url><url>
-    <loc>http://localhost:1313/post/hobby/000-paintings/</loc>
+    <loc>https://mengwoods.github.io/post/hobby/000-paintings/</loc>
     <lastmod>2024-04-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/docker/</loc>
+    <loc>https://mengwoods.github.io/tags/docker/</loc>
     <lastmod>2024-03-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/c&#43;&#43;/</loc>
+    <loc>https://mengwoods.github.io/tags/c&#43;&#43;/</loc>
     <lastmod>2024-03-14T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/code/</loc>
+    <loc>https://mengwoods.github.io/categories/code/</loc>
     <lastmod>2024-03-14T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="cn"
-                href="http://localhost:1313/cn/categories/code/"
+                href="https://mengwoods.github.io/cn/categories/code/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/categories/code/"
+                href="https://mengwoods.github.io/categories/code/"
                 />
   </url><url>
-    <loc>http://localhost:1313/tags/leetcode/</loc>
+    <loc>https://mengwoods.github.io/tags/leetcode/</loc>
     <lastmod>2024-03-14T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/about/</loc>
+    <loc>https://mengwoods.github.io/about/</loc>
     <lastmod>2024-03-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/post/hobby/2024-01-30-fund/en/</loc>
+    <loc>https://mengwoods.github.io/post/hobby/2024-01-30-fund/en/</loc>
     <lastmod>2023-12-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/investment/</loc>
+    <loc>https://mengwoods.github.io/categories/investment/</loc>
     <lastmod>2023-12-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/hugo/</loc>
+    <loc>https://mengwoods.github.io/tags/hugo/</loc>
     <lastmod>2023-10-28T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="cn"
-                href="http://localhost:1313/cn/tags/hugo/"
+                href="https://mengwoods.github.io/cn/tags/hugo/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/tags/hugo/"
+                href="https://mengwoods.github.io/tags/hugo/"
                 />
   </url><url>
-    <loc>http://localhost:1313/tags/web/</loc>
+    <loc>https://mengwoods.github.io/tags/web/</loc>
     <lastmod>2023-10-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/archives/</loc>
+    <loc>https://mengwoods.github.io/archives/</loc>
     <lastmod>2019-05-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/search/</loc>
+    <loc>https://mengwoods.github.io/search/</loc>
   </url><url>
-    <loc>http://localhost:1313/series/</loc>
+    <loc>https://mengwoods.github.io/series/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="cn"
-                href="http://localhost:1313/cn/series/"
+                href="https://mengwoods.github.io/cn/series/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/series/"
+                href="https://mengwoods.github.io/series/"
                 />
   </url>
 </urlset>

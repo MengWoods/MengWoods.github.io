@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>DL on Menghao blog</title>
-    <link>http://localhost:1313/categories/dl/</link>
+    <link>https://mengwoods.github.io/categories/dl/</link>
     <description>Recent content in DL on Menghao blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Copyright © 2024, Meng blog; all rights reserved.</copyright>
-    <lastBuildDate>Sat, 13 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/dl/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 13 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://mengwoods.github.io/categories/dl/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>TensorRT Engine Deployment Guide</title>
-      <link>http://localhost:1313/post/dl/014-tensorrt-usage/</link>
+      <link>https://mengwoods.github.io/post/dl/014-tensorrt-usage/</link>
       <pubDate>Sat, 13 Sep 2025 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/dl/014-tensorrt-usage/</guid>
+      <guid>https://mengwoods.github.io/post/dl/014-tensorrt-usage/</guid>
       <description>
         
           
@@ -27,10 +27,10 @@ Build time (optimization and compilation) Load model typically from format like 
     
     <item>
       <title>An Introduction to the Fundamentals of Reinforcement Learning</title>
-      <link>http://localhost:1313/post/dl/008-drl-summary/</link>
+      <link>https://mengwoods.github.io/post/dl/008-drl-summary/</link>
       <pubDate>Sun, 07 Jul 2024 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/dl/008-drl-summary/</guid>
+      <guid>https://mengwoods.github.io/post/dl/008-drl-summary/</guid>
       <description>
         
           
@@ -43,10 +43,10 @@ Build time (optimization and compilation) Load model typically from format like 
     
     <item>
       <title>Note of NG&#39;s Machine Learning Course</title>
-      <link>http://localhost:1313/post/dl/005-ng-ml/</link>
+      <link>https://mengwoods.github.io/post/dl/005-ng-ml/</link>
       <pubDate>Thu, 25 Apr 2024 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/dl/005-ng-ml/</guid>
+      <guid>https://mengwoods.github.io/post/dl/005-ng-ml/</guid>
       <description>
         
           
@@ -59,10 +59,10 @@ Build time (optimization and compilation) Load model typically from format like 
     
     <item>
       <title>Probability Knowledge for Deep Learning</title>
-      <link>http://localhost:1313/post/dl/001-probability/</link>
+      <link>https://mengwoods.github.io/post/dl/001-probability/</link>
       <pubDate>Fri, 19 Apr 2024 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/dl/001-probability/</guid>
+      <guid>https://mengwoods.github.io/post/dl/001-probability/</guid>
       <description>
         
           

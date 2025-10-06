@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tech on Menghao blog</title>
-    <link>http://localhost:1313/cn/categories/tech/</link>
+    <link>https://mengwoods.github.io/cn/categories/tech/</link>
     <description>Recent content in Tech on Menghao blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cn</language>
     <copyright>Copyright © 2024, Meng blog; all rights reserved.</copyright>
-    <lastBuildDate>Tue, 05 Dec 2023 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/cn/categories/tech/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 05 Dec 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://mengwoods.github.io/cn/categories/tech/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>一些实用的Docker命令</title>
-      <link>http://localhost:1313/cn/post/tech/003-some-docker-commands/cn/</link>
+      <link>https://mengwoods.github.io/cn/post/tech/003-some-docker-commands/cn/</link>
       <pubDate>Sat, 04 Nov 2023 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/cn/post/tech/003-some-docker-commands/cn/</guid>
+      <guid>https://mengwoods.github.io/cn/post/tech/003-some-docker-commands/cn/</guid>
       <description>
         
           
@@ -32,10 +32,10 @@ Docker container 是Docker镜像的运行实例，提供了一个可以启动、
     
     <item>
       <title>在Docker中使用conda虚拟环境</title>
-      <link>http://localhost:1313/cn/post/tech/002-run-conda-in-dockerfile/</link>
+      <link>https://mengwoods.github.io/cn/post/tech/002-run-conda-in-dockerfile/</link>
       <pubDate>Tue, 31 Oct 2023 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/cn/post/tech/002-run-conda-in-dockerfile/</guid>
+      <guid>https://mengwoods.github.io/cn/post/tech/002-run-conda-in-dockerfile/</guid>
       <description>
         
           
@@ -48,10 +48,10 @@ Docker container 是Docker镜像的运行实例，提供了一个可以启动、
     
     <item>
       <title>MMDetection3D库的安装指导</title>
-      <link>http://localhost:1313/cn/post/tech/001-install-openmm3d-lib/cn/</link>
+      <link>https://mengwoods.github.io/cn/post/tech/001-install-openmm3d-lib/cn/</link>
       <pubDate>Mon, 30 Oct 2023 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/cn/post/tech/001-install-openmm3d-lib/cn/</guid>
+      <guid>https://mengwoods.github.io/cn/post/tech/001-install-openmm3d-lib/cn/</guid>
       <description>
         
           
@@ -74,10 +74,10 @@ Linux下安装：
     
     <item>
       <title>使用Hugo搭建个人博客</title>
-      <link>http://localhost:1313/cn/post/tech/000-build-hugo-site/en/</link>
+      <link>https://mengwoods.github.io/cn/post/tech/000-build-hugo-site/en/</link>
       <pubDate>Sat, 28 Oct 2023 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/cn/post/tech/000-build-hugo-site/en/</guid>
+      <guid>https://mengwoods.github.io/cn/post/tech/000-build-hugo-site/en/</guid>
       <description>
         
           
@@ -94,10 +94,10 @@ Blog源文件仓库：存储网页源文件，用于生成博客网站。（参�
     
     <item>
       <title>了解 Andriod Studio 项目目录各文件功能</title>
-      <link>http://localhost:1313/cn/post/tech/004-as-folder-functios/cn/</link>
+      <link>https://mengwoods.github.io/cn/post/tech/004-as-folder-functios/cn/</link>
       <pubDate>Tue, 05 Dec 2023 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/cn/post/tech/004-as-folder-functios/cn/</guid>
+      <guid>https://mengwoods.github.io/cn/post/tech/004-as-folder-functios/cn/</guid>
       <description>
         
           

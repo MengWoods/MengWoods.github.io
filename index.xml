@@ -26,6 +26,22 @@ Build time (optimization and compilation) Load model typically from format like 
     </item>
     
     <item>
+      <title>GPU Architecture Overview</title>
+      <link>https://mengwoods.github.io/post/tech/011-structure-of-gpu/</link>
+      <pubDate>Sun, 18 May 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://mengwoods.github.io/post/tech/011-structure-of-gpu/</guid>
+      <description>
+        
+          
+            CPU and GPU CPU is designed to excel at executing a sequence of operations, called a thread. It can execute a few tens of threads in parallel. General purpose, good for serial processing, great for task parallelism, large area dedicated cache and control. GPU is designed to excel at executing many thousands of them in parallel. Highly specialized for parallelism, good for parallel processing, great for data parallelism, high throughput, hundreds of floating point execution units.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
       <title>KITTI Dataset Introduction</title>
       <link>https://mengwoods.github.io/post/tech/007-kitti-introduction/</link>
       <pubDate>Wed, 26 Mar 2025 00:00:00 +0000</pubDate>
@@ -275,22 +291,6 @@ Build time (optimization and compilation) Load model typically from format like 
         
           
             &lt;p&gt;Hugo, blog&lt;/p&gt;
-          
-          
-        
-      </description>
-    </item>
-    
-    <item>
-      <title>GPU Architecture Overview</title>
-      <link>https://mengwoods.github.io/post/tech/011-structure-of-gpu/</link>
-      <pubDate>Sun, 18 May 2025 00:00:00 +0000</pubDate>
-      
-      <guid>https://mengwoods.github.io/post/tech/011-structure-of-gpu/</guid>
-      <description>
-        
-          
-            CPU and GPU CPU is designed to excel at executing a sequence of operations, called a thread. It can execute a few tens of threads in parallel. General purpose, good for serial processing, great for task parallelism, large area dedicated cache and control. GPU is designed to excel at executing many thousands of them in parallel. Highly specialized for parallelism, good for parallel processing, great for data parallelism, high throughput, hundreds of floating point execution units.
           
           
         

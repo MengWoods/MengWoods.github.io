@@ -5,6 +5,9 @@
     <loc>https://mengwoods.github.io/post/dl/014-tensorrt-usage/</loc>
     <lastmod>2025-09-13T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://mengwoods.github.io/post/tech/011-structure-of-gpu/</loc>
+    <lastmod>2025-05-18T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://mengwoods.github.io/post/tech/007-kitti-introduction/</loc>
     <lastmod>2025-03-26T00:00:00+00:00</lastmod>
   </url><url>
@@ -132,9 +135,6 @@
                 hreflang="en"
                 href="https://mengwoods.github.io/post/tech/000-build-hugo-site/en/"
                 />
-  </url><url>
-    <loc>https://mengwoods.github.io/post/tech/011-structure-of-gpu/</loc>
-    <lastmod>2025-05-18T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://mengwoods.github.io/</loc>
     <lastmod>2025-10-01T00:00:00+00:00</lastmod>

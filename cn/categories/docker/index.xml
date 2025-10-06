@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Docker on Menghao blog</title>
-    <link>https://mengwoods.github.io/cn/categories/docker/</link>
+    <link>http://localhost:1313/cn/categories/docker/</link>
     <description>Recent content in Docker on Menghao blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cn</language>
     <copyright>Copyright © 2024, Meng blog; all rights reserved.</copyright>
-    <lastBuildDate>Sat, 04 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://mengwoods.github.io/cn/categories/docker/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 04 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/cn/categories/docker/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>一些实用的Docker命令</title>
-      <link>https://mengwoods.github.io/cn/post/tech/003-some-docker-commands/cn/</link>
+      <link>http://localhost:1313/cn/post/tech/003-some-docker-commands/cn/</link>
       <pubDate>Sat, 04 Nov 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://mengwoods.github.io/cn/post/tech/003-some-docker-commands/cn/</guid>
+      <guid>http://localhost:1313/cn/post/tech/003-some-docker-commands/cn/</guid>
       <description>
         
           
@@ -32,10 +32,10 @@ Docker container 是Docker镜像的运行实例，提供了一个可以启动、
     
     <item>
       <title>在Docker中使用conda虚拟环境</title>
-      <link>https://mengwoods.github.io/cn/post/tech/002-run-conda-in-dockerfile/</link>
+      <link>http://localhost:1313/cn/post/tech/002-run-conda-in-dockerfile/</link>
       <pubDate>Tue, 31 Oct 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://mengwoods.github.io/cn/post/tech/002-run-conda-in-dockerfile/</guid>
+      <guid>http://localhost:1313/cn/post/tech/002-run-conda-in-dockerfile/</guid>
       <description>
         
           

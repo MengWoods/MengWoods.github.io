@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Math on Menghao blog</title>
-    <link>https://mengwoods.github.io/cn/categories/math/</link>
+    <link>http://localhost:1313/cn/categories/math/</link>
     <description>Recent content in Math on Menghao blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cn</language>
     <copyright>Copyright © 2024, Meng blog; all rights reserved.</copyright>
-    <lastBuildDate>Fri, 19 Apr 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://mengwoods.github.io/cn/categories/math/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 19 Apr 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/cn/categories/math/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>深度学习中的概率知识</title>
-      <link>https://mengwoods.github.io/cn/post/dl/001-probability/</link>
+      <link>http://localhost:1313/cn/post/dl/001-probability/</link>
       <pubDate>Fri, 19 Apr 2024 00:00:00 +0000</pubDate>
       
-      <guid>https://mengwoods.github.io/cn/post/dl/001-probability/</guid>
+      <guid>http://localhost:1313/cn/post/dl/001-probability/</guid>
       <description>
         
           
@@ -26,10 +26,10 @@
     
     <item>
       <title>主成分分析 (PCA) 的应用案例</title>
-      <link>https://mengwoods.github.io/cn/post/math/003-pca-application/</link>
+      <link>http://localhost:1313/cn/post/math/003-pca-application/</link>
       <pubDate>Tue, 16 Apr 2024 00:00:00 +0000</pubDate>
       
-      <guid>https://mengwoods.github.io/cn/post/math/003-pca-application/</guid>
+      <guid>http://localhost:1313/cn/post/math/003-pca-application/</guid>
       <description>
         
           
@@ -42,10 +42,10 @@
     
     <item>
       <title>主成分分析(PCA)的详细推导过程</title>
-      <link>https://mengwoods.github.io/cn/post/math/003-pca/</link>
+      <link>http://localhost:1313/cn/post/math/003-pca/</link>
       <pubDate>Tue, 16 Apr 2024 00:00:00 +0000</pubDate>
       
-      <guid>https://mengwoods.github.io/cn/post/math/003-pca/</guid>
+      <guid>http://localhost:1313/cn/post/math/003-pca/</guid>
       <description>
         
           
@@ -58,10 +58,10 @@
     
     <item>
       <title>向量点乘与叉乘</title>
-      <link>https://mengwoods.github.io/cn/post/math/001-vector-cross-product/</link>
+      <link>http://localhost:1313/cn/post/math/001-vector-cross-product/</link>
       <pubDate>Tue, 05 Mar 2024 00:00:00 +0000</pubDate>
       
-      <guid>https://mengwoods.github.io/cn/post/math/001-vector-cross-product/</guid>
+      <guid>http://localhost:1313/cn/post/math/001-vector-cross-product/</guid>
       <description>
         
           

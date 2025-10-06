@@ -28,14 +28,14 @@
 <meta property="og:locale" content="en" />
 
 <meta property="og:type" content="article">
-<meta name="description" content="Based on NG&#39;s Machine Learning course (WIP)." />
+<meta name="description" content="Based on NG&#39;s Machine Learning course" />
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:creator" content="@janedoe">
 <meta name="twitter:title" content="Note of NG&#39;s Machine Learning Course" />
 <meta name="twitter:image" content="https://mengwoods.github.io/images/thumbnail.png"/>
 <meta property="og:url" content="https://mengwoods.github.io/post/dl/005-ng-ml/" />
 <meta property="og:title" content="Note of NG&#39;s Machine Learning Course" />
-<meta property="og:description" content="Based on NG&#39;s Machine Learning course (WIP)." />
+<meta property="og:description" content="Based on NG&#39;s Machine Learning course" />
 <meta property="og:image" content="https://mengwoods.github.io/images/thumbnail.png" />
 
 <link rel="apple-touch-icon" sizes="180x180" href="https://mengwoods.github.io/icons/apple-touch-icon.png">
@@ -172,7 +172,7 @@
 </span>
     <span class="post_date">
       Apr 25, 2024</span>
-    <span class="post_time"> · 13 min read</span>
+    <span class="post_time"> · 15 min read</span>
     <span class="page_only">&nbsp;·
   <div class="post_share">
     Share on:
@@ -212,86 +212,131 @@
         <h2>Overview</h2>
         <nav id="TableOfContents">
   <ul>
-    <li><a href="#c1-supervised-machine-learning---regression-and-classification">C1-Supervised Machine Learning - Regression and Classification</a></li>
+    <li><a href="#c1-supervised-machine-learning---regression-and-classification">C1-Supervised Machine Learning - Regression and Classification</a>
+      <ul>
+        <li><a href="#p25-feature-scaling">P25 Feature scaling</a></li>
+        <li><a href="#p29-feature-engineering-p30-multiple-linear-regression">P29 Feature Engineering, P30 Multiple linear regression</a></li>
+        <li><a href="#p31-motivation">P31 Motivation</a></li>
+        <li><a href="#p32-logistic-regression">P32 Logistic regression</a></li>
+        <li><a href="#p33-decision-boundary">P33 Decision Boundary</a></li>
+        <li><a href="#p34-cost-function-for-logistic-regression">P34 Cost Function for Logistic Regression</a></li>
+        <li><a href="#p35-simplified-loss-function">P35 Simplified Loss function</a></li>
+        <li><a href="#p37-overfitting">P37 Overfitting</a></li>
+        <li><a href="#p38-addressing-overfitting">P38 Addressing Overfitting</a></li>
+        <li><a href="#p39-regularization">P39 Regularization</a></li>
+        <li><a href="#p40-regularization-for-linear-regression">P40 Regularization for linear regression</a></li>
+      </ul>
+    </li>
     <li><a href="#c2-advanced-learning-algorithms">C2-Advanced Learning Algorithms</a></li>
     <li><a href="#c3-unsupervised-learning">C3-Unsupervised Learning</a></li>
   </ul>
 </nav>
       </div>
     
-    <div class="post_body"><p>Based on NG's Machine Learning course (WIP).</p>
+    <div class="post_body"><p>Based on NG's Machine Learning course</p>
 <h2 id="c1-supervised-machine-learning---regression-and-classification">C1-Supervised Machine Learning - Regression and Classification</h2>
-<blockquote>
-<p>P25 Feature scaling</p>
-</blockquote>
+<h3 id="p25-feature-scaling">P25 Feature scaling</h3>
+<p>Features may have different units and magnitudes, algorithms perform better when features are on a comparable scale.</p>
+<ul>
+<li>Prevent domination by large-scale features, algorithms like gradient descent, KNN, and clustering can be biased toward features with larger numerical values.</li>
+<li>Faster convergence in optimization.</li>
+</ul>
+<p>Common methods of feature scaling:</p>
+<ul>
+<li>Min-max normalization, keep data in a range, it is sensitive to outliers.</li>
+<li>Standardization or Z-score normalization. Centers data at mean 0, standard deviation to 1. Works better when data has outliers.</li>
+<li>Robust scaling (using median and IQR), good for datasets with many outliers.</li>
+</ul>
 <p>Mean normalization: $x_i:=\dfrac{x_i - \mu_i}{max-min}$</p>
-<p>z-score normalization $x_i:=\dfrac{x_i - \mu_i}{\sigma_i}$</p>
-<p>All features will have a mean of 0 and a standard deviation of 1. $\sigma is the standard deviation$</p>
+<p><strong>Z-score Normalization</strong> $x_i:=\dfrac{x_i - \mu_i}{\sigma_i}$</p>
+<p>All features will have a mean of 0 and a standard deviation of 1. $\sigma$ is the standard deviation$</p>
 <p>The scaled features get very accurate results much, much faster.</p>
+<h3 id="p29-feature-engineering-p30-multiple-linear-regression">P29 Feature Engineering, P30 Multiple linear regression</h3>
+<p><strong>Feature Engineering</strong>: Using intuition to design new features, by transforming or combining original features. So the machine learning model can understand the data better and perform more accurately.</p>
+<p>It turns raw sensory signals into meaningful information that makes patterns easier for a model to learn.</p>
 <blockquote>
-<p>P29 feature engineering<br>
-P30 Multiple linear regression</p>
+<p>quadratic function: 二次方程, cubic function: 三次方程</p>
 </blockquote>
-<p>Feature engineering: Using intuition to design new features, by transforming or combining original features.</p>
-<p>quadratic function: 二次方程
-cubic function: 三次方程</p>
-<p>When doing feature enginerring, the feature scaling becomes increasingly important.</p>
+<p>When doing feature engineering, the feature scaling becomes increasingly important.</p>
 <p>Gradient descent is picking the 'correct' features for us by emphasizing its associated parameter.</p>
+<h3 id="p31-motivation">P31 Motivation</h3>
+<p>Binary classification, negative/positive class</p>
+<h3 id="p32-logistic-regression">P32 Logistic regression</h3>
+<p>Logistic regression is a supervised learning algorithm used for binary classification. Instead of predicting a continuous value like in linear regression, it predicts the probability that a sample belongs to a class.</p>
+<ul>
+<li>Logistic regression assumes that input features have a linear relationship with some underlying score.</li>
+<li>But probabilities must be between 0 and 1, so we pass that score through a sigmoid function.</li>
+</ul>
 <blockquote>
-<p>P31 Motivation</p>
-</blockquote>
-<p>Binary classification, negative/positove class</p>
-<blockquote>
-<p>P32 Logistic regression</p>
-</blockquote>
-<p>The logistic regression is used for classification, other than regression even it has the word regression.</p>
 <p>tumor: 肿瘤  malignant 恶性的</p>
-<p>logistic function is sigmoid function</p>
-<p>$g(z)=\dfrac{1}{1+e^{(-z)}}$, output between 0 and 1</p>
-<p>Logistic regression model:
-$f_{w,b}{x}=g(w\cdot x+b)=\dfrac{1}{1+e^{-(w\cdot x + b)}}$</p>
-<p>$f_{w,b}(x)=P(y=1|x;w,b)$ means: Probability that y is 1, given input x, parameters w,b</p>
-<blockquote>
-<p>P33 Decision <strong>Boundary</strong></p>
 </blockquote>
+<p><strong>Logistic function is sigmoid function</strong></p>
+<p>$g(z)=\dfrac{1}{1+e^{(-z)}}$</p>
+<p>This maps any real number $z$ into the range (0, 1).</p>
+<p>Logistic regression model:</p>
+<p>$f_{w,b}{x}=g(w\cdot x+b)=\dfrac{1}{1+e^{-(w\cdot x + b)}}$</p>
+<p>$f_{w,b}(x)=P(y=1|x;w,b)$ , That means: Probability that y is 1, given input x, parameters w,b</p>
+<h3 id="p33-decision-boundary">P33 Decision Boundary</h3>
+<p>A decision boundary is a line, plane, or hypersurface that separates different classes predicted by a classifier.</p>
 <p>Decision boundary: $z=w\cdot x + b=0$</p>
-<p>non-linear decision boundaries,</p>
-<blockquote>
-<p>P34 Cost function for logistic regression</p>
-</blockquote>
-<p>Loss $L(f_{w,b}(x),y)$</p>
+<p>Non-linear decision boundaries,</p>
+<h3 id="p34-cost-function-for-logistic-regression">P34 Cost Function for Logistic Regression</h3>
+<p>Loss function: $L(f_{w,b}(x),y)$</p>
 <p>If y = 1 $= -\log(f_{w,b}(x))$</p>
 <p>If y = 0 $= -\log(1-f_{w,b}(x))$</p>
-<blockquote>
-<p>P35 Simplified loss function</p>
-</blockquote>
-<p>Loss function:</p>
+<h3 id="p35-simplified-loss-function">P35 Simplified Loss function</h3>
+<p>Loss function measures the error for a single training example:</p>
 <p>$L(f_{w,b}(x,y))=-y\log(f_{w,b}(x))-(1-y)\log(1-f_{w,b}(x))$</p>
-<p>Cost function:</p>
+<p>Cost function measures the average error across the entire training set:</p>
 <p>$J(w,b)=\dfrac{1}{m}\sum[L(f_{w,b}(x),y)]=-\dfrac{1}{m}\sum[y\log(f_{w,b}(x))-(1-y)\log(1-f_{w,b}(x))]$</p>
-<p>Loss is the cost for signle data point.</p>
 <p>Why choose this as the cost function, it derives from statistics using maximum likelihood estimation, which is an idea from statistics on how to efficiently find parameters from different models.</p>
-<blockquote>
-<p>P37 Overfitting</p>
-</blockquote>
-<p>Underfit, high bias</p>
-<p>Overfit, high variance</p>
-<blockquote>
-<p>P38 Addressing Overfitting</p>
-</blockquote>
-<p>Option 1: More training data, collect more data</p>
-<p>Option 2: Feature selection. Decrease data features, select the most relavant features.</p>
-<p>All features + insufficient data = overfit</p>
-<p>Option 3: Regularization</p>
-<p>Keep all features, but use small values for w, to decrease the effect of each parameter. Reduce size of parameters</p>
-<blockquote>
-<p>P39 Regularization</p>
-</blockquote>
-<p>Add regularization term for cost function:</p>
+<h3 id="p37-overfitting">P37 Overfitting</h3>
+<p>Overfitting happens when a model learns the training data too well, including its noise, outliers, and random fluctuations, instead of just the underlying pattern.</p>
+<p>Underfit, high bias; Overfit, high variance</p>
+<p>Causes of overfitting:</p>
+<ul>
+<li>Too complex model</li>
+<li>Too few training samples</li>
+<li>Noisy data</li>
+<li>Too many training epochs without regularization</li>
+</ul>
+<h3 id="p38-addressing-overfitting">P38 Addressing Overfitting</h3>
+<ol>
+<li>More training data, collect more data.</li>
+<li>REgularization (L1, L2 penalties)</li>
+<li>Dropout in neural networks</li>
+<li>Early stopping, stop training before overfitting.</li>
+<li>Cross validation to check generalization</li>
+<li>Simplify the model, reduce depth, features, parameters.</li>
+<li>Feature selection, drop redundant or irrelevant features, use domain knowledge or use statistical methods. All features + insufficient data = Overfitting, this is the curse of dimensionality.</li>
+</ol>
+<h3 id="p39-regularization">P39 Regularization</h3>
+<p>Regularization discourages a model from becoming too complex.</p>
+<ul>
+<li>A model with very large weights $w$ tends to fit the training data too perfectly, including noise.</li>
+<li>Regularization adds a penalty to the cost function, so the model prefers simpler weights (smaller values).</li>
+</ul>
 <p>$J(w,b)=\dfrac{1}{2m}\sum(f(x)-y)^2 + \dfrac{\lambda}{2m}\sum w^2, \lambda &gt; 0$</p>
-<blockquote>
-<p>P40 Regularization for linear regression</p>
-</blockquote>
+<p>L2 regularization (Ridge):</p>
+<ul>
+<li>Adds the sum of squared weights to the cost function.</li>
+<li>Shrinks weights smoothly, keeps all features but reduces influence.</li>
+<li>Decision boundary becomes smoother.</li>
+</ul>
+<p>$J(w,b)=\dfrac{1}{2m}\sum(f(x)-y)^2 + \dfrac{\lambda}{m}\sum |w|, \lambda &gt; 0$</p>
+<p>L1 regularization (Lasso)</p>
+<ul>
+<li>Adds the sum of absolute weights to the cost function.</li>
+<li>Some weights shrink to zero, <strong>automatic feature selection</strong>.</li>
+<li>Creates sparse models.</li>
+</ul>
+<h3 id="p40-regularization-for-linear-regression">P40 Regularization for linear regression</h3>
+<p>In linear regression, if we have too many features or correlated features, weights can be come very large. Apply regularization prevents overfitting:</p>
+<ul>
+<li>L2: small weights smooth solution.</li>
+<li>L1: sparse weights, feature selection.</li>
+<li>Elastic Net: mix of both</li>
+</ul>
 <h2 id="c2-advanced-learning-algorithms">C2-Advanced Learning Algorithms</h2>
 <blockquote>
 <p>P45 Requirement prediction</p>

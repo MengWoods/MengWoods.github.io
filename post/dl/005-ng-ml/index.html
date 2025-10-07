@@ -172,7 +172,7 @@
 </span>
     <span class="post_date">
       Apr 25, 2024</span>
-    <span class="post_time"> · 15 min read</span>
+    <span class="post_time"> · 16 min read</span>
     <span class="page_only">&nbsp;·
   <div class="post_share">
     Share on:
@@ -227,7 +227,17 @@
         <li><a href="#p40-regularization-for-linear-regression">P40 Regularization for linear regression</a></li>
       </ul>
     </li>
-    <li><a href="#c2-advanced-learning-algorithms">C2-Advanced Learning Algorithms</a></li>
+    <li><a href="#c2-advanced-learning-algorithms">C2-Advanced Learning Algorithms</a>
+      <ul>
+        <li><a href="#p45-requirement-prediction">P45 Requirement prediction</a></li>
+        <li><a href="#p51">P51</a></li>
+        <li><a href="#p61">P61</a></li>
+        <li><a href="#p62-activation-function">P62 Activation function</a></li>
+        <li><a href="#p63">P63</a></li>
+        <li><a href="#p66-multiclass-softmax">P66 Multiclass, Softmax</a></li>
+        <li><a href="#p67">P67</a></li>
+      </ul>
+    </li>
     <li><a href="#c3-unsupervised-learning">C3-Unsupervised Learning</a></li>
   </ul>
 </nav>
@@ -235,6 +245,9 @@
     
     <div class="post_body"><p>Based on NG's Machine Learning course</p>
 <h2 id="c1-supervised-machine-learning---regression-and-classification">C1-Supervised Machine Learning - Regression and Classification</h2>
+<ul>
+<li>Regression: Fitting a function that predicts a continuous or probabilistic output from input variables. E.g. linear regression, polynomial regression.</li>
+</ul>
 <h3 id="p25-feature-scaling">P25 Feature scaling</h3>
 <p>Features may have different units and magnitudes, algorithms perform better when features are on a comparable scale.</p>
 <ul>
@@ -272,10 +285,14 @@
 </blockquote>
 <p><strong>Logistic function is sigmoid function</strong></p>
 <p>$g(z)=\dfrac{1}{1+e^{(-z)}}$</p>
-<p>This maps any real number $z$ into the range (0, 1).</p>
+<p>This maps any real number $z$ into the range (0, 1). <strong>Maps values to probabilities</strong>. Logistic means logical reasoning or calculation.</p>
+<ul>
+<li>This S-shape curve is called the logistic curve, originally used in population growth modeling in the 19th century.</li>
+</ul>
 <p>Logistic regression model:</p>
 <p>$f_{w,b}{x}=g(w\cdot x+b)=\dfrac{1}{1+e^{-(w\cdot x + b)}}$</p>
-<p>$f_{w,b}(x)=P(y=1|x;w,b)$ , That means: Probability that y is 1, given input x, parameters w,b</p>
+<p>$f_{w,b}(x)=P(y=1|x;w,b)$ , That means: Probability that $y$ is 1, given input $x$, parameters $w,b$</p>
+<p>Even though logistic regression deals with classification, not continuous values, it is still called regression because it models a continuous probability, then we threshold that probability. So logistic regression is regression in form, classification in purpose.</p>
 <h3 id="p33-decision-boundary">P33 Decision Boundary</h3>
 <p>A decision boundary is a line, plane, or hypersurface that separates different classes predicted by a classifier.</p>
 <p>Decision boundary: $z=w\cdot x + b=0$</p>
@@ -338,59 +355,97 @@
 <li>Elastic Net: mix of both</li>
 </ul>
 <h2 id="c2-advanced-learning-algorithms">C2-Advanced Learning Algorithms</h2>
-<blockquote>
-<p>P45 Requirement prediction</p>
-</blockquote>
-<p>Inference (prediction)</p>
-<p>activation; activation values;</p>
+<h3 id="p45-requirement-prediction">P45 Requirement prediction</h3>
+<p>Inference (prediction); activation; activation values;</p>
 <p>$a = f(x) = \dfrac{1}{1+e^{wx+b}}$</p>
 <p>$a^{[1]}$ denotes the output (activation value) of layer 1. input layer is layer 0.</p>
-<blockquote>
-<p>P48</p>
-</blockquote>
 <p>$a_j^{[l]}=g(w_j^{[l]}\cdot a^{[l-1]}+b_j^[l])$</p>
-<p>g is the activation function</p>
-<blockquote>
-<p>P51</p>
-</blockquote>
+<p>$g$ is the activation function</p>
+<h3 id="p51">P51</h3>
 <p>Matrix 2x3 in Numpy <code>x = np.array([[1,2,3], [4,5,6]])</code>
 Matrix is 2D array.</p>
 <p>Vector is 1D array. <code>x = np.array([200, 17])</code>, just a list.</p>
-<blockquote>
-<p>P53 Forward prop in a singile layer</p>
-</blockquote>
-<blockquote>
-<p>P61</p>
-</blockquote>
-<p>Binary classification problem, The logistic loss function, also known as binary cross entropy.</p>
+<h3 id="p61">P61</h3>
+<p>In <strong>binary classification</strong> problem, The <strong>logistic loss function</strong>, also known as binary cross entropy is used to measure the performance:</p>
+<p>$
+L(y, \hat{y}) = -\left[ y \log(\hat{y}) + (1 - y) \log(1 - \hat{y}) \right]
+$</p>
+<ul>
+<li>Penalizes confident but wrong predictions heavily.</li>
+<li>Rewards predictions that are close to the true class.</li>
+<li>Ensures smooth and differentiable optimization for training neural networks or logistic regression models.</li>
+</ul>
 <p>Compute derivatives for gradient descent using back propagation.</p>
-<blockquote>
-<p>P62 Activation function</p>
-</blockquote>
-<p>Sigmoid</p>
+<h3 id="p62-activation-function">P62 Activation function</h3>
+<p>The purpose of activation function is to introduce <strong>nonlinearity</strong>, allowing the network to learn complex relationships between inputs and outputs. Without activation function, the entire neural network would just be a linear function, no matter how many layers it had.</p>
+<p>Common activation functions:</p>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Formula</th>
+<th>Output Range</th>
+<th>Key Characteristics</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Sigmoid (Logistic)</strong></td>
+<td>$\sigma(z) = \frac{1}{1 + e^{-z}}$</td>
+<td>(0, 1)</td>
+<td>Smooth “S” curve, good for probabilities (used in logistic regression)</td>
+</tr>
+<tr>
+<td><strong>Tanh</strong></td>
+<td>$\tanh(z) = \frac{e^z - e^{-z}}{e^z + e^{-z}}$</td>
+<td>(-1, 1)</td>
+<td>Centered around 0, stronger gradients than sigmoid</td>
+</tr>
+<tr>
+<td><strong>ReLU (Rectified Linear Unit)</strong></td>
+<td>$f(z) = \max(0, z)$</td>
+<td>[0, ∞)</td>
+<td>Very popular — fast, sparse, reduces vanishing gradients</td>
+</tr>
+<tr>
+<td><strong>Leaky ReLU</strong></td>
+<td>$f(z) = \max(0.01z, z)$</td>
+<td>(-∞, ∞)</td>
+<td>Fixes ReLU’s “dead neuron” problem</td>
+</tr>
+<tr>
+<td><strong>Softmax</strong></td>
+<td>$f_i(z) = \frac{e^{z_i}}{\sum_j e^{z_j}}$</td>
+<td>(0, 1), sum=1</td>
+<td>Converts vector to probability distribution for multi-class classification</td>
+</tr>
+</tbody>
+</table>
 <p>Commen used one is ReLU (rectified linear unit) $g(z)=\max (0,z)$.</p>
-<blockquote>
-<p>P63</p>
-</blockquote>
-<p>Classification prolem, sigmoid function is nature choice for output layer.</p>
-<p>Regression: Linear activation function for output layer</p>
-<p>Or ReLU if for non-negative output values.</p>
-<p>For hidden layer activation, ReLU is more common used. Sigmoid is rarely used today. ReLU is fast to compute, ReLU goes to flat only to the left, Sigmoid has two flat zone, it makes gradient descent fast.</p>
-<blockquote>
-<p>P66 Multiclass, Softmax</p>
-</blockquote>
-<p>Softmax is used for multiclass classification problem</p>
+<ul>
+<li>In backbones, typical choice is ReLU or Leaky ReLU, they are simple and computationally cheap, important for real-time inference, leaky ReLU avoids dead neurons when inputs are negative.</li>
+<li>In necks, ReLU is used, smooth gradient flow is critical for training stability, especially during feature fusion.</li>
+<li>In detection head
+<ul>
+<li>For multi-label classification, use Sigmoid. Each class is treated independently, can detect overlapping categories.</li>
+<li>For single label classification, use Softmax, ensures probabilities sum to 1, only one class per proposal.</li>
+</ul>
+</li>
+</ul>
+<h3 id="p63">P63</h3>
+<p>In classification problems, the sigmoid function (binary) or softmax (multi-class) is a natural choice for the output layer since they produce probabilities.</p>
+<p>In regression, a linear activation is used for unrestricted outputs, or ReLU/Softplus if outputs must be non-negative.</p>
+<p>For hidden layers, ReLU (or its variants) is most commonly used today because it’s fast, simple, and avoids vanishing gradients, while sigmoid is rarely used due to its two flat regions that slow down gradient descent.</p>
+<h3 id="p66-multiclass-softmax">P66 Multiclass, Softmax</h3>
+<p><strong>Softmax is used for multiclass classification problem</strong></p>
 <p>Softmax regression, N possible outputs</p>
 <p>$z_j = w_j \cdot x + b_j, j=1,...,N$</p>
-<p>parameters w and b</p>
-<p>activation function: $a_j=\dfrac{e^{z_j}}{\sum_{k=1}^{N}e^{z_k}}=\mathbf{P}(y=j|x)$</p>
+<p>Activation function: $a_j=\dfrac{e^{z_j}}{\sum_{k=1}^{N}e^{z_k}}=\mathbf{P}(y=j|x)$</p>
 <p>$a_1 + ... + a_N=1$</p>
-<p>If use softmax for binary classification, it is same as sigmoid activation.</p>
-<blockquote>
-<p>P67</p>
-</blockquote>
-<p>For digit recognition prolem, use softmax as output layer, and use 10 neutron to form the output layer.</p>
-<p>Loss function name in TF is SparseCategoricalCrossentropy</p>
+<p><strong>If use softmax for binary classification, it is same as sigmoid activation.</strong></p>
+<h3 id="p67">P67</h3>
+<p>For digit recognition problem, use softmax as output layer, and use 10 neutron to form the output layer.</p>
+<p>Loss function name in TF is SparseCategoricalCrossentropy.</p>
 <blockquote>
 <p>P68</p>
 </blockquote>

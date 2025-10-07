@@ -172,7 +172,7 @@
 </span>
     <span class="post_date">
       Apr 25, 2024</span>
-    <span class="post_time"> · 16 min read</span>
+    <span class="post_time"> · 20 min read</span>
     <span class="page_only">&nbsp;·
   <div class="post_share">
     Share on:
@@ -224,7 +224,7 @@
         <li><a href="#p37-overfitting">P37 Overfitting</a></li>
         <li><a href="#p38-addressing-overfitting">P38 Addressing Overfitting</a></li>
         <li><a href="#p39-regularization">P39 Regularization</a></li>
-        <li><a href="#p40-regularization-for-linear-regression">P40 Regularization for linear regression</a></li>
+        <li><a href="#p40-regularization-for-linear-regression">P40 Regularization for Linear Regression</a></li>
       </ul>
     </li>
     <li><a href="#c2-advanced-learning-algorithms">C2-Advanced Learning Algorithms</a>
@@ -235,7 +235,13 @@
         <li><a href="#p62-activation-function">P62 Activation function</a></li>
         <li><a href="#p63">P63</a></li>
         <li><a href="#p66-multiclass-softmax">P66 Multiclass, Softmax</a></li>
-        <li><a href="#p67">P67</a></li>
+        <li><a href="#p67-p68">P67, P68</a></li>
+        <li><a href="#p69-multi-label-classification">P69 Multi-label Classification</a></li>
+        <li><a href="#p79-advance-optimization-algorithm-adam">P79 Advance Optimization Algorithm (Adam)</a></li>
+        <li><a href="#p71-convolutional-layer">P71 Convolutional Layer</a></li>
+        <li><a href="#p75-diagnostic">P75 Diagnostic</a></li>
+        <li><a href="#p77-model-selection">P77 Model Selection</a></li>
+        <li><a href="#p78-biasvariance">P78 Bias/Variance</a></li>
       </ul>
     </li>
     <li><a href="#c3-unsupervised-learning">C3-Unsupervised Learning</a></li>
@@ -347,7 +353,7 @@
 <li>Some weights shrink to zero, <strong>automatic feature selection</strong>.</li>
 <li>Creates sparse models.</li>
 </ul>
-<h3 id="p40-regularization-for-linear-regression">P40 Regularization for linear regression</h3>
+<h3 id="p40-regularization-for-linear-regression">P40 Regularization for Linear Regression</h3>
 <p>In linear regression, if we have too many features or correlated features, weights can be come very large. Apply regularization prevents overfitting:</p>
 <ul>
 <li>L2: small weights smooth solution.</li>
@@ -366,7 +372,7 @@
 Matrix is 2D array.</p>
 <p>Vector is 1D array. <code>x = np.array([200, 17])</code>, just a list.</p>
 <h3 id="p61">P61</h3>
-<p>In <strong>binary classification</strong> problem, The <strong>logistic loss function</strong>, also known as binary cross entropy is used to measure the performance:</p>
+<p>In <strong>binary classification</strong> problem, The <strong>logistic loss function</strong>, also known as <strong>binary cross entropy</strong> is used to measure the performance:</p>
 <p>$
 L(y, \hat{y}) = -\left[ y \log(\hat{y}) + (1 - y) \log(1 - \hat{y}) \right]
 $</p>
@@ -433,7 +439,7 @@ $</p>
 </li>
 </ul>
 <h3 id="p63">P63</h3>
-<p>In classification problems, the sigmoid function (binary) or softmax (multi-class) is a natural choice for the output layer since they produce probabilities.</p>
+<p><strong>In classification problems, the sigmoid function (binary) or softmax (multi-class) is a natural choice for the output layer since they produce probabilities.</strong></p>
 <p>In regression, a linear activation is used for unrestricted outputs, or ReLU/Softplus if outputs must be non-negative.</p>
 <p>For hidden layers, ReLU (or its variants) is most commonly used today because it’s fast, simple, and avoids vanishing gradients, while sigmoid is rarely used due to its two flat regions that slow down gradient descent.</p>
 <h3 id="p66-multiclass-softmax">P66 Multiclass, Softmax</h3>
@@ -443,52 +449,327 @@ $</p>
 <p>Activation function: $a_j=\dfrac{e^{z_j}}{\sum_{k=1}^{N}e^{z_k}}=\mathbf{P}(y=j|x)$</p>
 <p>$a_1 + ... + a_N=1$</p>
 <p><strong>If use softmax for binary classification, it is same as sigmoid activation.</strong></p>
-<h3 id="p67">P67</h3>
+<h3 id="p67-p68">P67, P68</h3>
 <p>For digit recognition problem, use softmax as output layer, and use 10 neutron to form the output layer.</p>
 <p>Loss function name in TF is SparseCategoricalCrossentropy.</p>
-<blockquote>
-<p>P68</p>
-</blockquote>
-<p>TF, from_logits=True will make the round off more accurate when with softmax.</p>
+<p>TF, <code>from_logits=True</code> will make the round off more accurate when with softmax.</p>
 <p><code>model.compile(loss=SparseCategoricalCrossEntropy(from_logits=True))</code></p>
-<blockquote>
-<p>P69 Multi labels classification</p>
-</blockquote>
+<h3 id="p69-multi-label-classification">P69 Multi-label Classification</h3>
 <p>Can use sigmoid activations function for the output layer.</p>
-<blockquote>
-<p>P79 Advance Optimization</p>
-</blockquote>
-<p>Adam (Adaptive moment estimation) algorithm, automatically adjusts the learning rate alpha. It not just one alpha, but each neutro has one learning rate.</p>
-<p>If w or b keeps moving in same direction, increase alpha
-If keeps oscillating, reduce alpha.</p>
+<h3 id="p79-advance-optimization-algorithm-adam">P79 Advance Optimization Algorithm (Adam)</h3>
+<p>Adam (Adaptive moment estimation) algorithm is one of the most popular optimization algorithm. It automatically adjusts the learning rate alpha. It not just one alpha, but each neutro has one learning rate.</p>
+<p>It combines the advantages of two other methods:</p>
+<ul>
+<li>AdaGrad: adapts learning rates for each parameter individually</li>
+<li>RMSProp: smooths learning rate using a moving average of squared gradients
+So Adam is essentially adaptive learning rate + momentum. <strong>It keeps track of both average gradient and average squared gradient, making training efficient and robust.</strong></li>
+</ul>
+<p>In gradient descent, updates are simple: $\theta_t = \theta_{t-1} - \alpha \nabla_{\theta} J(\theta)$, But this can be slow or unstable because:</p>
+<ul>
+<li>Some parameters may need smaller steps (steep gradients)</li>
+<li>Others need larger steps (flat regions)</li>
+<li>Gradients may oscillate in certain directions</li>
+</ul>
+<p>Adam automatically adjusts the learning rate for each parameter based on gradient history, making training faster and more stable.</p>
+<p>If <code>w</code> or <code>b</code> keeps moving in same direction, increase alpha. If keeps oscillating, reduce alpha.</p>
 <p>In code, model compile select optimizer use Adam. It uses one default init learning rate.</p>
 <p>It is better than gradient descent algorithm.</p>
-<blockquote>
-<p>P71</p>
-</blockquote>
-<p>Dense layer.</p>
-<p>Convolutional layer, Each neuron only looks at part of the previous layer's inputs. looking a window.</p>
+<p>Algorithm Steps:</p>
+<ol>
+<li>For parameter $\theta$, compute gradient: $g_t = \nabla_\theta J_t \theta$</li>
+<li>Update moment estimates:
+<ol>
+<li>Fist moment (mean of gradients): $m_t = \beta_1 m_{t-1} + (1-\beta_1)g_t$</li>
+<li>Second moment (uncentered variance): $v_t = \beta_2 v_{t-1} + (1-\beta_2)g^2_t$</li>
+</ol>
+</li>
+<li>Bias correction (for initialization bias):
+<ol>
+<li>$\hat{m}_t = \frac{m_t}{1 - \beta_1^t}$</li>
+<li>$\hat{v}_t = \frac{v_t}{1 - \beta_2^t}$</li>
+</ol>
+</li>
+<li>Parameter update: $\theta_t = \theta_{t-1} - \alpha \frac{\hat{m}_t}{\sqrt{\hat{v}_t} + \epsilon}$</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Symbol</th>
+<th>Meaning</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>( $\alpha$ )</td>
+<td>Learning rate</td>
+<td>0.001</td>
+</tr>
+<tr>
+<td>( $\beta_1$ )</td>
+<td>Decay for first moment</td>
+<td>0.9</td>
+</tr>
+<tr>
+<td>( $\beta_2$ )</td>
+<td>Decay for second moment</td>
+<td>0.999</td>
+</tr>
+<tr>
+<td>( $\epsilon$ )</td>
+<td>Small constant for stability</td>
+<td>1e-8</td>
+</tr>
+</tbody>
+</table>
+<p>Pros:</p>
+<ul>
+<li>Fast convergence</li>
+<li>Works well in practice</li>
+<li>Handles sparse gradients</li>
+<li>Combines benefits of Momentum and RMSProp</li>
+</ul>
+<p>Cons:</p>
+<ul>
+<li>Can overfit if learning rate isn't tuned</li>
+<li>Sometimes converges to slightly worse minima than SGD with momentum</li>
+<li>Requires more memory</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Algorithm</th>
+<th>Type</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>SGD (Stochastic Gradient Descent)</strong></td>
+<td>Optimization algorithm</td>
+<td>Updates weights in the opposite direction of gradient using random mini-batches</td>
+</tr>
+<tr>
+<td><strong>Adam (Adaptive Moment Estimation)</strong></td>
+<td>Optimization algorithm</td>
+<td>Uses momentum + adaptive learning rate for each parameter</td>
+</tr>
+<tr>
+<td><strong>RMSProp, AdaGrad, AdamW, AdamP, etc.</strong></td>
+<td>Optimization variants</td>
+<td>Improve convergence speed, stability, or generalization</td>
+</tr>
+</tbody>
+</table>
+<h3 id="p71-convolutional-layer">P71 Convolutional Layer</h3>
+<p>A convolutional layer is a special type of neural network layer designed to automatically learn spatial patterns in data. Instead of connecting every neuron to every input pixel like a fully connected layer, a convolutional layer only looks at a small local region (receptive field) and slides that filter across the entire image.</p>
 <ul>
 <li>Faster computation</li>
 <li>Need less training data, less prone to overfitting.</li>
+<li>Learns local spatial features</li>
+<li>Weight sharing, same filter slides over the whole image, fewer parameters than fully connected layers.</li>
+<li>Translation invariance: detects the same pattern anywhere in the image.</li>
 </ul>
-<p>LSTM, Transformer, attention models.</p>
-<blockquote>
-<p>P75</p>
-</blockquote>
+<p>Key Hyperparameters</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Filter size (kernel)</strong></td>
+<td>size of sliding window</td>
+<td>3×3, 5×5</td>
+</tr>
+<tr>
+<td><strong>Stride</strong></td>
+<td>how far the filter moves each step</td>
+<td>1, 2</td>
+</tr>
+<tr>
+<td><strong>Padding</strong></td>
+<td>add zeros around input borders to preserve size</td>
+<td>&quot;same&quot; or &quot;valid&quot;</td>
+</tr>
+<tr>
+<td><strong>Number of filters</strong></td>
+<td>number of output feature maps</td>
+<td>16, 32, 64, ...</td>
+</tr>
+</tbody>
+</table>
+<p>Structure of a Conv Layer: input layer -&gt; Conv2D -&gt; activation -&gt; Pooling -&gt; Next layer</p>
+<p><figure>
+  <picture>
+
+    
+      
+        
+        
+        
+        
+        
+        
+    <img
+      loading="lazy"
+      decoding="async"
+      alt="alt text"
+      
+        class="image_figure image_internal image_unprocessed"
+        src="image.png"
+      
+      
+    />
+
+    </picture>
+</figure>
+</p>
+<ul>
+<li>Conv2D: performs convolution (learns filters)</li>
+<li>Activation (e.g., ReLU): introduces non-linearity</li>
+<li>Pooling: reduces spatial size (downsampling)</li>
+</ul>
+<h3 id="p75-diagnostic">P75 Diagnostic</h3>
 <p>Diagnostic: A test that you run to gain insight into what is/isn't working with a learning algorithm, to gain guidance into improving its performance.</p>
-<blockquote>
-<p>P77 model selcection</p>
-</blockquote>
+<p>Common Diagnostics Examples:</p>
+<table>
+<thead>
+<tr>
+<th>Diagnostic</th>
+<th>What It Tells You</th>
+<th>How It Helps</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Training vs. validation error</strong></td>
+<td>Whether your model has high bias or high variance</td>
+<td>Guides whether to add data, regularization, or model capacity</td>
+</tr>
+<tr>
+<td><strong>Learning curve</strong></td>
+<td>How error changes with more training data</td>
+<td>Shows if adding data would help</td>
+</tr>
+<tr>
+<td><strong>Error analysis (confusion matrix, misclassified samples)</strong></td>
+<td>Which classes or examples cause mistakes</td>
+<td>Helps in data cleaning or model fine-tuning</td>
+</tr>
+<tr>
+<td><strong>Gradient checking</strong></td>
+<td>Whether your implementation of backprop is correct</td>
+<td>Detects bugs in training code</td>
+</tr>
+<tr>
+<td><strong>Training loss vs. time</strong></td>
+<td>Whether learning is progressing or diverging</td>
+<td>Helps tune learning rate or optimizer</td>
+</tr>
+<tr>
+<td><strong>Feature importance / ablation test</strong></td>
+<td>Which features affect predictions most</td>
+<td>Guides feature engineering or pruning</td>
+</tr>
+</tbody>
+</table>
+<h3 id="p77-model-selection">P77 Model Selection</h3>
 <p>Training set, cross validation data, test set.</p>
-<p>Evaluate a model using cross validation data during training, and use testing set to estimate <strong>generalization</strong> error.</p>
-<blockquote>
-<p>P78 Bias/Variance</p>
-</blockquote>
+<p><strong>Cross-validation</strong> (CV) is a model evaluation technique used to test how well your machine learning model generalizes to unseen data.</p>
+<p>Evaluate a model using cross validation data during training, and use testing set to estimate <strong>generalization error</strong>.</p>
+<ul>
+<li>Cross validation reduces randomness</li>
+<li>Gives a more robust estimate of the model's expected performance on new data.</li>
+</ul>
+<p>$k$-Fold Cross-Validation:</p>
+<ol>
+<li>Split dataset into $k$ equal parts</li>
+<li>For each fold $i$:
+<ol>
+<li>Train on $k-1$ folds</li>
+<li>Test on the remaining fold</li>
+</ol>
+</li>
+<li>Compute the performance (accuracy, F1, loss, etc.) for each fold</li>
+<li>Average the results and get overall performance metric.</li>
+</ol>
+<p>Variants of Cross-Validation</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>k-Fold</strong></td>
+<td>Split into <em>k</em> equal parts</td>
+<td>Most common (e.g., k = 5 or 10)</td>
+</tr>
+<tr>
+<td><strong>Stratified k-Fold</strong></td>
+<td>Keeps class ratios the same in each fold</td>
+<td>Classification with imbalanced classes</td>
+</tr>
+<tr>
+<td><strong>Leave-One-Out (LOOCV)</strong></td>
+<td>Each data point is a fold (k = N)</td>
+<td>Very small datasets</td>
+</tr>
+<tr>
+<td><strong>Time-Series CV</strong></td>
+<td>Uses only past data to predict future data</td>
+<td>Sequential/time-dependent data</td>
+</tr>
+</tbody>
+</table>
+<h3 id="p78-biasvariance">P78 Bias/Variance</h3>
+<p>$Expected Error=Bias^2+Variance+Irreducible Noise$</p>
+<ul>
+<li>Bias is error from wrong assumptions (underfitting)</li>
+<li>Variance is error from sensitivity to training data (overfitting)</li>
+</ul>
 <p><strong>high bias</strong> - underfit
 J_train is high; J_cv is high</p>
 <p><strong>high variance</strong> (overfit)
 J_train is low; J_cv is high</p>
+<p><strong>Bias–Variance Tradeoff</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Model Behavior</th>
+<th>Bias</th>
+<th>Variance</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Underfitting</strong></td>
+<td>High</td>
+<td>Low</td>
+<td>Model too simple (misses patterns)</td>
+</tr>
+<tr>
+<td><strong>Good fit</strong></td>
+<td>Low</td>
+<td>Low</td>
+<td>Balanced — best generalization</td>
+</tr>
+<tr>
+<td><strong>Overfitting</strong></td>
+<td>Low</td>
+<td>High</td>
+<td>Model too complex (memorizes noise)</td>
+</tr>
+</tbody>
+</table>
 <blockquote>
 <p>P80 Establishing a base line</p>
 </blockquote>

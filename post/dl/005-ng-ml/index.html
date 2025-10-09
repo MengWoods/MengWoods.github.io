@@ -172,7 +172,7 @@
 </span>
     <span class="post_date">
       Apr 25, 2024</span>
-    <span class="post_time"> · 20 min read</span>
+    <span class="post_time"> · 21 min read</span>
     <span class="page_only">&nbsp;·
   <div class="post_share">
     Share on:
@@ -242,6 +242,10 @@
         <li><a href="#p75-diagnostic">P75 Diagnostic</a></li>
         <li><a href="#p77-model-selection">P77 Model Selection</a></li>
         <li><a href="#p78-biasvariance">P78 Bias/Variance</a></li>
+        <li><a href="#p84-ml-development">P84 ML Development</a></li>
+        <li><a href="#p89-data-augmentation">P89 Data Augmentation</a></li>
+        <li><a href="#p90-transfer-learning">P90 Transfer learning</a></li>
+        <li><a href="#p88-mlops">P88 MLOps</a></li>
       </ul>
     </li>
     <li><a href="#c3-unsupervised-learning">C3-Unsupervised Learning</a></li>
@@ -820,14 +824,24 @@ J_train is low; J_cv is high</p>
 </tr>
 </tbody>
 </table>
-<blockquote>
-<p>P80 Establishing a base line</p>
-</blockquote>
-<p>high bias model，more training dataset helps less.</p>
-<p>high variance model, more training dataset helps.</p>
-<blockquote>
-<p>P82</p>
-</blockquote>
+<h4 id="p80-establishing-a-baseline">P80 Establishing a Baseline</h4>
+<ul>
+<li>High bias model (underfitting)
+<ul>
+<li>Model is too simple, cannot capture the true pattern.</li>
+<li>Adding more data usually doesn't help much, because the model lacks capacity to learn the pattern no matter how much data you feet it.</li>
+<li>Use more complex model or add better features</li>
+</ul>
+</li>
+<li>High variance model (overfitting)
+<ul>
+<li>Model is too complex, it fits the training data too well and generalizes poorly.</li>
+<li>Adding more data often helps, because it gives the model more examples and reduces overfitting by averaging out noise.</li>
+<li>More data, stonger regularization or simpler model.</li>
+</ul>
+</li>
+</ul>
+<h4 id="p82-variance-and-bias">P82 Variance and Bias</h4>
 <ul>
 <li>Get more training examples - fixes high variance</li>
 <li>Try smaller sets of features - fixes high variance
@@ -840,28 +854,43 @@ J_train is low; J_cv is high</p>
 <li>Try decreasing lambda - high bias</li>
 <li>Try increasing lambda - high variance</li>
 </ul>
-<blockquote>
-<p>P83</p>
-</blockquote>
+<p>Lambda $\lambda$ controls how strongly the model penalizes large weights, in regularization terms:</p>
+<ul>
+<li>L2: $J(\theta) = \text{Loss} + \lambda \sum_{i} \theta_{i}^{2}$</li>
+<li>L1: $J(\theta) = \text{Loss} + \lambda \sum_{i} |\theta_{i}|$</li>
+</ul>
+<h4 id="p83-trade-off">P83 Trade Off</h4>
 <p>Simple model -&gt; High bias
 Complex model -&gt; High variance</p>
 <p>Tradeoff between high bias and high variance.</p>
-<p>Large neural networks are low bias machines. It just fits very compicated functions very well, so when training neural network, we offten faceing problems other than high bias problem if neural network is large enough.</p>
+<p><strong>Large neural networks are low bias machines</strong>. It just fits very complicated functions very well, so when training neural network, we often facing problems other than high bias problem if neural network is large enough.</p>
+<ul>
+<li>
 <p>Does it do well on training set? if not, use bigger network</p>
+</li>
+<li>
 <p>Does it do well on the cross validation set? If not, use more training data.</p>
+</li>
+<li>
 <p>A large neural network will usually do as well or better than a smaller one so long as <strong>regularization</strong> is chosen appropriately.</p>
+</li>
+</ul>
+<h3 id="p84-ml-development">P84 ML Development</h3>
+<p>Interactive loop of ML development</p>
 <blockquote>
-<p>P84</p>
+<p>Design → Train → Diagnose → Improve → Repeat</p>
 </blockquote>
-<p>Interative loop of ML development</p>
-<p>Choose architecture (model, data, etc.), Train model, Diagnostics (bias, variance, error analysis), choose architecture and so on.</p>
-<p>Text classfication.
+<ol>
+<li>Choose architecture (model, data, etc.)</li>
+<li>Train model. Monitor loss curves, convergence, training time, etc.</li>
+<li>Diagnostics (bias, variance, error analysis)</li>
+<li>Choose architecture and so on.</li>
+</ol>
+<p>Text Classification.
 Features: list the top 10000 words to compute input variables.</p>
 <p>Logistic model, or neural network model.</p>
-<blockquote>
-<p>P85 Error analysis</p>
-</blockquote>
-<p>Group the misclassifies in corss validation set based on common traits/features.</p>
+<h4 id="p85-error-analysis">P85 Error analysis</h4>
+<p>Group the misclassifies in cross validation set based on common traits/features.</p>
 <p>These groups are not mutually exclusive.</p>
 <p>If the dataset is large, can get samples randomly from misclassifies to analysis.</p>
 <p>How to try to reduce your spam classifier's error?</p>
@@ -871,36 +900,36 @@ Features: list the top 10000 words to compute input variables.</p>
 <li>Define sophisticated features from email body, some words are treated as the same world.</li>
 <li>Design algorithms to detect misspellings.</li>
 </ol>
-<blockquote>
-<p>P89</p>
-</blockquote>
-<p><strong>Data augmentation</strong>: Modifying an existing traning example to create a new training example.</p>
+<h3 id="p89-data-augmentation">P89 Data Augmentation</h3>
+<p><strong>Data augmentation</strong>: Modifying an existing training example to create a new training example.</p>
 <p>Examples:</p>
-<p>Image recognition: Distortion a image, mirro, rotate, enlarge, shrink, change contrast.</p>
+<p>Image recognition: Distortion a image, mirror, rotate, enlarge, shrink, change contrast.</p>
 <p>Speech recognition example. Different of noisy background, bad cellphone connection.</p>
 <p>Usually does not help to add purely random/meaningless noise to your data. It should be representation of the type of noise/distortions in the test set.</p>
 <p><strong>Data synthesis</strong></p>
-<p>Photo OCR example, generate sysnthesis data to train.</p>
+<p>Photo OCR example, generate synthesis data to train.</p>
 <p>Conventional model-centric approach: AI = Code + Data; Works more on Code (algorithm/model)</p>
 <p>Data-centric approach: AI = Code + Data; Focus on Data engineering.</p>
-<blockquote>
-<p>P90 Transfer learning</p>
-</blockquote>
+<h3 id="p90-transfer-learning">P90 Transfer learning</h3>
 <p>Eliminate the last layer of the origin model, and switch it to the layer needed.</p>
 <p>Use the parameter from the first layers from the origin model.</p>
+<ul>
+<li>
 <p>Option 1: only train output layers parameters.</p>
+</li>
+<li>
 <p>Option 2: Train all parameters. The first layers are initialized with the origin model.</p>
+</li>
+</ul>
 <p>Two steps: Supervised pretraining, Fine tuning.</p>
-<p>Convolution NN: firs layer detects edges, then corners, then curvers/basic shapes.</p>
-<p>Summary: 1. Download NN parameters pretrained. 2. Further train (fine tuen) the network on your own data.</p>
-<blockquote>
-<p>P88 ML Project Development process</p>
-</blockquote>
+<p>Convolution NN: firs layer detects edges, then corners, then curves/basic shapes.</p>
+<p>Summary: 1. Download NN parameters pretrained. 2. Further train (fine tune) the network on your own data.</p>
+<h3 id="p88-mlops">P88 MLOps</h3>
 <p>Define project: Scope the project.</p>
 <p>Collect data, Define and collect data.</p>
 <p>Train model: Training, error analysis, iterative improvement.</p>
 <p>Deploy in production: Deploy, monitor and maintain system.</p>
-<p>Imploement ML model to a inference server, Mobile app make API call to server, server inferences to mobile app.</p>
+<p>Implement ML model to a inference server, Mobile app make API call to server, server inferences to mobile app.</p>
 <p>Software engineering may be needed for:</p>
 <ul>
 <li>Ensure reliable and efficient predictions</li>
@@ -909,10 +938,14 @@ Features: list the top 10000 words to compute input variables.</p>
 <li>System monitoring</li>
 <li>Model updates</li>
 </ul>
-<p>MLOps: ML operations: Practice how to systematically build and deploy, maintain ML model.</p>
-<blockquote>
-<p>P89 Ethics, Pairness, bias, and other ethics.</p>
-</blockquote>
+<p><strong>MLOps</strong>: ML operations: Practice how to systematically build and deploy, maintain ML model.</p>
+<p>Stages:</p>
+<ol>
+<li>Model Development: Data collection, preprocessing, feature engineering, model training, validation</li>
+<li>Model Deployment: Packaging the model e.g. Docker, ONNX, deploying it to production servers or edge devices (API, ROS node, etc.)</li>
+<li>Monitoring &amp; Maintenance: Tracking model performance, detecting data drift, retraining with new data, version control and roll back.</li>
+</ol>
+<h4 id="p89-ethics-pairness-bias-and-other-ethics">P89 Ethics, Pairness, bias, and other ethics.</h4>
 <blockquote>
 <p>P90 Skewed datasets</p>
 </blockquote>

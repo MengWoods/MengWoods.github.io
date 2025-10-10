@@ -233,9 +233,7 @@
         <li><a href="#p51">P51</a></li>
         <li><a href="#p61">P61</a></li>
         <li><a href="#p62-activation-function">P62 Activation function</a></li>
-        <li><a href="#p63">P63</a></li>
         <li><a href="#p66-multiclass-softmax">P66 Multiclass, Softmax</a></li>
-        <li><a href="#p67-p68">P67, P68</a></li>
         <li><a href="#p69-multi-label-classification">P69 Multi-label Classification</a></li>
         <li><a href="#p79-advance-optimization-algorithm-adam">P79 Advance Optimization Algorithm (Adam)</a></li>
         <li><a href="#p71-convolutional-layer">P71 Convolutional Layer</a></li>
@@ -246,6 +244,8 @@
         <li><a href="#p89-data-augmentation">P89 Data Augmentation</a></li>
         <li><a href="#p90-transfer-learning">P90 Transfer learning</a></li>
         <li><a href="#p88-mlops">P88 MLOps</a></li>
+        <li><a href="#p90-skewed-datasets">P90 Skewed Datasets</a></li>
+        <li><a href="#p91-decision-trees">P91 Decision Trees</a></li>
       </ul>
     </li>
     <li><a href="#c3-unsupervised-learning">C3-Unsupervised Learning</a></li>
@@ -492,7 +492,7 @@ $</p>
 </ul>
 </li>
 </ul>
-<h3 id="p63">P63</h3>
+<h4 id="p63">P63</h4>
 <p><strong>In classification problems, the sigmoid function (binary) or softmax (multi-class) is a natural choice for the output layer since they produce probabilities.</strong></p>
 <p>In regression, a linear activation is used for unrestricted outputs, or ReLU/Softplus if outputs must be non-negative.</p>
 <p>For hidden layers, ReLU (or its variants) is most commonly used today because it’s fast, simple, and avoids vanishing gradients, while sigmoid is rarely used due to its two flat regions that slow down gradient descent.</p>
@@ -503,7 +503,7 @@ $</p>
 <p>Activation function: $a_j=\dfrac{e^{z_j}}{\sum_{k=1}^{N}e^{z_k}}=\mathbf{P}(y=j|x)$</p>
 <p>$a_1 + ... + a_N=1$</p>
 <p><strong>If use softmax for binary classification, it is same as sigmoid activation.</strong></p>
-<h3 id="p67-p68">P67, P68</h3>
+<h4 id="p67-p68">P67, P68</h4>
 <p>For digit recognition problem, use softmax as output layer, and use 10 neutron to form the output layer.</p>
 <p>Loss function name in TF is SparseCategoricalCrossentropy.</p>
 <p>TF, <code>from_logits=True</code> will make the round off more accurate when with softmax.</p>
@@ -946,28 +946,93 @@ Features: list the top 10000 words to compute input variables.</p>
 <li>Monitoring &amp; Maintenance: Tracking model performance, detecting data drift, retraining with new data, version control and roll back.</li>
 </ol>
 <h4 id="p89-ethics-pairness-bias-and-other-ethics">P89 Ethics, Pairness, bias, and other ethics.</h4>
-<blockquote>
-<p>P90 Skewed datasets</p>
-</blockquote>
+<h3 id="p90-skewed-datasets">P90 Skewed Datasets</h3>
+<p>Skewed or imbalanced datasets, the distribution of classes is uneven, some classes have many more samples than others.</p>
+<ul>
+<li>Model bias: Model learns to predict the majority class most of the time because it minimizes overall error.</li>
+<li>Misleading accuracy: Accuracy can look high even if the model ignores minority cases.</li>
+<li>Poor generalization: Fail in critical minority situation e.g. fraud detection, medical diagnosis.</li>
+</ul>
+<p>How to handle skewed datasets?</p>
+<ol>
+<li>Dataa-level approaches:
+<ol>
+<li>Oversampling minority class</li>
+<li>Undersampling majority class</li>
+<li>Data augmentation</li>
+</ol>
+</li>
+<li>Algiorithm-level approaches:
+<ol>
+<li>Class weighting: Give higher penalty to misclassifying the minority class.</li>
+<li>Custom loss function: use weighted cross-entropy, focal loss, etc.</li>
+</ol>
+</li>
+<li>Evaluation-level approaches:
+<ol>
+<li>Use metrics that reflect imbalance better: precision, recall, f1-score, confusion matrix.</li>
+</ol>
+</li>
+</ol>
 <p>Cannot know the best model based on its accuracy rate, because the dataset might be skewed.</p>
 <p>Use confusion matrix is a better matrix. Precision/recall</p>
-<p>Precision: TP/#predicted positive = TP/(TP + FP)</p>
-<p>Recall: TP/#actual postive = TP / (TP + FN )</p>
-<blockquote>
-<p>P91 Trading off precision and recall</p>
-</blockquote>
-<p>Rasing the logstic regression threshold will lead to higher precision, lower recall.</p>
-<p>Lower the logistic regression will result in lower precision, higher recall.</p>
-<p>F1 score, F1 score = 1/[ 1/2 (1/P + 1/R) ] = 2 PR / (P+R); Harmonic mean of P and R.</p>
-<blockquote>
-<p>P91 Decision Trees</p>
-</blockquote>
+<ul>
+<li>Precision: $TP/predictedPositive = TP/(TP + FP)$</li>
+<li>Recall: $TP/actualPostive = TP / (TP + FN )$</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Precision</strong></td>
+<td>Of all items predicted as <strong>positive</strong>, how many are actually correct</td>
+</tr>
+<tr>
+<td><strong>Recall (Sensitivity)</strong></td>
+<td>Of all actual <strong>positive</strong> items, how many did we correctly identify</td>
+</tr>
+</tbody>
+</table>
+<h4 id="p91-trading-off-precision-and-recall-">P91 Trading off Precision and Recall ⭐</h4>
+<ul>
+<li>Rasing the logistic regression threshold will lead to higher precision, lower recall.</li>
+<li>Lower the logistic regression will result in lower precision, higher recall.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Threshold</th>
+<th>Precision</th>
+<th>Recall</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Low (0.3)</strong></td>
+<td>↓ Low</td>
+<td>↑ High</td>
+<td>Catch more positives (many false alarms)</td>
+</tr>
+<tr>
+<td><strong>High (0.9)</strong></td>
+<td>↑ High</td>
+<td>↓ Low</td>
+<td>Only predict positives when very sure</td>
+</tr>
+</tbody>
+</table>
+<p>F1 score, $F1 score = 1/[ 1/2 (1/P + 1/R) ] = 2 PR / (P+R)$; <strong>Harmonic mean</strong> of precision and recall.</p>
+<h3 id="p91-decision-trees">P91 Decision Trees</h3>
 <p>Cat classification example</p>
 <p>Input are categorical values (discrete)</p>
 <p>Node, Topmost node is root node, Decision nodes in the middle of tree, Bottom node is leaf nodes for prediction.</p>
-<blockquote>
-<p>P92</p>
-</blockquote>
+<h4 id="p92">P92</h4>
 <p>Decision 1: how to choose what feature to split on at each node?</p>
 <p>Maximize purity (or minimize impurity). (Use the most important feature)</p>
 <p>Decision 2: When do you stop splitting?</p>
@@ -977,23 +1042,17 @@ Features: list the top 10000 words to compute input variables.</p>
 <li>When improvements in purity score are below a threshold.</li>
 <li>When number of examples in a node is below a threshold.</li>
 </ul>
-<blockquote>
-<p>P93 Measuring purity</p>
-</blockquote>
+<h4 id="p93-measuring-purity">P93 Measuring purity</h4>
 <p>Entropy as a measure of impurity</p>
 <p>Entropy is from 1 to 0, the lower the entropy, the higher the purity.</p>
 <p>$p_0 = 1 - p_1$</p>
 <p>$H(p_1)=-p_1\log_2(p_1)-p_0\log_2(p_0)$</p>
 <p>Note: $0\log(0) = 0$</p>
 <p>The peak of the function is 1 by making the log base is 2.</p>
-<blockquote>
-<p>P94: Decision Tree learning, choose a split: information gain</p>
-</blockquote>
+<h4 id="p94-decision-tree-learning-choose-a-split-information-gain">P94: Decision Tree learning, choose a split: information gain</h4>
 <p>Choose the feature with the lowest average weighted entropy.</p>
 <p>Information gain.</p>
-<blockquote>
-<p>P96: Putting it together</p>
-</blockquote>
+<h4 id="p96-putting-it-together">P96: Putting it together</h4>
 <ol>
 <li>Start with all examples at the root node</li>
 <li>Calculate information gain for all possible features, and pick the one with the highest information gain</li>
@@ -1007,16 +1066,10 @@ Features: list the top 10000 words to compute input variables.</p>
 </ol>
 </li>
 </ol>
-<blockquote>
-<p>P97: Using one-hot encoding of categorical features</p>
-</blockquote>
+<h4 id="p97-using-one-hot-encoding-of-categorical-features">P97: Using one-hot encoding of categorical features</h4>
 <p>If a categorical feature can take on k values, create k binary features.</p>
-<blockquote>
-<p>P98: Continuous features</p>
-</blockquote>
-<blockquote>
-<p>P99: Regression tree</p>
-</blockquote>
+<h4 id="p98-continuous-features">P98: Continuous features</h4>
+<h4 id="p99-regression-tree">P99: Regression tree</h4>
 <p>Choose the feature that split the data with lower variance.</p>
 <p>Calculate the weighted variance of a feature to split on.</p>
 <p>Use variance reduction as a measurement. Use the feature with largest variance reduction to split data.</p>
@@ -1107,7 +1160,7 @@ At each node, when choosing a feature to use to split, if $n$ features are avail
 <p>$\mu_k:=$ average of points assigned to cluster $k$</p>
 <p>}</p>
 <blockquote>
-<p>P110 Clustering, Optimazation objective</p>
+<p>P110 Clustering, Optimization objective</p>
 </blockquote>
 <p>$c^{(i)}=$ index of cluster to which example $x^{(i)} is currently assigned$</p>
 <p>$\mu_k=$ cluster centroid $k$</p>
@@ -1161,10 +1214,10 @@ Each example $x_i$ has $n$ features.</p>
 </li>
 </ol>
 <blockquote>
-<p>P116 Developing and evaluatiing an anomly detection system</p>
+<p>P116 Developing and evaluation an anomaly detection system</p>
 </blockquote>
-<p>Have some labled data.</p>
-<p>Training set is unlabled dataset, assume those are normal (or anomalous).</p>
+<p>Have some labeled data.</p>
+<p>Training set is unlabeled dataset, assume those are normal (or anomalous).</p>
 <p>Cross validation set.</p>
 <p>Test set.</p>
 <p>Cross validation and test sets include a few anomalous examples.</p>

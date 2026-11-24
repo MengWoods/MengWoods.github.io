@@ -104,7 +104,7 @@ h1, h2, h3, h4 { line-height: 1.25; letter-spacing: -.02em; color: var(--text); 
   background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--accent) 45%, var(--border)), transparent);
 }
 .header-inner { display: flex; align-items: center; gap: 24px; height: 62px; }
-/* brand: logo with a spinning gradient ring on hover, gradient name, blinking terminal caret */
+/* brand: logo with a spinning gradient ring on hover, gradient name, terminal caret that blinks only on hover */
 .brand { display: flex; align-items: center; gap: 10px; white-space: nowrap; }
 .brand:hover { text-decoration: none; }
 .brand-logo { position: relative; display: grid; place-items: center; width: 34px; height: 34px; border-radius: 10px; }
@@ -125,7 +125,11 @@ h1, h2, h3, h4 { line-height: 1.25; letter-spacing: -.02em; color: var(--text); 
   transition: background-position .8s ease;
 }
 .brand:hover .brand-text { background-position: 0 0; }
-.caret { width: 8px; height: 18px; margin-left: -5px; border-radius: 1px; background: var(--accent); box-shadow: 0 0 10px var(--accent); animation: blink 1.1s steps(1) infinite; }
+.caret {
+  width: 8px; height: 18px; margin-left: -5px; border-radius: 1px; background: var(--accent);
+  box-shadow: 0 0 6px color-mix(in srgb, var(--accent) 45%, transparent); opacity: .85; transition: box-shadow .2s, opacity .2s;
+}
+.brand:hover .caret, .brand:focus-visible .caret { opacity: 1; box-shadow: 0 0 12px var(--accent); animation: blink 1.1s steps(1) infinite; }
 @keyframes blink { 50% { opacity: 0; } }
 @property --angle { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
 @keyframes spin { to { --angle: 360deg; } }
@@ -189,10 +193,23 @@ html.js .nav a:hover { background: none; }
 @media (max-width: 999px) { .layout.list > .profile { display: none; } }
 
 .panel {
+  position: relative; overflow: hidden;
   background: color-mix(in srgb, var(--surface) 85%, transparent);
   border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 18px; box-shadow: var(--shadow);
   backdrop-filter: blur(6px);
+  transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
 }
+/* hover: gentler version of the card effect (lift, tinted border/glow, cursor spotlight) */
+.panel:hover, .panel:focus-within {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--c, var(--accent)) 45%, var(--border));
+  box-shadow: 0 10px 28px -14px color-mix(in srgb, var(--c, var(--accent)) 55%, transparent);
+}
+.panel::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity .25s;
+  background: radial-gradient(240px circle at var(--mx, 50%) var(--my, 50%), color-mix(in srgb, var(--c, var(--accent)) 12%, transparent), transparent 65%);
+}
+.panel:hover::after { opacity: 1; }
 .side-rest { display: flex; flex-direction: column; gap: 16px; }
 .panel-title { display: block; margin: 0 0 10px; font: 600 11.5px var(--mono); text-transform: uppercase; letter-spacing: .1em; color: var(--muted); }
 
@@ -205,6 +222,7 @@ html.js .nav a:hover { background: none; }
     linear-gradient(var(--border), var(--border)) border-box;
   animation: spin 9s linear infinite;
 }
+.profile:hover, .profile:focus-within { border-color: transparent; animation-duration: 4s; }
 .profile-head { display: flex; align-items: center; gap: 12px; }
 .avatar { border-radius: 14px; box-shadow: 0 0 0 1px var(--border); }
 .profile-name { margin: 0; font-weight: 700; font-size: 17px; }
@@ -226,7 +244,10 @@ html.js .nav a:hover { background: none; }
 }
 .side-topics { list-style: none; margin: 0; padding: 0; }
 .side-topics a { display: flex; align-items: center; gap: 10px; padding: 5px 6px; margin: 0 -6px; border-radius: 6px; color: var(--text-2); font-size: 14.5px; }
-.side-topics a:hover { background: color-mix(in srgb, var(--c) 10%, transparent); color: var(--text); text-decoration: none; }
+.side-topics a { transition: background .15s, color .15s, padding .18s ease; }
+.side-topics a:hover { background: color-mix(in srgb, var(--c) 10%, transparent); color: var(--text); text-decoration: none; padding-left: 10px; }
+.side-topics .dot { transition: transform .18s ease; }
+.side-topics a:hover .dot { transform: scale(1.35); }
 .side-topics .count { margin-left: auto; }
 .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--c); box-shadow: 0 0 8px var(--c); flex: none; }
 
@@ -382,16 +403,68 @@ html.js .reveal.in { opacity: 1; translate: 0 0; }
 .tag-cloud a { display: inline-flex; align-items: center; padding: 3px 10px; border-radius: 8px; background: var(--surface-2); color: var(--text-2); font-size: 14px; border: 1px solid transparent; }
 .tag-cloud.small a { font: 500 12.5px var(--mono); padding: 2px 8px; }
 .tag-cloud .count { background: none; padding: 0; margin-left: 5px; }
-.tag-cloud a:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+.tag-cloud a { transition: transform .15s ease, border-color .15s, color .15s; }
+.tag-cloud a:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; transform: translateY(-1px); }
 
 /* ========================================================================== post */
 .progress { position: fixed; top: 0; left: 0; height: 2px; width: 0; z-index: 30; background: var(--grad); }
 .post-layout { max-width: 780px; margin: 0 auto; padding: 44px 20px 0; }
+/* grid: [category timeline] article [contents]; the side columns appear as the screen widens */
+.post-layout > .post { grid-area: main; min-width: 0; }
+.post-layout > .series-side { grid-area: nav; }
+.post-layout > .toc-side { grid-area: toc; }
+@media (min-width: 900px) {
+  .post-layout.has-nav { max-width: 1060px; display: grid; grid-template-columns: 220px minmax(0, 740px); grid-template-areas: "nav main"; gap: 44px; justify-content: center; }
+  .post-layout.has-nav .series-inline { display: none; }
+}
 @media (min-width: 1180px) {
-  .post-layout.has-toc { max-width: 1120px; display: grid; grid-template-columns: minmax(0, 740px) 240px; gap: 64px; justify-content: center; }
+  .post-layout.has-toc { max-width: 1120px; display: grid; grid-template-columns: minmax(0, 740px) 240px; grid-template-areas: "main toc"; gap: 64px; justify-content: center; }
+  .post-layout.has-toc.has-nav { max-width: 1340px; grid-template-columns: 220px minmax(0, 740px) 240px; grid-template-areas: "nav main toc"; gap: 44px; }
   .post-layout.has-toc .toc-inline { display: none; }
 }
 @media (max-width: 1179px) { .toc-side { display: none; } }
+@media (max-width: 899px) { .series-side { display: none; } }
+
+/* category timeline beside the article */
+.series-side { position: sticky; top: 86px; align-self: start; max-height: calc(100vh - 110px); overflow-y: auto; scrollbar-width: thin; padding: 2px 4px 12px 0; }
+.series-head {
+  display: flex; align-items: center; gap: 8px; margin: 8px 0 12px;
+  font: 600 11.5px var(--mono); text-transform: uppercase; letter-spacing: .1em; color: color-mix(in srgb, var(--c) 80%, var(--text));
+}
+.series-head:hover { text-decoration: none; color: var(--c); }
+.series-head .count { margin-left: auto; }
+.series-list { list-style: none; margin: 0; padding: 0 0 0 18px; position: relative; }
+.series-list::before {
+  content: ""; position: absolute; left: 4px; top: 6px; bottom: 6px; width: 2px; border-radius: 2px;
+  background: linear-gradient(var(--c), color-mix(in srgb, var(--c) 50%, #8b5cf6) 50%, color-mix(in srgb, var(--c) 20%, var(--border)));
+  box-shadow: 0 0 10px color-mix(in srgb, var(--c) 35%, transparent);
+}
+.series-year { position: relative; margin: 14px 0 4px; font: 700 13px var(--mono); color: var(--muted); }
+.series-year:first-child { margin-top: 0; }
+.series-year::before {
+  content: ""; position: absolute; left: -18px; top: 50%; width: 10px; height: 10px; margin-top: -5px; border-radius: 50%;
+  background: var(--bg); border: 2px solid var(--c); box-sizing: border-box; box-shadow: 0 0 0 3px var(--bg);
+}
+.series-item { position: relative; }
+.series-item a {
+  display: block; padding: 5px 8px; margin: 1px 0; border-radius: 7px; color: var(--text-2); font-size: 13.5px; line-height: 1.4;
+  transition: background .15s, color .15s;
+}
+.series-item a::before {   /* node on the path */
+  content: ""; position: absolute; left: -16px; top: 12px; width: 6px; height: 6px; border-radius: 50%;
+  background: color-mix(in srgb, var(--c) 55%, var(--muted)); box-shadow: 0 0 0 3px var(--bg); transition: transform .2s, background .2s;
+}
+.series-item a:hover { background: color-mix(in srgb, var(--c) 10%, transparent); color: var(--text); text-decoration: none; }
+.series-item a:hover::before { transform: scale(1.5); background: var(--c); }
+.series-item time { display: block; font: 500 11px var(--mono); color: var(--muted); margin-top: 1px; }
+.series-item.current a { background: color-mix(in srgb, var(--c) 14%, transparent); color: var(--text); font-weight: 600; box-shadow: inset 2px 0 0 var(--c); }
+.series-item.current a::before { left: -17px; top: 11px; width: 8px; height: 8px; background: var(--c); box-shadow: 0 0 0 3px var(--bg), 0 0 10px var(--c); }
+.series-item.current time { color: color-mix(in srgb, var(--c) 70%, var(--muted)); }
+/* phones/tablets: the same list, collapsed above the pager */
+.series-inline { border: 1px solid var(--border); border-radius: var(--radius); padding: 10px 16px; margin-top: 40px; background: var(--surface); }
+.series-inline summary { cursor: pointer; font-weight: 600; color: var(--text-2); }
+.series-inline summary .count { margin-left: 6px; }
+.series-inline[open] summary { margin-bottom: 10px; }
 .post-header { margin-bottom: 28px; }
 .post-header h1 { font-size: clamp(28px, 4.4vw, 40px); font-weight: 800; margin: 14px 0 12px; }
 .post-header .lead { font-size: 1.1em; color: var(--text-2); margin: 0 0 12px; }
@@ -492,6 +565,25 @@ html.js .reveal.in { opacity: 1; translate: 0 0; }
   .pager .next { grid-column: 1; }
   .post-row { grid-template-columns: 54px 1fr; }
 }
+/* page-to-page transitions (Chrome/Edge/Safari; others just navigate instantly).
+   The header stays put, the page fades/slides, and the clicked post title morphs into the post's <h1>
+   (site.js names the clicked title "post-title" just before navigating). */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition { navigation: auto; }
+}
+.site-header { view-transition-name: site-header; }
+.post-header h1 { view-transition-name: post-title; }
+::view-transition-old(root) { animation: vt-out .16s ease-in both; }
+::view-transition-new(root) { animation: vt-in .34s cubic-bezier(.2, .7, .2, 1) both; }
+::view-transition-group(post-title) { animation-duration: .4s; animation-timing-function: cubic-bezier(.2, .7, .2, 1); }
+::view-transition-old(post-title), ::view-transition-new(post-title) { height: 100%; object-fit: none; object-position: left top; }
+@keyframes vt-out { to { opacity: 0; } }
+@keyframes vt-in { from { opacity: 0; translate: 0 14px; } }
+
+/* press feedback on clickable cards/rows */
+.card:active, .topic:active { transform: translateY(-1px) scale(.985); transition-duration: .08s; }
+.pager a:active, .series-item a:active { transform: scale(.98); }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; animation: none !important; }
   html.js .reveal { opacity: 1; translate: none; }

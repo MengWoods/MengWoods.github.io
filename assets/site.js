@@ -42,8 +42,8 @@
     requestAnimationFrame(function () { requestAnimationFrame(function () { glider.style.transition = ""; }); });
   }
 
-  // Cursor spotlight on cards and topic tiles.
-  document.querySelectorAll(".card, .topic").forEach(function (el) {
+  // Cursor spotlight on cards, topic tiles and sidebar panels.
+  document.querySelectorAll(".card, .topic, .panel").forEach(function (el) {
     el.addEventListener("pointermove", function (e) {
       var r = el.getBoundingClientRect();
       el.style.setProperty("--mx", (e.clientX - r.left) + "px");
@@ -67,6 +67,32 @@
       });
     }, { rootMargin: "0px 0px -40px 0px" });
     items.forEach(function (el) { el.classList.add("reveal"); io.observe(el); });
+  }
+
+  // Category timeline beside a post: scroll the current post into view (inside the sidebar only).
+  var series = document.querySelector(".series-side");
+  var cur = series && series.querySelector(".series-item.current");
+  if (cur) series.scrollTop += cur.getBoundingClientRect().top - series.getBoundingClientRect().top - series.clientHeight / 3;
+
+  // View transitions: the clicked post title morphs into the next page's <h1>.
+  // Only one element per page may carry the name, so clear it from the current <h1> first.
+  if ("onpageswap" in window) {
+    document.addEventListener("click", function (e) {
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      var link = e.target.closest("a");
+      if (!link) return;
+      var title = link.closest(".card h3") || (link.matches(".post-row-title") ? link : null) || link.querySelector(".series-title");
+      if (!title) return;
+      document.querySelectorAll("[style*=view-transition-name]").forEach(function (el) { el.style.viewTransitionName = ""; });
+      var h1 = document.querySelector(".post-header h1");
+      if (h1 && h1 !== title) h1.style.viewTransitionName = "none";
+      title.style.viewTransitionName = "post-title";
+    });
+    // coming back via the back button (bfcache): reset the names
+    addEventListener("pageshow", function (e) {
+      if (!e.persisted) return;
+      document.querySelectorAll("[style*=view-transition-name]").forEach(function (el) { el.style.viewTransitionName = ""; });
+    });
   }
 
   // Reading progress bar on posts.

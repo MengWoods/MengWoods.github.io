@@ -20,8 +20,12 @@
       try { t = localStorage.getItem("theme"); } catch (e) {}
       if (t !== "light" && t !== "dark") t = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
       document.documentElement.setAttribute("data-theme", t);
+      document.documentElement.classList.add("js");
     })();
   </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="/assets/style.css">
   <link rel="stylesheet" href="/assets/pygments.css">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-7L1C01SX1E"></script>
@@ -30,19 +34,33 @@
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
+  <div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
   <header class="site-header">
     <div class="wrap header-inner">
-      <a class="brand" href="/">
-        <img src="/logos/logo.png" alt="" width="28" height="28">
-        <span>Menghao Wu</span>
+      <a class="brand" href="/" aria-label="Woods — home">
+        <span class="brand-logo"><img src="/logos/logo.png" alt="" width="30" height="30"></span>
+        <span class="brand-text">Woods</span><span class="caret" aria-hidden="true"></span>
       </a>
       <nav class="nav" aria-label="Main">
-        <a href="/categories/math/">Math</a>
-        <a href="/categories/dl/">AI</a>
-        <a href="/categories/tech/">Tech</a>
-        <a href="/categories/code/">Code</a>
-        <a href="/categories/hobby/">Life</a>
-        <a href="/about/" aria-current="page">About</a>
+        <span class="nav-glider" aria-hidden="true"></span>
+        <a href="/categories/math/" style="--c: #8b5cf6">
+          <span class="nav-ico" aria-hidden="true">∑</span>Math
+        </a>
+        <a href="/categories/dl/" style="--c: #06b6d4">
+          <span class="nav-ico" aria-hidden="true">◇</span>AI
+        </a>
+        <a href="/categories/tech/" style="--c: #10b981">
+          <span class="nav-ico" aria-hidden="true">⚙</span>Tech
+        </a>
+        <a href="/categories/code/" style="--c: #f59e0b">
+          <span class="nav-ico" aria-hidden="true">&lt;/&gt;</span>Code
+        </a>
+        <a href="/categories/hobby/" style="--c: #f43f5e">
+          <span class="nav-ico" aria-hidden="true">✦</span>Life
+        </a>
+        <a href="/about/" style="--c: var(--accent)" aria-current="page">
+          <span class="nav-ico" aria-hidden="true">◉</span>About
+        </a>
       </nav>
       <div class="tools">
         <a class="icon-btn" href="/search/" aria-label="Search" title="Search (/)">

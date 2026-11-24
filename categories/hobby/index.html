@@ -20,8 +20,12 @@
       try { t = localStorage.getItem("theme"); } catch (e) {}
       if (t !== "light" && t !== "dark") t = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
       document.documentElement.setAttribute("data-theme", t);
+      document.documentElement.classList.add("js");
     })();
   </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="/assets/style.css">
   <link rel="stylesheet" href="/assets/pygments.css">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-7L1C01SX1E"></script>
@@ -30,19 +34,33 @@
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
+  <div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
   <header class="site-header">
     <div class="wrap header-inner">
-      <a class="brand" href="/">
-        <img src="/logos/logo.png" alt="" width="28" height="28">
-        <span>Menghao Wu</span>
+      <a class="brand" href="/" aria-label="Woods — home">
+        <span class="brand-logo"><img src="/logos/logo.png" alt="" width="30" height="30"></span>
+        <span class="brand-text">Woods</span><span class="caret" aria-hidden="true"></span>
       </a>
       <nav class="nav" aria-label="Main">
-        <a href="/categories/math/">Math</a>
-        <a href="/categories/dl/">AI</a>
-        <a href="/categories/tech/">Tech</a>
-        <a href="/categories/code/">Code</a>
-        <a href="/categories/hobby/">Life</a>
-        <a href="/about/">About</a>
+        <span class="nav-glider" aria-hidden="true"></span>
+        <a href="/categories/math/" style="--c: #8b5cf6">
+          <span class="nav-ico" aria-hidden="true">∑</span>Math
+        </a>
+        <a href="/categories/dl/" style="--c: #06b6d4">
+          <span class="nav-ico" aria-hidden="true">◇</span>AI
+        </a>
+        <a href="/categories/tech/" style="--c: #10b981">
+          <span class="nav-ico" aria-hidden="true">⚙</span>Tech
+        </a>
+        <a href="/categories/code/" style="--c: #f59e0b">
+          <span class="nav-ico" aria-hidden="true">&lt;/&gt;</span>Code
+        </a>
+        <a href="/categories/hobby/" style="--c: #f43f5e" aria-current="page">
+          <span class="nav-ico" aria-hidden="true">✦</span>Life
+        </a>
+        <a href="/about/" style="--c: var(--accent)">
+          <span class="nav-ico" aria-hidden="true">◉</span>About
+        </a>
       </nav>
       <div class="tools">
         <a class="icon-btn" href="/search/" aria-label="Search" title="Search (/)">
@@ -57,37 +75,87 @@
   </header>
 
   <main id="main">
-<section class="wrap-narrow listing">
-  <header class="list-header">
-    <p class="kicker">Category</p>
-    <h1>Life</h1>
-<p class="lead">Paintings, finance, and everything else.</p>    <p class="muted">3 posts</p>
-  </header>
-  <h2 class="year">2024</h2>
-  <ul class="post-rows">
-<li class="post-row">
+<div class="wrap layout list" style="--c: #f43f5e">
+  <aside class="profile panel" aria-label="About the author">
+  <div class="profile-head">
+    <img class="avatar" src="/logos/logo.png" alt="" width="52" height="52">
+    <div>
+      <p class="profile-name">Menghao Wu</p>
+      <p class="profile-role">Senior Robotics Engineer · Finland</p>
+    </div>
+  </div>
+  <p class="profile-intro">I work on robotics perception, deep learning and GPU optimization. Here I write down what I learn:
+math derivations, model training and deployment, CUDA and TensorRT, and the occasional thing from life.</p>
+  <p class="profile-links">
+<a href="https://github.com/MengWoods" rel="me noopener">Github</a><a href="https://www.linkedin.com/in/wumenghao/" rel="me noopener">Linkedin</a><a href="https://www.youtube.com/@menghao_w" rel="me noopener">Youtube</a>    <a href="/about/">About →</a>
+  </p>
+</aside>
+
+
+  <section class="main-col listing">
+    <header class="list-header">
+      <p class="kicker"><span aria-hidden="true">✦</span> Category</p>
+      <h1>Life</h1>
+<p class="lead">Paintings, finance, and everything else.</p>      <p class="muted mono">3 posts</p>
+    </header>
+    <div class="timeline">
+      <p class="tl-cap tl-now"><span class="tl-node pulse" aria-hidden="true"></span>Now</p>
+      <h2 class="tl-year"><span class="tl-node" aria-hidden="true"></span>2024<span class="tl-year-count">2</span></h2>
+      <ul class="post-rows">
+<li class="post-row" style="--c: #f43f5e">
   <time datetime="2024-05-23">May 23</time>
   <div>
     <a class="post-row-title" href="/post/hobby/2024-05-23-driver-license/">Driver License Theory</a>
   </div>
 </li>
-<li class="post-row">
+<li class="post-row" style="--c: #f43f5e">
   <time datetime="2024-04-07">Apr 07</time>
   <div>
     <a class="post-row-title" href="/post/hobby/000-paintings/">My paintings&#39; channel</a>
   </div>
 </li>
-  </ul>
-  <h2 class="year">2023</h2>
-  <ul class="post-rows">
-<li class="post-row">
+      </ul>
+      <h2 class="tl-year"><span class="tl-node" aria-hidden="true"></span>2023<span class="tl-year-count">1</span></h2>
+      <ul class="post-rows">
+<li class="post-row" style="--c: #f43f5e">
   <time datetime="2023-12-02">Dec 02</time>
   <div>
     <a class="post-row-title" href="/post/hobby/2024-01-30-fund/en/">How I start monthly S&amp;P500 investment via Nordnet.</a>
   </div>
 </li>
-  </ul>
-</section>
+      </ul>
+      <p class="tl-cap tl-start"><span class="tl-node" aria-hidden="true"></span>Started · Dec 2023</p>
+    </div>
+  </section>
+
+  <aside class="side-rest" aria-label="Browse">
+  <form class="panel side-search" action="/search/" role="search">
+    <label class="panel-title" for="side-q">Search</label>
+    <div class="search-field">
+      <input id="side-q" name="q" type="search" placeholder="Search 22 posts…" autocomplete="off">
+      <kbd>/</kbd>
+    </div>
+  </form>
+
+  <div class="panel">
+    <p class="panel-title">Topics</p>
+    <ul class="side-topics">
+      <li><a href="/categories/math/" style="--c: #8b5cf6"><span class="dot" aria-hidden="true"></span>Math<span class="count">3</span></a></li>
+      <li><a href="/categories/dl/" style="--c: #06b6d4"><span class="dot" aria-hidden="true"></span>AI &amp; Deep Learning<span class="count">4</span></a></li>
+      <li><a href="/categories/tech/" style="--c: #10b981"><span class="dot" aria-hidden="true"></span>Tech<span class="count">7</span></a></li>
+      <li><a href="/categories/code/" style="--c: #f59e0b"><span class="dot" aria-hidden="true"></span>Code<span class="count">5</span></a></li>
+      <li><a href="/categories/hobby/" style="--c: #f43f5e"><span class="dot" aria-hidden="true"></span>Life<span class="count">3</span></a></li>
+    </ul>
+  </div>
+
+  <div class="panel">
+    <p class="panel-title">Tags</p>
+    <ul class="tag-cloud small">
+<li><a href="/tags/c++/">#C++<span class="count">3</span></a></li><li><a href="/tags/ai/">#AI<span class="count">2</span></a></li><li><a href="/tags/docker/">#Docker<span class="count">2</span></a></li><li><a href="/tags/gpu/">#gpu<span class="count">1</span></a></li><li><a href="/tags/hugo/">#hugo<span class="count">1</span></a></li><li><a href="/tags/leetcode/">#Leetcode<span class="count">1</span></a></li><li><a href="/tags/lidar/">#lidar<span class="count">1</span></a></li><li><a href="/tags/python/">#Python<span class="count">1</span></a></li><li><a href="/tags/ros2/">#ROS2<span class="count">1</span></a></li><li><a href="/tags/web/">#web<span class="count">1</span></a></li>    </ul>
+  </div>
+</aside>
+
+</div>
   </main>
 
   <footer class="site-footer">

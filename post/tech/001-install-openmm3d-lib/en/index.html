@@ -20,8 +20,12 @@
       try { t = localStorage.getItem("theme"); } catch (e) {}
       if (t !== "light" && t !== "dark") t = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
       document.documentElement.setAttribute("data-theme", t);
+      document.documentElement.classList.add("js");
     })();
   </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="/assets/style.css">
   <link rel="stylesheet" href="/assets/pygments.css">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-7L1C01SX1E"></script>
@@ -30,19 +34,33 @@
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
+  <div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
   <header class="site-header">
     <div class="wrap header-inner">
-      <a class="brand" href="/">
-        <img src="/logos/logo.png" alt="" width="28" height="28">
-        <span>Menghao Wu</span>
+      <a class="brand" href="/" aria-label="Woods — home">
+        <span class="brand-logo"><img src="/logos/logo.png" alt="" width="30" height="30"></span>
+        <span class="brand-text">Woods</span><span class="caret" aria-hidden="true"></span>
       </a>
       <nav class="nav" aria-label="Main">
-        <a href="/categories/math/">Math</a>
-        <a href="/categories/dl/">AI</a>
-        <a href="/categories/tech/" aria-current="page">Tech</a>
-        <a href="/categories/code/">Code</a>
-        <a href="/categories/hobby/">Life</a>
-        <a href="/about/">About</a>
+        <span class="nav-glider" aria-hidden="true"></span>
+        <a href="/categories/math/" style="--c: #8b5cf6">
+          <span class="nav-ico" aria-hidden="true">∑</span>Math
+        </a>
+        <a href="/categories/dl/" style="--c: #06b6d4">
+          <span class="nav-ico" aria-hidden="true">◇</span>AI
+        </a>
+        <a href="/categories/tech/" style="--c: #10b981" aria-current="page">
+          <span class="nav-ico" aria-hidden="true">⚙</span>Tech
+        </a>
+        <a href="/categories/code/" style="--c: #f59e0b">
+          <span class="nav-ico" aria-hidden="true">&lt;/&gt;</span>Code
+        </a>
+        <a href="/categories/hobby/" style="--c: #f43f5e">
+          <span class="nav-ico" aria-hidden="true">✦</span>Life
+        </a>
+        <a href="/about/" style="--c: var(--accent)">
+          <span class="nav-ico" aria-hidden="true">◉</span>About
+        </a>
       </nav>
       <div class="tools">
         <a class="icon-btn" href="/search/" aria-label="Search" title="Search (/)">
@@ -57,11 +75,13 @@
   </header>
 
   <main id="main">
-<div class="post-layout has-toc">
+<div class="progress" aria-hidden="true"></div>
+<div class="post-layout has-toc" style="--c: #10b981">
   <article class="post">
     <header class="post-header">
       <p class="meta">
-<a href="/categories/tech/">Tech</a> ·         <time datetime="2023-10-30">Oct 30, 2023</time> · 3 min read
+<a class="pill" href="/categories/tech/" style="--c: #10b981"><span aria-hidden="true">⚙</span>Tech</a>
+        <time datetime="2023-10-30">Oct 30, 2023</time> · 3 min read
       </p>
       <h1>MMDetection3D Library Installation Guide</h1>
       <ul class="tags">
@@ -178,6 +198,38 @@ print<span class="o">(</span>mmdet3d.__version__<span class="o">)</span>
 </code></pre></div>
 
     </div>
+
+    <section class="related" aria-label="Related posts">
+      <h2 class="section-title">Related posts</h2>
+      <div class="cards related-cards"><article class="card" style="--c: #06b6d4">
+  <p class="meta">
+<a class="pill" href="/categories/dl/" style="--c: #06b6d4"><span aria-hidden="true">◇</span>AI &amp; Deep Learning</a>
+    <time datetime="2025-09-13">Sep 13, 2025</time>
+  </p>
+  <h3><a class="stretched" href="/post/dl/014-tensorrt-usage/">TensorRT Engine Deployment Guide</a></h3>
+  <p class="summary">Overview. Building and using a TensorRT engine for inference involves two distinct phases: build time (optimization) and runtime (execution). Build time (optimization and compilation) Load model typically from format…</p>
+  <p class="card-foot">5 min read<span class="arrow" aria-hidden="true">→</span></p>
+</article>
+<article class="card" style="--c: #10b981">
+  <p class="meta">
+<a class="pill" href="/categories/tech/" style="--c: #10b981"><span aria-hidden="true">⚙</span>Tech</a>
+    <time datetime="2025-05-18">May 18, 2025</time>
+  </p>
+  <h3><a class="stretched" href="/post/tech/011-structure-of-gpu/">GPU Architecture Overview</a></h3>
+  <p class="summary">CPU and GPU. CPU is designed to excel at executing a sequence of operations, called a thread. It can execute a few tens of threads in parallel. General purpose, good for serial processing, great for task parallelism…</p>
+  <p class="card-foot">10 min read<span class="arrow" aria-hidden="true">→</span></p>
+</article>
+<article class="card" style="--c: #10b981">
+  <p class="meta">
+<a class="pill" href="/categories/tech/" style="--c: #10b981"><span aria-hidden="true">⚙</span>Tech</a>
+    <time datetime="2025-03-26">Mar 26, 2025</time>
+  </p>
+  <h3><a class="stretched" href="/post/tech/007-kitti-introduction/">KITTI Dataset Introduction</a></h3>
+  <p class="summary">KITTI Detailed Introduction.</p>
+  <p class="card-foot">5 min read<span class="arrow" aria-hidden="true">→</span></p>
+</article>
+</div>
+    </section>
 
     <nav class="pager" aria-label="More posts">
 <a class="prev" href="/post/tech/000-build-hugo-site/en/"><span>← Older</span>Build Personal Blog with Hugo</a><a class="next" href="/post/tech/003-some-docker-commands/en/"><span>Newer →</span>Some Useful Docker Commands</a>    </nav>

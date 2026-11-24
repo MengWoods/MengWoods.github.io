@@ -20,8 +20,12 @@
       try { t = localStorage.getItem("theme"); } catch (e) {}
       if (t !== "light" && t !== "dark") t = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
       document.documentElement.setAttribute("data-theme", t);
+      document.documentElement.classList.add("js");
     })();
   </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="/assets/style.css">
   <link rel="stylesheet" href="/assets/pygments.css">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-7L1C01SX1E"></script>
@@ -30,19 +34,33 @@
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
+  <div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
   <header class="site-header">
     <div class="wrap header-inner">
-      <a class="brand" href="/">
-        <img src="/logos/logo.png" alt="" width="28" height="28">
-        <span>Menghao Wu</span>
+      <a class="brand" href="/" aria-label="Woods — home">
+        <span class="brand-logo"><img src="/logos/logo.png" alt="" width="30" height="30"></span>
+        <span class="brand-text">Woods</span><span class="caret" aria-hidden="true"></span>
       </a>
       <nav class="nav" aria-label="Main">
-        <a href="/categories/math/">Math</a>
-        <a href="/categories/dl/">AI</a>
-        <a href="/categories/tech/">Tech</a>
-        <a href="/categories/code/" aria-current="page">Code</a>
-        <a href="/categories/hobby/">Life</a>
-        <a href="/about/">About</a>
+        <span class="nav-glider" aria-hidden="true"></span>
+        <a href="/categories/math/" style="--c: #8b5cf6">
+          <span class="nav-ico" aria-hidden="true">∑</span>Math
+        </a>
+        <a href="/categories/dl/" style="--c: #06b6d4">
+          <span class="nav-ico" aria-hidden="true">◇</span>AI
+        </a>
+        <a href="/categories/tech/" style="--c: #10b981">
+          <span class="nav-ico" aria-hidden="true">⚙</span>Tech
+        </a>
+        <a href="/categories/code/" style="--c: #f59e0b" aria-current="page">
+          <span class="nav-ico" aria-hidden="true">&lt;/&gt;</span>Code
+        </a>
+        <a href="/categories/hobby/" style="--c: #f43f5e">
+          <span class="nav-ico" aria-hidden="true">✦</span>Life
+        </a>
+        <a href="/about/" style="--c: var(--accent)">
+          <span class="nav-ico" aria-hidden="true">◉</span>About
+        </a>
       </nav>
       <div class="tools">
         <a class="icon-btn" href="/search/" aria-label="Search" title="Search (/)">
@@ -57,11 +75,13 @@
   </header>
 
   <main id="main">
-<div class="post-layout has-toc">
+<div class="progress" aria-hidden="true"></div>
+<div class="post-layout has-toc" style="--c: #f59e0b">
   <article class="post">
     <header class="post-header">
       <p class="meta">
-<a href="/categories/code/">Code</a> ·         <time datetime="2024-03-14">Mar 14, 2024</time> · 2 min read
+<a class="pill" href="/categories/code/" style="--c: #f59e0b"><span aria-hidden="true">&lt;/&gt;</span>Code</a>
+        <time datetime="2024-03-14">Mar 14, 2024</time> · 2 min read
       </p>
       <h1>Boost::geometry Polygon operations (C++)</h1>
       <ul class="tags">
@@ -109,6 +129,38 @@ origin<span class="w"> </span>is<span class="w"> </span>outside<span class="w"> 
 </code></pre></div>
 
     </div>
+
+    <section class="related" aria-label="Related posts">
+      <h2 class="section-title">Related posts</h2>
+      <div class="cards related-cards"><article class="card" style="--c: #f59e0b">
+  <p class="meta">
+<a class="pill" href="/categories/code/" style="--c: #f59e0b"><span aria-hidden="true">&lt;/&gt;</span>Code</a>
+    <time datetime="2024-03-08">Mar 8, 2024</time>
+  </p>
+  <h3><a class="stretched" href="/post/code/002-c++-containers/">C++ Standard Containers and Use Cases</a></h3>
+  <p class="summary">Intro of C++ containers and usage method.</p>
+  <p class="card-foot">6 min read<span class="arrow" aria-hidden="true">→</span></p>
+</article>
+<article class="card" style="--c: #f59e0b">
+  <p class="meta">
+<a class="pill" href="/categories/code/" style="--c: #f59e0b"><span aria-hidden="true">&lt;/&gt;</span>Code</a>
+    <time datetime="2024-03-07">Mar 7, 2024</time>
+  </p>
+  <h3><a class="stretched" href="/post/code/000-general-question/">C++ general knowledge</a></h3>
+  <p class="summary">General knowledge recordings.</p>
+  <p class="card-foot">2 min read<span class="arrow" aria-hidden="true">→</span></p>
+</article>
+<article class="card" style="--c: #f59e0b">
+  <p class="meta">
+<a class="pill" href="/categories/code/" style="--c: #f59e0b"><span aria-hidden="true">&lt;/&gt;</span>Code</a>
+    <time datetime="2024-05-15">May 15, 2024</time>
+  </p>
+  <h3><a class="stretched" href="/post/code/007-time-complexity/">Time and Space Complexity</a></h3>
+  <p class="summary">Time and Space Complexity. When analyzing an algorithm, we care about how efficient it is. Two main measures are: Type What It Measures Goal Time Complexity How long the algorithm takes (number of operations as input…</p>
+  <p class="card-foot">6 min read<span class="arrow" aria-hidden="true">→</span></p>
+</article>
+</div>
+    </section>
 
     <nav class="pager" aria-label="More posts">
 <a class="prev" href="/post/code/002-c++-containers/"><span>← Older</span>C++ Standard Containers and Use Cases</a><a class="next" href="/post/code/001-leetcode-max-area/"><span>Newer →</span>Leetcode-Max area of longest diagnoal rectangle</a>    </nav>

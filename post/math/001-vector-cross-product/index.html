@@ -20,8 +20,12 @@
       try { t = localStorage.getItem("theme"); } catch (e) {}
       if (t !== "light" && t !== "dark") t = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
       document.documentElement.setAttribute("data-theme", t);
+      document.documentElement.classList.add("js");
     })();
   </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="/assets/style.css">
   <link rel="stylesheet" href="/assets/pygments.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
@@ -32,19 +36,33 @@
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
+  <div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
   <header class="site-header">
     <div class="wrap header-inner">
-      <a class="brand" href="/">
-        <img src="/logos/logo.png" alt="" width="28" height="28">
-        <span>Menghao Wu</span>
+      <a class="brand" href="/" aria-label="Woods — home">
+        <span class="brand-logo"><img src="/logos/logo.png" alt="" width="30" height="30"></span>
+        <span class="brand-text">Woods</span><span class="caret" aria-hidden="true"></span>
       </a>
       <nav class="nav" aria-label="Main">
-        <a href="/categories/math/" aria-current="page">Math</a>
-        <a href="/categories/dl/">AI</a>
-        <a href="/categories/tech/">Tech</a>
-        <a href="/categories/code/">Code</a>
-        <a href="/categories/hobby/">Life</a>
-        <a href="/about/">About</a>
+        <span class="nav-glider" aria-hidden="true"></span>
+        <a href="/categories/math/" style="--c: #8b5cf6" aria-current="page">
+          <span class="nav-ico" aria-hidden="true">∑</span>Math
+        </a>
+        <a href="/categories/dl/" style="--c: #06b6d4">
+          <span class="nav-ico" aria-hidden="true">◇</span>AI
+        </a>
+        <a href="/categories/tech/" style="--c: #10b981">
+          <span class="nav-ico" aria-hidden="true">⚙</span>Tech
+        </a>
+        <a href="/categories/code/" style="--c: #f59e0b">
+          <span class="nav-ico" aria-hidden="true">&lt;/&gt;</span>Code
+        </a>
+        <a href="/categories/hobby/" style="--c: #f43f5e">
+          <span class="nav-ico" aria-hidden="true">✦</span>Life
+        </a>
+        <a href="/about/" style="--c: var(--accent)">
+          <span class="nav-ico" aria-hidden="true">◉</span>About
+        </a>
       </nav>
       <div class="tools">
         <a class="icon-btn" href="/search/" aria-label="Search" title="Search (/)">
@@ -59,11 +77,13 @@
   </header>
 
   <main id="main">
-<div class="post-layout has-toc">
+<div class="progress" aria-hidden="true"></div>
+<div class="post-layout has-toc" style="--c: #8b5cf6">
   <article class="post">
     <header class="post-header">
       <p class="meta">
-<a href="/categories/math/">Math</a> ·         <time datetime="2024-03-05">Mar 5, 2024</time> · 2 min read
+<a class="pill" href="/categories/math/" style="--c: #8b5cf6"><span aria-hidden="true">∑</span>Math</a>
+        <time datetime="2024-03-05">Mar 5, 2024</time> · 2 min read
       </p>
       <h1>Vector Cross Product and Dot Product</h1>
       
@@ -140,6 +160,29 @@ a\cdot b = |a||b|\cos{\theta}
 </ul>
 
     </div>
+
+    <section class="related" aria-label="Related posts">
+      <h2 class="section-title">Related posts</h2>
+      <div class="cards related-cards"><article class="card" style="--c: #8b5cf6">
+  <p class="meta">
+<a class="pill" href="/categories/math/" style="--c: #8b5cf6"><span aria-hidden="true">∑</span>Math</a>
+    <time datetime="2024-04-16">Apr 16, 2024</time>
+  </p>
+  <h3><a class="stretched" href="/post/math/003-pca-application/">Principle Components Analysis (PCA) application</a></h3>
+  <p class="summary">Application example.</p>
+  <p class="card-foot">9 min read<span class="arrow" aria-hidden="true">→</span></p>
+</article>
+<article class="card" style="--c: #8b5cf6">
+  <p class="meta">
+<a class="pill" href="/categories/math/" style="--c: #8b5cf6"><span aria-hidden="true">∑</span>Math</a>
+    <time datetime="2024-04-11">Apr 11, 2024</time>
+  </p>
+  <h3><a class="stretched" href="/post/math/003-pca/">Detailed Deep Derivation of Principle Components Analysis (PCA)</a></h3>
+  <p class="summary">Based on Deep Learning (2017, MIT) book.</p>
+  <p class="card-foot">10 min read<span class="arrow" aria-hidden="true">→</span></p>
+</article>
+</div>
+    </section>
 
     <nav class="pager" aria-label="More posts">
 <span></span><a class="next" href="/post/math/003-pca/"><span>Newer →</span>Detailed Deep Derivation of Principle Components Analysis (PCA)</a>    </nav>

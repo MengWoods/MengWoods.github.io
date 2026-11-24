@@ -15,9 +15,71 @@
   document.addEventListener("keydown", function (e) {
     if (e.key !== "/" || /input|textarea/i.test(document.activeElement.tagName)) return;
     e.preventDefault();
-    var box = document.getElementById("search-input");
+    var box = document.getElementById("search-input") || document.getElementById("side-q");
     if (box) box.focus(); else location.href = "/search/";
   });
+
+  // Menu glider: a glowing pill that slides to the hovered item and rests on the current one.
+  var nav = document.querySelector(".nav");
+  var glider = nav && nav.querySelector(".nav-glider");
+  if (glider) {
+    var current = nav.querySelector('a[aria-current="page"]');
+    var moveTo = function (a) {
+      if (!a) { glider.style.opacity = "0"; return; }
+      glider.style.left = a.offsetLeft + "px";
+      glider.style.width = a.offsetWidth + "px";
+      glider.style.setProperty("--g", getComputedStyle(a).getPropertyValue("--c"));
+      glider.style.opacity = "1";
+    };
+    nav.querySelectorAll("a").forEach(function (a) {
+      a.addEventListener("mouseenter", function () { moveTo(a); });
+      a.addEventListener("focus", function () { moveTo(a); });
+    });
+    nav.addEventListener("mouseleave", function () { moveTo(current); });
+    addEventListener("resize", function () { moveTo(current); });
+    glider.style.transition = "none";      // place it on the current item without animating on load
+    moveTo(current);
+    requestAnimationFrame(function () { requestAnimationFrame(function () { glider.style.transition = ""; }); });
+  }
+
+  // Cursor spotlight on cards and topic tiles.
+  document.querySelectorAll(".card, .topic").forEach(function (el) {
+    el.addEventListener("pointermove", function (e) {
+      var r = el.getBoundingClientRect();
+      el.style.setProperty("--mx", (e.clientX - r.left) + "px");
+      el.style.setProperty("--my", (e.clientY - r.top) + "px");
+    });
+  });
+
+  // Fade/slide items in as they scroll into view (staggered per batch).
+  if ("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    var items = document.querySelectorAll(".card, .topic, .panel, .post-row, .tl-year, .pager a");
+    var io = new IntersectionObserver(function (entries) {
+      var batch = 0;
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        var el = en.target;
+        el.style.setProperty("--d", Math.min(batch++, 8) * 55 + "ms");
+        el.classList.add("in");
+        io.unobserve(el);
+        // drop the helper classes afterwards so hover transitions work normally
+        setTimeout(function () { el.classList.remove("reveal", "in"); el.style.removeProperty("--d"); }, 1200);
+      });
+    }, { rootMargin: "0px 0px -40px 0px" });
+    items.forEach(function (el) { el.classList.add("reveal"); io.observe(el); });
+  }
+
+  // Reading progress bar on posts.
+  var bar = document.querySelector(".progress");
+  if (bar) {
+    var update = function () {
+      var max = document.documentElement.scrollHeight - innerHeight;
+      bar.style.width = (max > 0 ? Math.min(100, scrollY / max * 100) : 0) + "%";
+    };
+    addEventListener("scroll", update, { passive: true });
+    addEventListener("resize", update);
+    update();
+  }
 
   // Copy buttons on code blocks.
   document.querySelectorAll(".code").forEach(function (block) {

@@ -20,8 +20,12 @@
       try { t = localStorage.getItem("theme"); } catch (e) {}
       if (t !== "light" && t !== "dark") t = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
       document.documentElement.setAttribute("data-theme", t);
+      document.documentElement.classList.add("js");
     })();
   </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="/assets/style.css">
   <link rel="stylesheet" href="/assets/pygments.css">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-7L1C01SX1E"></script>
@@ -30,19 +34,33 @@
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
+  <div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
   <header class="site-header">
     <div class="wrap header-inner">
-      <a class="brand" href="/">
-        <img src="/logos/logo.png" alt="" width="28" height="28">
-        <span>Menghao Wu</span>
+      <a class="brand" href="/" aria-label="Woods — home">
+        <span class="brand-logo"><img src="/logos/logo.png" alt="" width="30" height="30"></span>
+        <span class="brand-text">Woods</span><span class="caret" aria-hidden="true"></span>
       </a>
       <nav class="nav" aria-label="Main">
-        <a href="/categories/math/">Math</a>
-        <a href="/categories/dl/" aria-current="page">AI</a>
-        <a href="/categories/tech/">Tech</a>
-        <a href="/categories/code/">Code</a>
-        <a href="/categories/hobby/">Life</a>
-        <a href="/about/">About</a>
+        <span class="nav-glider" aria-hidden="true"></span>
+        <a href="/categories/math/" style="--c: #8b5cf6">
+          <span class="nav-ico" aria-hidden="true">∑</span>Math
+        </a>
+        <a href="/categories/dl/" style="--c: #06b6d4" aria-current="page">
+          <span class="nav-ico" aria-hidden="true">◇</span>AI
+        </a>
+        <a href="/categories/tech/" style="--c: #10b981">
+          <span class="nav-ico" aria-hidden="true">⚙</span>Tech
+        </a>
+        <a href="/categories/code/" style="--c: #f59e0b">
+          <span class="nav-ico" aria-hidden="true">&lt;/&gt;</span>Code
+        </a>
+        <a href="/categories/hobby/" style="--c: #f43f5e">
+          <span class="nav-ico" aria-hidden="true">✦</span>Life
+        </a>
+        <a href="/about/" style="--c: var(--accent)">
+          <span class="nav-ico" aria-hidden="true">◉</span>About
+        </a>
       </nav>
       <div class="tools">
         <a class="icon-btn" href="/search/" aria-label="Search" title="Search (/)">
@@ -57,11 +75,13 @@
   </header>
 
   <main id="main">
-<div class="post-layout has-toc">
+<div class="progress" aria-hidden="true"></div>
+<div class="post-layout has-toc" style="--c: #06b6d4">
   <article class="post">
     <header class="post-header">
       <p class="meta">
-<a href="/categories/dl/">AI &amp; Deep Learning</a> ·         <time datetime="2025-09-13">Sep 13, 2025</time> · 5 min read
+<a class="pill" href="/categories/dl/" style="--c: #06b6d4"><span aria-hidden="true">◇</span>AI &amp; Deep Learning</a>
+        <time datetime="2025-09-13">Sep 13, 2025</time> · 5 min read
       </p>
       <h1>TensorRT Engine Deployment Guide</h1>
       <ul class="tags">
@@ -316,6 +336,38 @@
 </code></pre></div>
 
     </div>
+
+    <section class="related" aria-label="Related posts">
+      <h2 class="section-title">Related posts</h2>
+      <div class="cards related-cards"><article class="card" style="--c: #10b981">
+  <p class="meta">
+<a class="pill" href="/categories/tech/" style="--c: #10b981"><span aria-hidden="true">⚙</span>Tech</a>
+    <time datetime="2023-10-30">Oct 30, 2023</time>
+  </p>
+  <h3><a class="stretched" href="/post/tech/001-install-openmm3d-lib/en/">MMDetection3D Library Installation Guide</a></h3>
+  <p class="summary">Cuda, Conda, MMDetection3D installation and test.</p>
+  <p class="card-foot">3 min read<span class="arrow" aria-hidden="true">→</span></p>
+</article>
+<article class="card" style="--c: #06b6d4">
+  <p class="meta">
+<a class="pill" href="/categories/dl/" style="--c: #06b6d4"><span aria-hidden="true">◇</span>AI &amp; Deep Learning</a>
+    <time datetime="2024-07-07">Jul 7, 2024</time>
+  </p>
+  <h3><a class="stretched" href="/post/dl/008-drl-summary/">An Introduction to the Fundamentals of Reinforcement Learning</a></h3>
+  <p class="summary">Fundamentals of Reinforcement Learning.</p>
+  <p class="card-foot">13 min read<span class="arrow" aria-hidden="true">→</span></p>
+</article>
+<article class="card" style="--c: #06b6d4">
+  <p class="meta">
+<a class="pill" href="/categories/dl/" style="--c: #06b6d4"><span aria-hidden="true">◇</span>AI &amp; Deep Learning</a>
+    <time datetime="2024-04-25">Apr 25, 2024</time>
+  </p>
+  <h3><a class="stretched" href="/post/dl/005-ng-ml/">Comprehensive Notes on Andrew Ng’s Machine Learning Course</a></h3>
+  <p class="summary">Based on NG&#39;s Machine Learning course.</p>
+  <p class="card-foot">22 min read<span class="arrow" aria-hidden="true">→</span></p>
+</article>
+</div>
+    </section>
 
     <nav class="pager" aria-label="More posts">
 <a class="prev" href="/post/dl/008-drl-summary/"><span>← Older</span>An Introduction to the Fundamentals of Reinforcement Learning</a>    </nav>

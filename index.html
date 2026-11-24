@@ -20,8 +20,12 @@
       try { t = localStorage.getItem("theme"); } catch (e) {}
       if (t !== "light" && t !== "dark") t = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
       document.documentElement.setAttribute("data-theme", t);
+      document.documentElement.classList.add("js");
     })();
   </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="/assets/style.css">
   <link rel="stylesheet" href="/assets/pygments.css">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-7L1C01SX1E"></script>
@@ -30,19 +34,33 @@
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
+  <div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
   <header class="site-header">
     <div class="wrap header-inner">
-      <a class="brand" href="/">
-        <img src="/logos/logo.png" alt="" width="28" height="28">
-        <span>Menghao Wu</span>
+      <a class="brand" href="/" aria-label="Woods — home">
+        <span class="brand-logo"><img src="/logos/logo.png" alt="" width="30" height="30"></span>
+        <span class="brand-text">Woods</span><span class="caret" aria-hidden="true"></span>
       </a>
       <nav class="nav" aria-label="Main">
-        <a href="/categories/math/">Math</a>
-        <a href="/categories/dl/">AI</a>
-        <a href="/categories/tech/">Tech</a>
-        <a href="/categories/code/">Code</a>
-        <a href="/categories/hobby/">Life</a>
-        <a href="/about/">About</a>
+        <span class="nav-glider" aria-hidden="true"></span>
+        <a href="/categories/math/" style="--c: #8b5cf6">
+          <span class="nav-ico" aria-hidden="true">∑</span>Math
+        </a>
+        <a href="/categories/dl/" style="--c: #06b6d4">
+          <span class="nav-ico" aria-hidden="true">◇</span>AI
+        </a>
+        <a href="/categories/tech/" style="--c: #10b981">
+          <span class="nav-ico" aria-hidden="true">⚙</span>Tech
+        </a>
+        <a href="/categories/code/" style="--c: #f59e0b">
+          <span class="nav-ico" aria-hidden="true">&lt;/&gt;</span>Code
+        </a>
+        <a href="/categories/hobby/" style="--c: #f43f5e">
+          <span class="nav-ico" aria-hidden="true">✦</span>Life
+        </a>
+        <a href="/about/" style="--c: var(--accent)">
+          <span class="nav-ico" aria-hidden="true">◉</span>About
+        </a>
       </nav>
       <div class="tools">
         <a class="icon-btn" href="/search/" aria-label="Search" title="Search (/)">
@@ -57,106 +75,170 @@
   </header>
 
   <main id="main">
-<section class="hero wrap">
-  <h1>Menghao Wu</h1>
-  <p class="lead">I&#39;m a senior robotics engineer working on perception, deep learning and GPU optimization.
-This is where I write down what I learn: math derivations, model training and deployment notes,
-CUDA and TensorRT experiments, and the occasional thing from life in Finland.</p>
-  <p class="hero-links">
-    <a class="button" href="/about/">About me</a>
-<a href="https://github.com/MengWoods" rel="me noopener">Github</a><a href="https://www.linkedin.com/in/wumenghao/" rel="me noopener">Linkedin</a><a href="https://www.youtube.com/@menghao_w" rel="me noopener">Youtube</a>  </p>
-</section>
-
-
-<section class="wrap section">
-  <div class="section-head">
-    <h2 class="section-title">Recent</h2>
-    <a href="/archives/">All posts →</a>
+<div class="wrap layout home">
+  <aside class="profile panel" aria-label="About the author">
+  <div class="profile-head">
+    <img class="avatar" src="/logos/logo.png" alt="" width="52" height="52">
+    <div>
+      <p class="profile-name">Menghao Wu</p>
+      <p class="profile-role">Senior Robotics Engineer · Finland</p>
+    </div>
   </div>
-  <div class="cards"><article class="card">
-  <p class="meta">
-<a href="/categories/dl/">AI &amp; Deep Learning</a> ·     <time datetime="2025-09-13">Sep 13, 2025</time> · 5 min read
+  <p class="profile-intro">I work on robotics perception, deep learning and GPU optimization. Here I write down what I learn:
+math derivations, model training and deployment, CUDA and TensorRT, and the occasional thing from life.</p>
+  <p class="profile-links">
+<a href="https://github.com/MengWoods" rel="me noopener">Github</a><a href="https://www.linkedin.com/in/wumenghao/" rel="me noopener">Linkedin</a><a href="https://www.youtube.com/@menghao_w" rel="me noopener">Youtube</a>    <a href="/about/">About →</a>
   </p>
-  <h3><a href="/post/dl/014-tensorrt-usage/">TensorRT Engine Deployment Guide</a></h3>
+</aside>
+
+
+  <div class="main-col">
+
+    <section class="section">
+      <div class="section-head">
+        <h2 class="section-title">Latest posts</h2>
+        <a class="more" href="/archives/">All 22 posts →</a>
+      </div>
+      <div class="cards"><article class="card" style="--c: #06b6d4">
+  <p class="meta">
+<a class="pill" href="/categories/dl/" style="--c: #06b6d4"><span aria-hidden="true">◇</span>AI &amp; Deep Learning</a>
+    <time datetime="2025-09-13">Sep 13, 2025</time>
+  </p>
+  <h3><a class="stretched" href="/post/dl/014-tensorrt-usage/">TensorRT Engine Deployment Guide</a></h3>
   <p class="summary">Overview. Building and using a TensorRT engine for inference involves two distinct phases: build time (optimization) and runtime (execution). Build time (optimization and compilation) Load model typically from format…</p>
+  <p class="card-foot">5 min read<span class="arrow" aria-hidden="true">→</span></p>
 </article>
-<article class="card">
+<article class="card" style="--c: #10b981">
   <p class="meta">
-<a href="/categories/tech/">Tech</a> ·     <time datetime="2025-05-18">May 18, 2025</time> · 10 min read
+<a class="pill" href="/categories/tech/" style="--c: #10b981"><span aria-hidden="true">⚙</span>Tech</a>
+    <time datetime="2025-05-18">May 18, 2025</time>
   </p>
-  <h3><a href="/post/tech/011-structure-of-gpu/">GPU Architecture Overview</a></h3>
+  <h3><a class="stretched" href="/post/tech/011-structure-of-gpu/">GPU Architecture Overview</a></h3>
   <p class="summary">CPU and GPU. CPU is designed to excel at executing a sequence of operations, called a thread. It can execute a few tens of threads in parallel. General purpose, good for serial processing, great for task parallelism…</p>
+  <p class="card-foot">10 min read<span class="arrow" aria-hidden="true">→</span></p>
 </article>
-<article class="card">
+<article class="card" style="--c: #10b981">
   <p class="meta">
-<a href="/categories/tech/">Tech</a> ·     <time datetime="2025-03-26">Mar 26, 2025</time> · 5 min read
+<a class="pill" href="/categories/tech/" style="--c: #10b981"><span aria-hidden="true">⚙</span>Tech</a>
+    <time datetime="2025-03-26">Mar 26, 2025</time>
   </p>
-  <h3><a href="/post/tech/007-kitti-introduction/">KITTI Dataset Introduction</a></h3>
+  <h3><a class="stretched" href="/post/tech/007-kitti-introduction/">KITTI Dataset Introduction</a></h3>
   <p class="summary">KITTI Detailed Introduction.</p>
+  <p class="card-foot">5 min read<span class="arrow" aria-hidden="true">→</span></p>
 </article>
-<article class="card">
+<article class="card" style="--c: #06b6d4">
   <p class="meta">
-<a href="/categories/dl/">AI &amp; Deep Learning</a> ·     <time datetime="2024-07-07">Jul 7, 2024</time> · 13 min read
+<a class="pill" href="/categories/dl/" style="--c: #06b6d4"><span aria-hidden="true">◇</span>AI &amp; Deep Learning</a>
+    <time datetime="2024-07-07">Jul 7, 2024</time>
   </p>
-  <h3><a href="/post/dl/008-drl-summary/">An Introduction to the Fundamentals of Reinforcement Learning</a></h3>
+  <h3><a class="stretched" href="/post/dl/008-drl-summary/">An Introduction to the Fundamentals of Reinforcement Learning</a></h3>
   <p class="summary">Fundamentals of Reinforcement Learning.</p>
+  <p class="card-foot">13 min read<span class="arrow" aria-hidden="true">→</span></p>
 </article>
-<article class="card">
+<article class="card" style="--c: #f43f5e">
   <p class="meta">
-<a href="/categories/hobby/">Life</a> ·     <time datetime="2024-05-23">May 23, 2024</time> · 7 min read
+<a class="pill" href="/categories/hobby/" style="--c: #f43f5e"><span aria-hidden="true">✦</span>Life</a>
+    <time datetime="2024-05-23">May 23, 2024</time>
   </p>
-  <h3><a href="/post/hobby/2024-05-23-driver-license/">Driver License Theory</a></h3>
+  <h3><a class="stretched" href="/post/hobby/2024-05-23-driver-license/">Driver License Theory</a></h3>
   <p class="summary">Driver license quiz records.</p>
+  <p class="card-foot">7 min read<span class="arrow" aria-hidden="true">→</span></p>
 </article>
-<article class="card">
+<article class="card" style="--c: #f59e0b">
   <p class="meta">
-<a href="/categories/code/">Code</a> ·     <time datetime="2024-05-15">May 15, 2024</time> · 6 min read
+<a class="pill" href="/categories/code/" style="--c: #f59e0b"><span aria-hidden="true">&lt;/&gt;</span>Code</a>
+    <time datetime="2024-05-15">May 15, 2024</time>
   </p>
-  <h3><a href="/post/code/007-time-complexity/">Time and Space Complexity</a></h3>
+  <h3><a class="stretched" href="/post/code/007-time-complexity/">Time and Space Complexity</a></h3>
   <p class="summary">Time and Space Complexity. When analyzing an algorithm, we care about how efficient it is. Two main measures are: Type What It Measures Goal Time Complexity How long the algorithm takes (number of operations as input…</p>
+  <p class="card-foot">6 min read<span class="arrow" aria-hidden="true">→</span></p>
 </article>
-<article class="card">
+<article class="card" style="--c: #10b981">
   <p class="meta">
-<a href="/categories/tech/">Tech</a> ·     <time datetime="2024-05-06">May 6, 2024</time> · 4 min read
+<a class="pill" href="/categories/tech/" style="--c: #10b981"><span aria-hidden="true">⚙</span>Tech</a>
+    <time datetime="2024-05-06">May 6, 2024</time>
   </p>
-  <h3><a href="/post/tech/005-ros2/">Introduction to ROS2, Key Features and Common Commands</a></h3>
+  <h3><a class="stretched" href="/post/tech/005-ros2/">Introduction to ROS2, Key Features and Common Commands</a></h3>
   <p class="summary">ROS2. ROS2 (Robot Operating System 2) is the modern evolution of the original ROS project, designed for real-time, multi-robot systems with a focus on performance, flexibility, and production-readiness. If you&#39;re…</p>
+  <p class="card-foot">4 min read<span class="arrow" aria-hidden="true">→</span></p>
 </article>
-<article class="card">
+<article class="card" style="--c: #06b6d4">
   <p class="meta">
-<a href="/categories/dl/">AI &amp; Deep Learning</a> ·     <time datetime="2024-04-25">Apr 25, 2024</time> · 22 min read
+<a class="pill" href="/categories/dl/" style="--c: #06b6d4"><span aria-hidden="true">◇</span>AI &amp; Deep Learning</a>
+    <time datetime="2024-04-25">Apr 25, 2024</time>
   </p>
-  <h3><a href="/post/dl/005-ng-ml/">Comprehensive Notes on Andrew Ng’s Machine Learning Course</a></h3>
+  <h3><a class="stretched" href="/post/dl/005-ng-ml/">Comprehensive Notes on Andrew Ng’s Machine Learning Course</a></h3>
   <p class="summary">Based on NG&#39;s Machine Learning course.</p>
+  <p class="card-foot">22 min read<span class="arrow" aria-hidden="true">→</span></p>
 </article>
 </div>
-</section>
+    </section>
 
-<section class="wrap section">
-  <h2 class="section-title">Topics</h2>
-  <div class="topics">
-    <a class="topic" href="/categories/math/">
-      <span class="topic-name">Math <span class="count">3</span></span>
-      <span class="topic-desc">Derivations and intuition for the math behind machine learning and robotics.</span>
-    </a>
-    <a class="topic" href="/categories/dl/">
-      <span class="topic-name">AI &amp; Deep Learning <span class="count">4</span></span>
-      <span class="topic-desc">Machine learning fundamentals, model training, and inference optimization.</span>
-    </a>
-    <a class="topic" href="/categories/tech/">
-      <span class="topic-name">Tech <span class="count">7</span></span>
-      <span class="topic-desc">Tools, setups and how-tos: Docker, ROS 2, TensorRT, GPUs, datasets.</span>
-    </a>
-    <a class="topic" href="/categories/code/">
-      <span class="topic-name">Code <span class="count">5</span></span>
-      <span class="topic-desc">Programming notes: C++, Python, CUDA, algorithms.</span>
-    </a>
-    <a class="topic" href="/categories/hobby/">
-      <span class="topic-name">Life <span class="count">3</span></span>
-      <span class="topic-desc">Paintings, finance, and everything else.</span>
-    </a>
+    <section class="section">
+      <h2 class="section-title">Explore topics</h2>
+      <div class="topics">
+        <a class="topic" href="/categories/math/" style="--c: #8b5cf6">
+          <span class="topic-icon" aria-hidden="true">∑</span>
+          <span class="topic-name">Math</span>
+          <span class="topic-desc">Derivations and intuition for the math behind machine learning and robotics.</span>
+          <span class="topic-count">3 posts →</span>
+        </a>
+        <a class="topic" href="/categories/dl/" style="--c: #06b6d4">
+          <span class="topic-icon" aria-hidden="true">◇</span>
+          <span class="topic-name">AI &amp; Deep Learning</span>
+          <span class="topic-desc">Machine learning fundamentals, model training, and inference optimization.</span>
+          <span class="topic-count">4 posts →</span>
+        </a>
+        <a class="topic" href="/categories/tech/" style="--c: #10b981">
+          <span class="topic-icon" aria-hidden="true">⚙</span>
+          <span class="topic-name">Tech</span>
+          <span class="topic-desc">Tools, setups and how-tos: Docker, ROS 2, TensorRT, GPUs, datasets.</span>
+          <span class="topic-count">7 posts →</span>
+        </a>
+        <a class="topic" href="/categories/code/" style="--c: #f59e0b">
+          <span class="topic-icon" aria-hidden="true">&lt;/&gt;</span>
+          <span class="topic-name">Code</span>
+          <span class="topic-desc">Programming notes: C++, Python, CUDA, algorithms.</span>
+          <span class="topic-count">5 posts →</span>
+        </a>
+        <a class="topic" href="/categories/hobby/" style="--c: #f43f5e">
+          <span class="topic-icon" aria-hidden="true">✦</span>
+          <span class="topic-name">Life</span>
+          <span class="topic-desc">Paintings, finance, and everything else.</span>
+          <span class="topic-count">3 posts →</span>
+        </a>
+      </div>
+    </section>
   </div>
-</section>
+
+  <aside class="side-rest" aria-label="Browse">
+  <form class="panel side-search" action="/search/" role="search">
+    <label class="panel-title" for="side-q">Search</label>
+    <div class="search-field">
+      <input id="side-q" name="q" type="search" placeholder="Search 22 posts…" autocomplete="off">
+      <kbd>/</kbd>
+    </div>
+  </form>
+
+  <div class="panel">
+    <p class="panel-title">Topics</p>
+    <ul class="side-topics">
+      <li><a href="/categories/math/" style="--c: #8b5cf6"><span class="dot" aria-hidden="true"></span>Math<span class="count">3</span></a></li>
+      <li><a href="/categories/dl/" style="--c: #06b6d4"><span class="dot" aria-hidden="true"></span>AI &amp; Deep Learning<span class="count">4</span></a></li>
+      <li><a href="/categories/tech/" style="--c: #10b981"><span class="dot" aria-hidden="true"></span>Tech<span class="count">7</span></a></li>
+      <li><a href="/categories/code/" style="--c: #f59e0b"><span class="dot" aria-hidden="true"></span>Code<span class="count">5</span></a></li>
+      <li><a href="/categories/hobby/" style="--c: #f43f5e"><span class="dot" aria-hidden="true"></span>Life<span class="count">3</span></a></li>
+    </ul>
+  </div>
+
+  <div class="panel">
+    <p class="panel-title">Tags</p>
+    <ul class="tag-cloud small">
+<li><a href="/tags/c++/">#C++<span class="count">3</span></a></li><li><a href="/tags/ai/">#AI<span class="count">2</span></a></li><li><a href="/tags/docker/">#Docker<span class="count">2</span></a></li><li><a href="/tags/gpu/">#gpu<span class="count">1</span></a></li><li><a href="/tags/hugo/">#hugo<span class="count">1</span></a></li><li><a href="/tags/leetcode/">#Leetcode<span class="count">1</span></a></li><li><a href="/tags/lidar/">#lidar<span class="count">1</span></a></li><li><a href="/tags/python/">#Python<span class="count">1</span></a></li><li><a href="/tags/ros2/">#ROS2<span class="count">1</span></a></li><li><a href="/tags/web/">#web<span class="count">1</span></a></li>    </ul>
+  </div>
+</aside>
+
+</div>
   </main>
 
   <footer class="site-footer">

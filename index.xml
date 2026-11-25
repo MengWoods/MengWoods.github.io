@@ -133,18 +133,18 @@
 <category>Math</category>    <description>Introduce vector mutiplication with applications.</description>
   </item>
   <item>
-    <title>How I start monthly S&amp;P500 investment via Nordnet.</title>
-    <link>https://mengwoods.github.io/post/hobby/2024-01-30-fund/en/</link>
-    <guid>https://mengwoods.github.io/post/hobby/2024-01-30-fund/en/</guid>
-    <pubDate>Sat, 02 Dec 2023 00:00:00 +0000</pubDate>
-<category>Life</category>    <description>The article records operation steps of monthly saving with Nordnet. and records the questions during the whole process. Background questions. Why choose index fund? I don&#39;t want pay too much time on investments, I don&#39;t…</description>
-  </item>
-  <item>
     <title>Some Useful Docker Commands</title>
     <link>https://mengwoods.github.io/post/tech/003-some-docker-commands/en/</link>
     <guid>https://mengwoods.github.io/post/tech/003-some-docker-commands/en/</guid>
     <pubDate>Sat, 04 Nov 2023 00:00:00 +0000</pubDate>
 <category>Tech</category>    <description>The blog collects some useful Docker commands.</description>
+  </item>
+  <item>
+    <title>MMDetection3D Library Installation Guide</title>
+    <link>https://mengwoods.github.io/post/tech/001-install-openmm3d-lib/en/</link>
+    <guid>https://mengwoods.github.io/post/tech/001-install-openmm3d-lib/en/</guid>
+    <pubDate>Mon, 30 Oct 2023 00:00:00 +0000</pubDate>
+<category>Tech</category>    <description>Cuda, Conda, MMDetection3D installation and test.</description>
   </item>
 </channel>
 </rss>

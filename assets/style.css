@@ -185,10 +185,13 @@ html.js .nav a:hover { background: none; }
 .layout > .profile { grid-area: profile; }
 .layout > .main-col { grid-area: main; min-width: 0; }
 .layout > .side-rest { grid-area: rest; }
+.home .side-topics-panel { display: none; }
 @media (min-width: 1000px) {
   .layout { grid-template-columns: minmax(0, 1fr) 300px; column-gap: 48px; row-gap: 16px;
             grid-template-areas: "main profile" "main rest"; grid-template-rows: auto 1fr; }
   .layout > .side-rest { align-self: start; position: sticky; top: 82px; }
+  .home .side-topics-panel { display: block; }
+  .home-topics { display: none; }
 }
 @media (max-width: 999px) { .layout.list > .profile { display: none; } }
 
@@ -260,6 +263,15 @@ html.js .nav a:hover { background: none; }
   font: 600 12.5px var(--mono); text-transform: uppercase; letter-spacing: .12em; color: var(--muted); margin: 0 0 16px;
 }
 .section-title::before { content: ""; width: 14px; height: 2px; background: var(--grad); border-radius: 2px; }
+.latest-title {
+  font-family: inherit;
+  font-size: clamp(22px, 3vw, 28px);
+  font-weight: 750;
+  line-height: 1.2;
+  letter-spacing: -.02em;
+  text-transform: none;
+  color: var(--text);
+}
 
 .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
 .card {
@@ -561,6 +573,9 @@ html.js .reveal.in { opacity: 1; translate: 0 0; }
 @media (max-width: 600px) {
   body { font-size: 16px; }
   .layout { padding-top: 24px; }
+  .layout.home { gap: 16px; padding-top: 16px; }
+  .home .profile { padding-block: 12px; }
+  .home .profile-intro { margin-block: 8px; }
   .pager { grid-template-columns: 1fr; }
   .pager .next { grid-column: 1; }
   .post-row { grid-template-columns: 54px 1fr; }

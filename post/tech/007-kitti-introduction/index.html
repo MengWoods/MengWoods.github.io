@@ -26,8 +26,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
-  <link rel="stylesheet" href="/assets/style.css?v=949954f10f">
-  <link rel="stylesheet" href="/assets/pygments.css?v=949954f10f">
+  <link rel="stylesheet" href="/assets/style.css?v=d2a6558958">
+  <link rel="stylesheet" href="/assets/pygments.css?v=d2a6558958">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-7L1C01SX1E"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-7L1C01SX1E");</script>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2798956128980577" crossorigin="anonymous"></script>
@@ -92,15 +92,15 @@
     <details class="toc toc-inline">
       <summary>Contents</summary>
 <ol>
-  <li class="toc-l2"><a href="#what-is-the-kitti-dataset">What is the KITTI Dataset?</a></li>
-  <li class="toc-l2"><a href="#point-cloud-data-in-kitti">Point Cloud Data in KITTI</a></li>
-  <li class="toc-l3"><a href="#format-of-the-point-cloud-files">Format of the Point Cloud Files</a></li>
-  <li class="toc-l2"><a href="#calibration-files">Calibration Files</a></li>
-  <li class="toc-l2"><a href="#annotation-and-label-files">Annotation and Label Files</a></li>
-  <li class="toc-l3"><a href="#annotation-format">Annotation Format</a></li>
-  <li class="toc-l2"><a href="#3d-bounding-boxes">3D Bounding Boxes</a></li>
-  <li class="toc-l2"><a href="#quick-summary">Quick Summary</a></li>
-  <li class="toc-l2"><a href="#conclusion">Conclusion</a></li>
+  <li class="toc-l2"><a href="#what-is-the-kitti-dataset" data-section-number="1.">What is the KITTI Dataset?</a></li>
+  <li class="toc-l2"><a href="#point-cloud-data-in-kitti" data-section-number="2.">Point Cloud Data in KITTI</a></li>
+  <li class="toc-l3"><a href="#format-of-the-point-cloud-files" data-section-number="2.1">Format of the Point Cloud Files</a></li>
+  <li class="toc-l2"><a href="#calibration-files" data-section-number="3.">Calibration Files</a></li>
+  <li class="toc-l2"><a href="#annotation-and-label-files" data-section-number="4.">Annotation and Label Files</a></li>
+  <li class="toc-l3"><a href="#annotation-format" data-section-number="4.1">Annotation Format</a></li>
+  <li class="toc-l2"><a href="#3d-bounding-boxes" data-section-number="5.">3D Bounding Boxes</a></li>
+  <li class="toc-l2"><a href="#quick-summary" data-section-number="6.">Quick Summary</a></li>
+  <li class="toc-l2"><a href="#conclusion" data-section-number="7.">Conclusion</a></li>
 </ol>    </details>
 
     <div class="prose">
@@ -109,7 +109,7 @@
 <p>When it comes to benchmarking algorithms for autonomous driving, computer vision, and 3D perception, few datasets are as influential as the <strong>KITTI dataset</strong>. Released by the Karlsruhe Institute of Technology and the Toyota Technological Institute at Chicago, KITTI has become a cornerstone for tasks such as stereo vision, optical flow, visual odometry, 3D object detection, and more.</p>
 <p>In this blog, I’ll dive deep into the KITTI dataset, with a special focus on <strong>point cloud data</strong>, <strong>data formats</strong>, <strong>calibration files</strong>, <strong>annotations</strong>, and the <strong>3D bounding box specifications</strong>. Whether you’re just getting started or want a technical refresher, this guide will help you understand the essentials.</p>
 <hr />
-<h2 id="what-is-the-kitti-dataset">What is the KITTI Dataset?<a class="anchor" href="#what-is-the-kitti-dataset" aria-hidden="true">#</a></h2>
+<h2 data-section-number="1." id="what-is-the-kitti-dataset">What is the KITTI Dataset?<a class="anchor" href="#what-is-the-kitti-dataset" aria-hidden="true">#</a></h2>
 <p><img src="image-1.webp" alt="alt text" loading="lazy" decoding="async" width="1400" height="445"></p>
 <p>KITTI is a real-world dataset collected using a setup mounted on a car driving around Karlsruhe, Germany. It includes:</p>
 <ul>
@@ -130,7 +130,7 @@
 </ul>
 <p>For this blog, I'll concentrate especially on the <strong>3D Object Detection benchmark</strong>, which heavily utilizes the <strong>Velodyne LiDAR point cloud data</strong>.</p>
 <hr />
-<h2 id="point-cloud-data-in-kitti">Point Cloud Data in KITTI<a class="anchor" href="#point-cloud-data-in-kitti" aria-hidden="true">#</a></h2>
+<h2 data-section-number="2." id="point-cloud-data-in-kitti">Point Cloud Data in KITTI<a class="anchor" href="#point-cloud-data-in-kitti" aria-hidden="true">#</a></h2>
 <p>The point cloud data comes from a Velodyne HDL-64E rotating 3D laser scanner. It provides a sparse 3D representation of the environment around the car.</p>
 <ul>
 <li><strong>File format</strong>: <code>.bin</code> files</li>
@@ -138,7 +138,7 @@
 <li><strong>Per file</strong>: One scan per file (i.e., per frame)</li>
 </ul>
 <p><a href="./read_kitti.py">Here</a> is an example code to read and visualize point cloud data in Open3D.</p>
-<h3 id="format-of-the-point-cloud-files">Format of the Point Cloud Files<a class="anchor" href="#format-of-the-point-cloud-files" aria-hidden="true">#</a></h3>
+<h3 data-section-number="2.1" id="format-of-the-point-cloud-files">Format of the Point Cloud Files<a class="anchor" href="#format-of-the-point-cloud-files" aria-hidden="true">#</a></h3>
 <p><img src="image-2.webp" alt="alt text" loading="lazy" decoding="async" width="1600" height="900"></p>
 <p>Each <code>.bin</code> file contains raw, uncompressed point cloud data. Every point is stored as a float32 (4 bytes each) and is represented as:</p>
 <div class="code" data-lang=""><pre class="highlight"><code>[x, y, z, reflectance]
@@ -156,7 +156,7 @@
 <span class="n">point_cloud</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fromfile</span><span class="p">(</span><span class="s1">'path_to_file.bin'</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
 </code></pre></div>
 <hr />
-<h2 id="calibration-files">Calibration Files<a class="anchor" href="#calibration-files" aria-hidden="true">#</a></h2>
+<h2 data-section-number="3." id="calibration-files">Calibration Files<a class="anchor" href="#calibration-files" aria-hidden="true">#</a></h2>
 <p><img src="image.webp" alt="alt text" loading="lazy" decoding="async" width="298" height="257"></p>
 <p>The KITTI dataset includes <strong>calibration files</strong> that provide the necessary transformations between different sensors (e.g., LiDAR, cameras).</p>
 <ul>
@@ -178,14 +178,14 @@ Tr_imu_to_velo: 0.007027 -0.999963 -0.000000 ...
 </code></pre></div>
 <p>Understanding these matrices is crucial for <strong>projecting</strong> 3D LiDAR points onto 2D images or <strong>transforming</strong> between coordinate frames.</p>
 <hr />
-<h2 id="annotation-and-label-files">Annotation and Label Files<a class="anchor" href="#annotation-and-label-files" aria-hidden="true">#</a></h2>
+<h2 data-section-number="4." id="annotation-and-label-files">Annotation and Label Files<a class="anchor" href="#annotation-and-label-files" aria-hidden="true">#</a></h2>
 <p>KITTI provides detailed <strong>object annotations</strong> for labeled frames. These are essential for training and evaluating 3D object detection models.</p>
 <ul>
 <li><strong>Location</strong>: <code>data_object_label_2/label_2/</code></li>
 <li><strong>File format</strong>: <code>.txt</code></li>
 </ul>
 <p>Each label file corresponds to one frame and contains multiple lines, each line describing one object.</p>
-<h3 id="annotation-format">Annotation Format<a class="anchor" href="#annotation-format" aria-hidden="true">#</a></h3>
+<h3 data-section-number="4.1" id="annotation-format">Annotation Format<a class="anchor" href="#annotation-format" aria-hidden="true">#</a></h3>
 <p>Each line in the label file has the following fields:</p>
 <div class="code" data-lang=""><pre class="highlight"><code>Type Truncated Occluded Alpha BBox_xmin BBox_ymin BBox_xmax BBox_ymax
 Dimensions_h Dimensions_w Dimensions_l Location_x Location_y Location_z Rotation_y
@@ -218,7 +218,7 @@ Dimensions_h Dimensions_w Dimensions_l Location_x Location_y Location_z Rotation
 <div class="code" data-lang=""><pre class="highlight"><code>Car 0.00 0 -1.82 599.41 156.40 629.75 189.25 1.56 1.63 3.69 1.84 1.47 8.41 -1.56
 </code></pre></div>
 <hr />
-<h2 id="3d-bounding-boxes">3D Bounding Boxes<a class="anchor" href="#3d-bounding-boxes" aria-hidden="true">#</a></h2>
+<h2 data-section-number="5." id="3d-bounding-boxes">3D Bounding Boxes<a class="anchor" href="#3d-bounding-boxes" aria-hidden="true">#</a></h2>
 <p>The 3D bounding boxes provided in the annotations are crucial for evaluating 3D object detection.</p>
 <ul>
 <li>Centered at the <strong>bottom center</strong> of the object</li>
@@ -235,7 +235,7 @@ Dimensions_h Dimensions_w Dimensions_l Location_x Location_y Location_z Rotation
 <li>Transform into the desired coordinate frame if necessary (e.g., from camera to LiDAR frame)</li>
 </ul>
 <hr />
-<h2 id="quick-summary">Quick Summary<a class="anchor" href="#quick-summary" aria-hidden="true">#</a></h2>
+<h2 data-section-number="6." id="quick-summary">Quick Summary<a class="anchor" href="#quick-summary" aria-hidden="true">#</a></h2>
 <table>
 <thead>
 <tr>
@@ -267,7 +267,7 @@ Dimensions_h Dimensions_w Dimensions_l Location_x Location_y Location_z Rotation
 </tbody>
 </table>
 <hr />
-<h2 id="conclusion">Conclusion<a class="anchor" href="#conclusion" aria-hidden="true">#</a></h2>
+<h2 data-section-number="7." id="conclusion">Conclusion<a class="anchor" href="#conclusion" aria-hidden="true">#</a></h2>
 <p>The KITTI dataset offers one of the richest sets of real-world sensor data for autonomous driving research. Understanding the structure of its point cloud files, calibration data, annotation formats, and bounding box definitions is essential for working with modern perception models.</p>
 <p>By mastering the data layout, you unlock the ability to build robust models for 3D object detection, sensor fusion, and more. Whether you are developing cutting-edge algorithms or simply learning about LiDAR-based perception, KITTI remains a crucial resource in the computer vision and robotics communities.</p>
 
@@ -399,15 +399,15 @@ Dimensions_h Dimensions_w Dimensions_l Location_x Location_y Location_z Rotation
   <aside class="toc toc-side" aria-label="Contents">
     <p class="toc-title">Contents</p>
 <ol>
-  <li class="toc-l2"><a href="#what-is-the-kitti-dataset">What is the KITTI Dataset?</a></li>
-  <li class="toc-l2"><a href="#point-cloud-data-in-kitti">Point Cloud Data in KITTI</a></li>
-  <li class="toc-l3"><a href="#format-of-the-point-cloud-files">Format of the Point Cloud Files</a></li>
-  <li class="toc-l2"><a href="#calibration-files">Calibration Files</a></li>
-  <li class="toc-l2"><a href="#annotation-and-label-files">Annotation and Label Files</a></li>
-  <li class="toc-l3"><a href="#annotation-format">Annotation Format</a></li>
-  <li class="toc-l2"><a href="#3d-bounding-boxes">3D Bounding Boxes</a></li>
-  <li class="toc-l2"><a href="#quick-summary">Quick Summary</a></li>
-  <li class="toc-l2"><a href="#conclusion">Conclusion</a></li>
+  <li class="toc-l2"><a href="#what-is-the-kitti-dataset" data-section-number="1.">What is the KITTI Dataset?</a></li>
+  <li class="toc-l2"><a href="#point-cloud-data-in-kitti" data-section-number="2.">Point Cloud Data in KITTI</a></li>
+  <li class="toc-l3"><a href="#format-of-the-point-cloud-files" data-section-number="2.1">Format of the Point Cloud Files</a></li>
+  <li class="toc-l2"><a href="#calibration-files" data-section-number="3.">Calibration Files</a></li>
+  <li class="toc-l2"><a href="#annotation-and-label-files" data-section-number="4.">Annotation and Label Files</a></li>
+  <li class="toc-l3"><a href="#annotation-format" data-section-number="4.1">Annotation Format</a></li>
+  <li class="toc-l2"><a href="#3d-bounding-boxes" data-section-number="5.">3D Bounding Boxes</a></li>
+  <li class="toc-l2"><a href="#quick-summary" data-section-number="6.">Quick Summary</a></li>
+  <li class="toc-l2"><a href="#conclusion" data-section-number="7.">Conclusion</a></li>
 </ol>  </aside>
 </div>
   </main>
@@ -423,6 +423,6 @@ Dimensions_h Dimensions_w Dimensions_l Location_x Location_y Location_z Rotation
     </div>
   </footer>
 
-  <script src="/assets/site.js?v=949954f10f" defer></script>
+  <script src="/assets/site.js?v=d2a6558958" defer></script>
 </body>
 </html>

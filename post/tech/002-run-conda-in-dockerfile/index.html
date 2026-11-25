@@ -26,8 +26,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
-  <link rel="stylesheet" href="/assets/style.css?v=949954f10f">
-  <link rel="stylesheet" href="/assets/pygments.css?v=949954f10f">
+  <link rel="stylesheet" href="/assets/style.css?v=d2a6558958">
+  <link rel="stylesheet" href="/assets/pygments.css?v=d2a6558958">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-7L1C01SX1E"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-7L1C01SX1E");</script>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2798956128980577" crossorigin="anonymous"></script>
@@ -92,15 +92,15 @@
     <details class="toc toc-inline">
       <summary>Contents</summary>
 <ol>
-  <li class="toc-l2"><a href="#keywords">Keywords</a></li>
-  <li class="toc-l2"><a href="#dockerfile-with-conda">Dockerfile with Conda</a></li>
-  <li class="toc-l2"><a href="#dockerfile-with-specified-python-version-3.7">Dockerfile with specified Python version 3.7</a></li>
+  <li class="toc-l2"><a href="#keywords" data-section-number="1.">Keywords</a></li>
+  <li class="toc-l2"><a href="#dockerfile-with-conda" data-section-number="2.">Dockerfile with Conda</a></li>
+  <li class="toc-l2"><a href="#dockerfile-with-specified-python-version-3.7" data-section-number="3.">Dockerfile with specified Python version 3.7</a></li>
 </ol>    </details>
 
     <div class="prose">
       <p>Dockerfile examples</p>
 <!--more-->
-<h2 id="keywords">Keywords<a class="anchor" href="#keywords" aria-hidden="true">#</a></h2>
+<h2 data-section-number="1." id="keywords">Keywords<a class="anchor" href="#keywords" aria-hidden="true">#</a></h2>
 <ul>
 <li>
 <p>FROM: specifies the base image upon which the new image will be built. Every Dockerfile must start with a FROM instruction. For example, FROM ubuntu:20.04 would instruct Docker to use the Ubuntu 20.04 base image.</p>
@@ -124,7 +124,7 @@
 <p>EXPOSE: This keyword informs Docker that the container listens on specific network ports at runtime. It does not actually publish the ports. For example, EXPOSE 80 would indicate that the container listens on port 80.</p>
 </li>
 </ul>
-<h2 id="dockerfile-with-conda">Dockerfile with Conda<a class="anchor" href="#dockerfile-with-conda" aria-hidden="true">#</a></h2>
+<h2 data-section-number="2." id="dockerfile-with-conda">Dockerfile with Conda<a class="anchor" href="#dockerfile-with-conda" aria-hidden="true">#</a></h2>
 <p>Install and activate a Conda virtual envrionment.</p>
 <div class="code" data-lang="yml"><pre class="highlight"><code><span class="l l-Scalar l-Scalar-Plain">ARG ARCH_IMG</span>
 <span class="l l-Scalar l-Scalar-Plain">ARG CI_PROJECT_DIR</span>
@@ -178,7 +178,7 @@
 <span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">roslaunch --wait /app/install/ganav_terrain_segmentation/share/ganav_terrain_segmentation/launch/ganav_terrain_segmentation.launch" ]</span>
 </code></pre></div>
 <p>Known issue: the launched docker with a docker-compose file can only activate the base conda environment.</p>
-<h2 id="dockerfile-with-specified-python-version-3.7">Dockerfile with specified Python version 3.7<a class="anchor" href="#dockerfile-with-specified-python-version-3.7" aria-hidden="true">#</a></h2>
+<h2 data-section-number="3." id="dockerfile-with-specified-python-version-3.7">Dockerfile with specified Python version 3.7<a class="anchor" href="#dockerfile-with-specified-python-version-3.7" aria-hidden="true">#</a></h2>
 <div class="code" data-lang="yml"><pre class="highlight"><code><span class="l l-Scalar l-Scalar-Plain">ARG ARCH_IMG</span>
 <span class="l l-Scalar l-Scalar-Plain">ARG CI_PROJECT_DIR</span>
 <span class="l l-Scalar l-Scalar-Plain">FROM $ARCH_IMG</span>
@@ -415,9 +415,9 @@
   <aside class="toc toc-side" aria-label="Contents">
     <p class="toc-title">Contents</p>
 <ol>
-  <li class="toc-l2"><a href="#keywords">Keywords</a></li>
-  <li class="toc-l2"><a href="#dockerfile-with-conda">Dockerfile with Conda</a></li>
-  <li class="toc-l2"><a href="#dockerfile-with-specified-python-version-3.7">Dockerfile with specified Python version 3.7</a></li>
+  <li class="toc-l2"><a href="#keywords" data-section-number="1.">Keywords</a></li>
+  <li class="toc-l2"><a href="#dockerfile-with-conda" data-section-number="2.">Dockerfile with Conda</a></li>
+  <li class="toc-l2"><a href="#dockerfile-with-specified-python-version-3.7" data-section-number="3.">Dockerfile with specified Python version 3.7</a></li>
 </ol>  </aside>
 </div>
   </main>
@@ -433,6 +433,6 @@
     </div>
   </footer>
 
-  <script src="/assets/site.js?v=949954f10f" defer></script>
+  <script src="/assets/site.js?v=d2a6558958" defer></script>
 </body>
 </html>

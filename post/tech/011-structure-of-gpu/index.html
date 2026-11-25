@@ -26,8 +26,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
-  <link rel="stylesheet" href="/assets/style.css?v=949954f10f">
-  <link rel="stylesheet" href="/assets/pygments.css?v=949954f10f">
+  <link rel="stylesheet" href="/assets/style.css?v=d2a6558958">
+  <link rel="stylesheet" href="/assets/pygments.css?v=d2a6558958">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-7L1C01SX1E"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-7L1C01SX1E");</script>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2798956128980577" crossorigin="anonymous"></script>
@@ -92,26 +92,26 @@
     <details class="toc toc-inline">
       <summary>Contents</summary>
 <ol>
-  <li class="toc-l2"><a href="#cpu-and-gpu">CPU and GPU</a></li>
-  <li class="toc-l2"><a href="#gpu-programming-model">GPU Programming Model</a></li>
-  <li class="toc-l3"><a href="#key-concepts">Key Concepts</a></li>
-  <li class="toc-l3"><a href="#advantages-and-disadvantages">Advantages and Disadvantages</a></li>
-  <li class="toc-l3"><a href="#accelerator-models">Accelerator Models</a></li>
-  <li class="toc-l3"><a href="#hip">HIP</a></li>
-  <li class="toc-l2"><a href="#volta-gpu-microarchitecture">Volta GPU Microarchitecture</a></li>
-  <li class="toc-l3"><a href="#gpu-architecture-scheme">GPU Architecture Scheme</a></li>
-  <li class="toc-l3"><a href="#streaming-multiprocessors">Streaming Multiprocessors</a></li>
-  <li class="toc-l2"><a href="#thread">Thread</a></li>
-  <li class="toc-l3"><a href="#thread-hierarchy">Thread Hierarchy</a></li>
-  <li class="toc-l3"><a href="#thread-scheduling-simt">Thread Scheduling, SIMT</a></li>
-  <li class="toc-l2"><a href="#physical-and-logical-scheme">Physical and Logical Scheme</a></li>
-  <li class="toc-l2"><a href="#memory-architecture">Memory Architecture</a></li>
+  <li class="toc-l2"><a href="#cpu-and-gpu" data-section-number="1.">CPU and GPU</a></li>
+  <li class="toc-l2"><a href="#gpu-programming-model" data-section-number="2.">GPU Programming Model</a></li>
+  <li class="toc-l3"><a href="#key-concepts" data-section-number="2.1">Key Concepts</a></li>
+  <li class="toc-l3"><a href="#advantages-and-disadvantages" data-section-number="2.2">Advantages and Disadvantages</a></li>
+  <li class="toc-l3"><a href="#accelerator-models" data-section-number="2.3">Accelerator Models</a></li>
+  <li class="toc-l3"><a href="#hip" data-section-number="2.4">HIP</a></li>
+  <li class="toc-l2"><a href="#volta-gpu-microarchitecture" data-section-number="3.">Volta GPU Microarchitecture</a></li>
+  <li class="toc-l3"><a href="#gpu-architecture-scheme" data-section-number="3.1">GPU Architecture Scheme</a></li>
+  <li class="toc-l3"><a href="#streaming-multiprocessors" data-section-number="3.2">Streaming Multiprocessors</a></li>
+  <li class="toc-l2"><a href="#thread" data-section-number="4.">Thread</a></li>
+  <li class="toc-l3"><a href="#thread-hierarchy" data-section-number="4.1">Thread Hierarchy</a></li>
+  <li class="toc-l3"><a href="#thread-scheduling-simt" data-section-number="4.2">Thread Scheduling, SIMT</a></li>
+  <li class="toc-l2"><a href="#physical-and-logical-scheme" data-section-number="5.">Physical and Logical Scheme</a></li>
+  <li class="toc-l2"><a href="#memory-architecture" data-section-number="6.">Memory Architecture</a></li>
 </ol>    </details>
 
     <div class="prose">
       <!--more-->
 <p><img src="image-7.webp" alt="alt text" loading="lazy" decoding="async" width="1200" height="800"></p>
-<h2 id="cpu-and-gpu">CPU and GPU<a class="anchor" href="#cpu-and-gpu" aria-hidden="true">#</a></h2>
+<h2 data-section-number="1." id="cpu-and-gpu">CPU and GPU<a class="anchor" href="#cpu-and-gpu" aria-hidden="true">#</a></h2>
 <ul>
 <li>CPU is designed to excel at executing a sequence of operations, called a thread. It can execute a few tens of threads in parallel.
 <ul>
@@ -124,15 +124,15 @@
 </ul>
 </li>
 </ul>
-<h2 id="gpu-programming-model">GPU Programming Model<a class="anchor" href="#gpu-programming-model" aria-hidden="true">#</a></h2>
-<h3 id="key-concepts">Key Concepts<a class="anchor" href="#key-concepts" aria-hidden="true">#</a></h3>
+<h2 data-section-number="2." id="gpu-programming-model">GPU Programming Model<a class="anchor" href="#gpu-programming-model" aria-hidden="true">#</a></h2>
+<h3 data-section-number="2.1" id="key-concepts">Key Concepts<a class="anchor" href="#key-concepts" aria-hidden="true">#</a></h3>
 <ul>
 <li><strong>Host</strong> and <strong>Device</strong>: Host is CPU and device is GPU, CPU runs the main program and is responsible for offloading parallel tasks to the GPU. GPU performs the computations.</li>
 <li><strong>Kernel</strong>: Function that runs on the GPU. It is code will be executed by many GPU threads in parallel. The host program launches a kernel on the device.</li>
 <li>Data Transfer: Data must be explicitly transferred between the host's main memory and the GPU's memory. The host allocates memory on the device, copies data from the host to the device, launches the kernel, and then copies the results back from the device to the host.</li>
 <li>Execution Model: The accelerator model uses a data-parallel execution model. A single kernel is launched to process a large dataset, with each thread handling a small piece of the data. For example in a vector addition, each thread would be responsible for adding a single pair of elements.</li>
 </ul>
-<h3 id="advantages-and-disadvantages">Advantages and Disadvantages<a class="anchor" href="#advantages-and-disadvantages" aria-hidden="true">#</a></h3>
+<h3 data-section-number="2.2" id="advantages-and-disadvantages">Advantages and Disadvantages<a class="anchor" href="#advantages-and-disadvantages" aria-hidden="true">#</a></h3>
 <p>Advantages:</p>
 <ul>
 <li>It simplifies GPU programming by abstracting away the hardware complexities.</li>
@@ -145,18 +145,18 @@
 <li>High-level abstraction may not be suitable for application that require fine-grained control over hardware resources for optimal performance.</li>
 <li>Debugging can be more challenging due to the asynchronous nature of host-device execution.</li>
 </ul>
-<h3 id="accelerator-models">Accelerator Models<a class="anchor" href="#accelerator-models" aria-hidden="true">#</a></h3>
+<h3 data-section-number="2.3" id="accelerator-models">Accelerator Models<a class="anchor" href="#accelerator-models" aria-hidden="true">#</a></h3>
 <p><img src="image-8.webp" alt="alt text" loading="lazy" decoding="async" width="600" height="380"></p>
 <ul>
 <li><strong>CUDA</strong>: NVIDIA's proprietary programming model for its GPUs.</li>
 <li><strong>OpenCL</strong>: An open standard for parallel programming of heterogeneous systems, including GPUs, CPUs, and other processors. It provides a vendor-neutral approach.</li>
 <li><strong>HIP</strong> (Heterogeneous-Compute Interface for Portability): A C++ <strong>runtime</strong> API and kernel language designed to port CUDA applications to AMD GPUs. It acts as a layer that translates CUDA code to run on AMD hardware.</li>
 </ul>
-<h3 id="hip">HIP<a class="anchor" href="#hip" aria-hidden="true">#</a></h3>
+<h3 data-section-number="2.4" id="hip">HIP<a class="anchor" href="#hip" aria-hidden="true">#</a></h3>
 <p>HIP is designed to be a bridge between CUDA and AMD's GPU platform <strong>ROCm</strong>. It includes a tool called <code>hipify</code> which can automatically convert most CUDA code into HIP code.</p>
 <p>HIP API code is compiled using compiler driver <code>hipcc</code>, it uses the underlying ROCm software stack to compile and run the code on the AMD GPU; It translates the HIP API calls into their corresponding CUDA API calls and then compiles the code with <strong>NVCC</strong> to run on the NVIDIA GPU.</p>
 <p>HIP is a layer on top of CUDA and ROCm. It provides the portability the CUDA lacks, it can run on both AMD and NVIDIA GPUs.</p>
-<h2 id="volta-gpu-microarchitecture">Volta GPU Microarchitecture<a class="anchor" href="#volta-gpu-microarchitecture" aria-hidden="true">#</a></h2>
+<h2 data-section-number="3." id="volta-gpu-microarchitecture">Volta GPU Microarchitecture<a class="anchor" href="#volta-gpu-microarchitecture" aria-hidden="true">#</a></h2>
 <p>Volta is a microarchitecture developed by NVIDIA in 2017, it was a significant leap forward in GPU technology, especially for AI and high-performance computing (HPC) workloads. The most prominent product featuring the Volta architecture was the NVIDIA Tesla V100, a high-end accelerator card for data centers.</p>
 <p>Key features:</p>
 <ul>
@@ -170,7 +170,7 @@
 <li>Ampere 2020: Introduced 3rd generation Tensor Cores for enhanced AI performanc. 2nd generation RT Cores, and multi-instance GPU, allows a single GPU to be partitioned into multiple instances to serve different users or applications.</li>
 <li>Hopper 2022: Most recent architecture. 4th generation Tensor Cores, 2nd generation MIG</li>
 </ul>
-<h3 id="gpu-architecture-scheme">GPU Architecture Scheme<a class="anchor" href="#gpu-architecture-scheme" aria-hidden="true">#</a></h3>
+<h3 data-section-number="3.1" id="gpu-architecture-scheme">GPU Architecture Scheme<a class="anchor" href="#gpu-architecture-scheme" aria-hidden="true">#</a></h3>
 <p><img src="image.webp" alt="alt text" loading="lazy" decoding="async" width="1600" height="938"></p>
 <p>Architecture Scheme:</p>
 <ul>
@@ -204,7 +204,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="streaming-multiprocessors">Streaming Multiprocessors<a class="anchor" href="#streaming-multiprocessors" aria-hidden="true">#</a></h3>
+<h3 data-section-number="3.2" id="streaming-multiprocessors">Streaming Multiprocessors<a class="anchor" href="#streaming-multiprocessors" aria-hidden="true">#</a></h3>
 <p><img src="image-1.webp" alt="alt text" loading="lazy" decoding="async" width="803" height="1065"></p>
 <p>NVIDIA Volta SM contains:</p>
 <ul>
@@ -234,8 +234,8 @@
 <li>Special Function Units (SFUs): Theese are dedicated units that handle complex mathematical operations like square roots and sine functions, which would be slower to compute on standard cores.</li>
 <li>Load/Store Units: These manage all data movement between the SM's memory and the GPU's global memory.</li>
 </ul>
-<h2 id="thread">Thread<a class="anchor" href="#thread" aria-hidden="true">#</a></h2>
-<h3 id="thread-hierarchy">Thread Hierarchy<a class="anchor" href="#thread-hierarchy" aria-hidden="true">#</a></h3>
+<h2 data-section-number="4." id="thread">Thread<a class="anchor" href="#thread" aria-hidden="true">#</a></h2>
+<h3 data-section-number="4.1" id="thread-hierarchy">Thread Hierarchy<a class="anchor" href="#thread-hierarchy" aria-hidden="true">#</a></h3>
 <p>All loops in which the individual iterations are independent of each other can be parallelized. When a kernel is called tens of thousands of threads are created. Single Instruction Multiple Data parallel programming model. Threads are grouped in blocks which are assigned to the SMs.</p>
 <p><img src="image-2.webp" alt="alt text" loading="lazy" decoding="async" width="542" height="528"></p>
 <p>Hierarchical programming model:</p>
@@ -248,9 +248,9 @@
 </li>
 <li><strong>Grid is a collection of thread blocks</strong>. It represents the entire workload of the kernel. It is highest level of this hierarchy. Grid is launched from CPU, and its blocks are distributed among the available SMs on the GPU. <strong>The blocs in a grid are designed to be independent and have no direct communication with each other</strong>. This allows the GPU to schedule them flexibly and in any order.</li>
 </ul>
-<h3 id="thread-scheduling-simt">Thread Scheduling, SIMT<a class="anchor" href="#thread-scheduling-simt" aria-hidden="true">#</a></h3>
+<h3 data-section-number="4.2" id="thread-scheduling-simt">Thread Scheduling, SIMT<a class="anchor" href="#thread-scheduling-simt" aria-hidden="true">#</a></h3>
 <p>Warp (CUDA) or Wave (HIP) is a group of GPU threads which are grouped physically. Warp contains 32 threads, wave contains 64 threads. <strong>All threads in a warp can only execute the same instruction (SIMT)</strong>.</p>
-<h2 id="physical-and-logical-scheme">Physical and Logical Scheme<a class="anchor" href="#physical-and-logical-scheme" aria-hidden="true">#</a></h2>
+<h2 data-section-number="5." id="physical-and-logical-scheme">Physical and Logical Scheme<a class="anchor" href="#physical-and-logical-scheme" aria-hidden="true">#</a></h2>
 <p><img src="image-4.webp" alt="alt text" loading="lazy" decoding="async" width="720" height="854"></p>
 <p>In the picture, there are 16 SMs, each SM contains 32 Cores.</p>
 <p><strong>SPs or cores are main processing units</strong>. Cores are like individual students, one student being one core.</p>
@@ -262,7 +262,7 @@
 <p>Threads and blocks are fundamental units of parallel execution.</p>
 <p>SM is class room, core is student, thread is task, block is collection of tasks. One core can handle more than 1 thread. To distribute tasks / blocks among the SMs, we need an intermediary called <strong>WARP</strong> to handle the distribution.</p>
 <p><strong>Warp refers to a group of threads that are executed together in parallel</strong>. Typically a warp contains 32 threads. Follows SIMD fashion. All 32 threads execute the same instruction but operate on different data. Warp represents the class monitors, they go and fetch the blocks to bring back to their group for processing; after bringing the blocks to their group, the warps distribute the blocks among the individual students for processing.</p>
-<h2 id="memory-architecture">Memory Architecture<a class="anchor" href="#memory-architecture" aria-hidden="true">#</a></h2>
+<h2 data-section-number="6." id="memory-architecture">Memory Architecture<a class="anchor" href="#memory-architecture" aria-hidden="true">#</a></h2>
 <p><strong>Memory architecture is critical for writing efficient program</strong>.</p>
 <p><img src="image-3.webp" alt="alt text" loading="lazy" decoding="async" width="1420" height="1285"></p>
 <p>From fastest to slowest, the memory hierarchy is:</p>
@@ -420,20 +420,20 @@
   <aside class="toc toc-side" aria-label="Contents">
     <p class="toc-title">Contents</p>
 <ol>
-  <li class="toc-l2"><a href="#cpu-and-gpu">CPU and GPU</a></li>
-  <li class="toc-l2"><a href="#gpu-programming-model">GPU Programming Model</a></li>
-  <li class="toc-l3"><a href="#key-concepts">Key Concepts</a></li>
-  <li class="toc-l3"><a href="#advantages-and-disadvantages">Advantages and Disadvantages</a></li>
-  <li class="toc-l3"><a href="#accelerator-models">Accelerator Models</a></li>
-  <li class="toc-l3"><a href="#hip">HIP</a></li>
-  <li class="toc-l2"><a href="#volta-gpu-microarchitecture">Volta GPU Microarchitecture</a></li>
-  <li class="toc-l3"><a href="#gpu-architecture-scheme">GPU Architecture Scheme</a></li>
-  <li class="toc-l3"><a href="#streaming-multiprocessors">Streaming Multiprocessors</a></li>
-  <li class="toc-l2"><a href="#thread">Thread</a></li>
-  <li class="toc-l3"><a href="#thread-hierarchy">Thread Hierarchy</a></li>
-  <li class="toc-l3"><a href="#thread-scheduling-simt">Thread Scheduling, SIMT</a></li>
-  <li class="toc-l2"><a href="#physical-and-logical-scheme">Physical and Logical Scheme</a></li>
-  <li class="toc-l2"><a href="#memory-architecture">Memory Architecture</a></li>
+  <li class="toc-l2"><a href="#cpu-and-gpu" data-section-number="1.">CPU and GPU</a></li>
+  <li class="toc-l2"><a href="#gpu-programming-model" data-section-number="2.">GPU Programming Model</a></li>
+  <li class="toc-l3"><a href="#key-concepts" data-section-number="2.1">Key Concepts</a></li>
+  <li class="toc-l3"><a href="#advantages-and-disadvantages" data-section-number="2.2">Advantages and Disadvantages</a></li>
+  <li class="toc-l3"><a href="#accelerator-models" data-section-number="2.3">Accelerator Models</a></li>
+  <li class="toc-l3"><a href="#hip" data-section-number="2.4">HIP</a></li>
+  <li class="toc-l2"><a href="#volta-gpu-microarchitecture" data-section-number="3.">Volta GPU Microarchitecture</a></li>
+  <li class="toc-l3"><a href="#gpu-architecture-scheme" data-section-number="3.1">GPU Architecture Scheme</a></li>
+  <li class="toc-l3"><a href="#streaming-multiprocessors" data-section-number="3.2">Streaming Multiprocessors</a></li>
+  <li class="toc-l2"><a href="#thread" data-section-number="4.">Thread</a></li>
+  <li class="toc-l3"><a href="#thread-hierarchy" data-section-number="4.1">Thread Hierarchy</a></li>
+  <li class="toc-l3"><a href="#thread-scheduling-simt" data-section-number="4.2">Thread Scheduling, SIMT</a></li>
+  <li class="toc-l2"><a href="#physical-and-logical-scheme" data-section-number="5.">Physical and Logical Scheme</a></li>
+  <li class="toc-l2"><a href="#memory-architecture" data-section-number="6.">Memory Architecture</a></li>
 </ol>  </aside>
 </div>
   </main>
@@ -449,6 +449,6 @@
     </div>
   </footer>
 
-  <script src="/assets/site.js?v=949954f10f" defer></script>
+  <script src="/assets/site.js?v=d2a6558958" defer></script>
 </body>
 </html>

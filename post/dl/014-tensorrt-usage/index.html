@@ -26,8 +26,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
-  <link rel="stylesheet" href="/assets/style.css?v=949954f10f">
-  <link rel="stylesheet" href="/assets/pygments.css?v=949954f10f">
+  <link rel="stylesheet" href="/assets/style.css?v=d2a6558958">
+  <link rel="stylesheet" href="/assets/pygments.css?v=d2a6558958">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-7L1C01SX1E"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-7L1C01SX1E");</script>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2798956128980577" crossorigin="anonymous"></script>
@@ -92,8 +92,8 @@
     <details class="toc toc-inline">
       <summary>Contents</summary>
 <ol>
-  <li class="toc-l2"><a href="#overview">Overview</a></li>
-  <li class="toc-l2"><a href="#runtime-deployment-steps">Runtime Deployment Steps</a></li>
+  <li class="toc-l2"><a href="#overview" data-section-number="1.">Overview</a></li>
+  <li class="toc-l2"><a href="#runtime-deployment-steps" data-section-number="2.">Runtime Deployment Steps</a></li>
   <li class="toc-l3"><a href="#1.-create-a-runtime-object">1. Create a Runtime Object</a></li>
   <li class="toc-l3"><a href="#2.-deserialize-the-engine">2. Deserialize the Engine</a></li>
   <li class="toc-l3"><a href="#3.-create-an-execution-context">3. Create an Execution Context</a></li>
@@ -101,12 +101,12 @@
   <li class="toc-l3"><a href="#5.-run-the-inference">5. Run the Inference</a></li>
   <li class="toc-l3"><a href="#6.-retrieve-the-results">6. Retrieve the Results</a></li>
   <li class="toc-l3"><a href="#7.-free-allocated-memory-destroy-objects-contexts">7. Free Allocated Memory, Destroy Objects, Contexts</a></li>
-  <li class="toc-l2"><a href="#example-code">Example Code</a></li>
+  <li class="toc-l2"><a href="#example-code" data-section-number="3.">Example Code</a></li>
 </ol>    </details>
 
     <div class="prose">
       <!--more-->
-<h2 id="overview">Overview<a class="anchor" href="#overview" aria-hidden="true">#</a></h2>
+<h2 data-section-number="1." id="overview">Overview<a class="anchor" href="#overview" aria-hidden="true">#</a></h2>
 <p><img src="image.webp" alt="alt text" loading="lazy" decoding="async" width="1373" height="530"></p>
 <p>Building and using a TensorRT engine for inference involves two distinct phases: build time (optimization) and runtime (execution).</p>
 <ol>
@@ -130,7 +130,7 @@
 </ol>
 </li>
 </ol>
-<h2 id="runtime-deployment-steps">Runtime Deployment Steps<a class="anchor" href="#runtime-deployment-steps" aria-hidden="true">#</a></h2>
+<h2 data-section-number="2." id="runtime-deployment-steps">Runtime Deployment Steps<a class="anchor" href="#runtime-deployment-steps" aria-hidden="true">#</a></h2>
 <h3 id="1.-create-a-runtime-object">1. Create a Runtime Object<a class="anchor" href="#1.-create-a-runtime-object" aria-hidden="true">#</a></h3>
 <p>Create an instance of the TensorRT runtime. This object is the entry point for all inference operations and is responsible for managing the execution of engines. It's a key part of the TensorRT API and is a lightweight object designed to be quickly instantiated.</p>
 <div class="code" data-lang="c++"><pre class="highlight"><code><span class="n">nvinfer1</span><span class="o">::</span><span class="n">IRuntime</span><span class="o">*</span><span class="w"> </span><span class="n">runtime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nvinfer1</span><span class="o">::</span><span class="n">createInferRuntime</span><span class="p">(</span><span class="n">gLogger</span><span class="p">);</span>
@@ -196,7 +196,7 @@
 <span class="n">engine</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span>
 <span class="n">runtime</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span>
 </code></pre></div>
-<h2 id="example-code">Example Code<a class="anchor" href="#example-code" aria-hidden="true">#</a></h2>
+<h2 data-section-number="3." id="example-code">Example Code<a class="anchor" href="#example-code" aria-hidden="true">#</a></h2>
 <p>Below is an example loading a pre-built TensorRT engine and running inference.</p>
 <div class="code" data-lang="c++"><pre class="highlight"><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;fstream&gt;</span>
@@ -439,8 +439,8 @@
   <aside class="toc toc-side" aria-label="Contents">
     <p class="toc-title">Contents</p>
 <ol>
-  <li class="toc-l2"><a href="#overview">Overview</a></li>
-  <li class="toc-l2"><a href="#runtime-deployment-steps">Runtime Deployment Steps</a></li>
+  <li class="toc-l2"><a href="#overview" data-section-number="1.">Overview</a></li>
+  <li class="toc-l2"><a href="#runtime-deployment-steps" data-section-number="2.">Runtime Deployment Steps</a></li>
   <li class="toc-l3"><a href="#1.-create-a-runtime-object">1. Create a Runtime Object</a></li>
   <li class="toc-l3"><a href="#2.-deserialize-the-engine">2. Deserialize the Engine</a></li>
   <li class="toc-l3"><a href="#3.-create-an-execution-context">3. Create an Execution Context</a></li>
@@ -448,7 +448,7 @@
   <li class="toc-l3"><a href="#5.-run-the-inference">5. Run the Inference</a></li>
   <li class="toc-l3"><a href="#6.-retrieve-the-results">6. Retrieve the Results</a></li>
   <li class="toc-l3"><a href="#7.-free-allocated-memory-destroy-objects-contexts">7. Free Allocated Memory, Destroy Objects, Contexts</a></li>
-  <li class="toc-l2"><a href="#example-code">Example Code</a></li>
+  <li class="toc-l2"><a href="#example-code" data-section-number="3.">Example Code</a></li>
 </ol>  </aside>
 </div>
   </main>
@@ -464,6 +464,6 @@
     </div>
   </footer>
 
-  <script src="/assets/site.js?v=949954f10f" defer></script>
+  <script src="/assets/site.js?v=d2a6558958" defer></script>
 </body>
 </html>

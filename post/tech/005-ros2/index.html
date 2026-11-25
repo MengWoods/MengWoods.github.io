@@ -26,8 +26,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
-  <link rel="stylesheet" href="/assets/style.css?v=949954f10f">
-  <link rel="stylesheet" href="/assets/pygments.css?v=949954f10f">
+  <link rel="stylesheet" href="/assets/style.css?v=d2a6558958">
+  <link rel="stylesheet" href="/assets/pygments.css?v=d2a6558958">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-7L1C01SX1E"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-7L1C01SX1E");</script>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2798956128980577" crossorigin="anonymous"></script>
@@ -92,17 +92,17 @@
     <details class="toc toc-inline">
       <summary>Contents</summary>
 <ol>
-  <li class="toc-l2"><a href="#what-is-ros2">What is ROS2?</a></li>
-  <li class="toc-l2"><a href="#key-differences-between-ros1-and-ros2">Key Differences Between ROS1 and ROS2</a></li>
+  <li class="toc-l2"><a href="#what-is-ros2" data-section-number="1.1">What is ROS2?</a></li>
+  <li class="toc-l2"><a href="#key-differences-between-ros1-and-ros2" data-section-number="1.2">Key Differences Between ROS1 and ROS2</a></li>
   <li class="toc-l2"><a href="#1.-workspace-setup">1. Workspace Setup</a></li>
   <li class="toc-l2"><a href="#2.-working-with-nodes-and-topics">2. Working with Nodes and Topics</a></li>
-  <li class="toc-l3"><a href="#node-commands">Node Commands</a></li>
-  <li class="toc-l3"><a href="#topic-commands">Topic Commands</a></li>
-  <li class="toc-l3"><a href="#service-commands">Service Commands</a></li>
+  <li class="toc-l3"><a href="#node-commands" data-section-number="2.2.1">Node Commands</a></li>
+  <li class="toc-l3"><a href="#topic-commands" data-section-number="2.2.2">Topic Commands</a></li>
+  <li class="toc-l3"><a href="#service-commands" data-section-number="2.2.3">Service Commands</a></li>
   <li class="toc-l2"><a href="#3.-recording-and-playing-data-with-rosbag">3. Recording and Playing Data with Rosbag</a></li>
   <li class="toc-l2"><a href="#4.-visualizing-data-with-rviz2">4. Visualizing Data with RViz2</a></li>
-  <li class="toc-l3"><a href="#install-rviz2">Install RViz2</a></li>
-  <li class="toc-l3"><a href="#launch-rviz2">Launch RViz2</a></li>
+  <li class="toc-l3"><a href="#install-rviz2" data-section-number="2.4.1">Install RViz2</a></li>
+  <li class="toc-l3"><a href="#launch-rviz2" data-section-number="2.4.2">Launch RViz2</a></li>
 </ol>    </details>
 
     <div class="prose">
@@ -113,7 +113,7 @@
 <p><strong>ROS2</strong> (Robot Operating System 2) is the modern evolution of the original ROS project, designed for real-time, multi-robot systems with a focus on performance, flexibility, and production-readiness. If you're working with robotics, autonomous vehicles, drones, or intelligent devices, learning ROS2 is an essential skill.</p>
 <p>In this blog, I'll introduce ROS2 and walk through some of the <strong>most common commands</strong> you'll use in daily development — covering <strong>workspace management</strong>, <strong>nodes</strong>, <strong>topics</strong>, <strong>rosbag recording</strong>, and <strong>RViz visualization</strong>.</p>
 <hr />
-<h2 id="what-is-ros2">What is ROS2?<a class="anchor" href="#what-is-ros2" aria-hidden="true">#</a></h2>
+<h2 data-section-number="1.1" id="what-is-ros2">What is ROS2?<a class="anchor" href="#what-is-ros2" aria-hidden="true">#</a></h2>
 <p>ROS2 is a flexible framework for writing robot software. It provides tools, libraries, and conventions to simplify the task of creating complex and robust robot behavior across a wide variety of robotic platforms.</p>
 <p>Compared to ROS1, ROS2 improves in areas like:</p>
 <ul>
@@ -124,7 +124,7 @@
 <li>Production-readiness for industrial use</li>
 </ul>
 <hr />
-<h2 id="key-differences-between-ros1-and-ros2">Key Differences Between ROS1 and ROS2<a class="anchor" href="#key-differences-between-ros1-and-ros2" aria-hidden="true">#</a></h2>
+<h2 data-section-number="1.2" id="key-differences-between-ros1-and-ros2">Key Differences Between ROS1 and ROS2<a class="anchor" href="#key-differences-between-ros1-and-ros2" aria-hidden="true">#</a></h2>
 <p>While <strong>ROS1</strong> laid the foundation for open-source robotics development, <strong>ROS2</strong> was built to address its limitations and meet modern robotics needs. Here are the main differences:</p>
 <table>
 <thead>
@@ -184,7 +184,7 @@
 </table>
 <p>In short, <strong>ROS2</strong> is not just an &quot;update&quot; of ROS1 — it’s a <strong>fundamental re-architecture</strong> to make ROS ready for the future of robotics.</p>
 <hr />
-<h1 id="essential-ros2-commands">Essential ROS2 Commands<a class="anchor" href="#essential-ros2-commands" aria-hidden="true">#</a></h1>
+<h1 data-section-number="2." id="essential-ros2-commands">Essential ROS2 Commands<a class="anchor" href="#essential-ros2-commands" aria-hidden="true">#</a></h1>
 <h2 id="1.-workspace-setup">1. Workspace Setup<a class="anchor" href="#1.-workspace-setup" aria-hidden="true">#</a></h2>
 <p>A <strong>workspace</strong> is where you organize your ROS2 packages. You’ll build and source your workspace to compile and run your robot applications.</p>
 <div class="code" data-lang="bash"><pre class="highlight"><code><span class="c1"># Source ROS2 environment</span>
@@ -211,14 +211,14 @@ ros2<span class="w"> </span>launch<span class="w"> </span>&lt;package_name&gt;<s
 <hr />
 <h2 id="2.-working-with-nodes-and-topics">2. Working with Nodes and Topics<a class="anchor" href="#2.-working-with-nodes-and-topics" aria-hidden="true">#</a></h2>
 <p>In ROS2, <strong>nodes</strong> are basic processes that perform computation. <strong>Topics</strong> are used for sending and receiving messages between nodes.</p>
-<h3 id="node-commands">Node Commands<a class="anchor" href="#node-commands" aria-hidden="true">#</a></h3>
+<h3 data-section-number="2.2.1" id="node-commands">Node Commands<a class="anchor" href="#node-commands" aria-hidden="true">#</a></h3>
 <div class="code" data-lang="bash"><pre class="highlight"><code><span class="c1"># List all running nodes</span>
 ros2<span class="w"> </span>node<span class="w"> </span>list
 
 <span class="c1"># Get detailed info about a specific node</span>
 ros2<span class="w"> </span>node<span class="w"> </span>info<span class="w"> </span>/&lt;node_name&gt;
 </code></pre></div>
-<h3 id="topic-commands">Topic Commands<a class="anchor" href="#topic-commands" aria-hidden="true">#</a></h3>
+<h3 data-section-number="2.2.2" id="topic-commands">Topic Commands<a class="anchor" href="#topic-commands" aria-hidden="true">#</a></h3>
 <div class="code" data-lang="bash"><pre class="highlight"><code><span class="c1"># List all available topics</span>
 ros2<span class="w"> </span>topic<span class="w"> </span>list
 
@@ -228,7 +228,7 @@ ros2<span class="w"> </span>topic<span class="w"> </span>info<span class="w"> </
 <span class="c1"># Print (echo) live messages from a topic</span>
 ros2<span class="w"> </span>topic<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>/&lt;topic_name&gt;
 </code></pre></div>
-<h3 id="service-commands">Service Commands<a class="anchor" href="#service-commands" aria-hidden="true">#</a></h3>
+<h3 data-section-number="2.2.3" id="service-commands">Service Commands<a class="anchor" href="#service-commands" aria-hidden="true">#</a></h3>
 <p>ROS2 services are request-response communication types:</p>
 <div class="code" data-lang="bash"><pre class="highlight"><code><span class="c1"># Call a service</span>
 ros2<span class="w"> </span>service<span class="w"> </span>call<span class="w"> </span>/&lt;service_name&gt;<span class="w"> </span>&lt;service_type&gt;<span class="w"> </span><span class="s2">"&lt;request_data&gt;"</span>
@@ -249,14 +249,14 @@ ros2<span class="w"> </span>bag<span class="w"> </span>play<span class="w"> </sp
 <hr />
 <h2 id="4.-visualizing-data-with-rviz2">4. Visualizing Data with RViz2<a class="anchor" href="#4.-visualizing-data-with-rviz2" aria-hidden="true">#</a></h2>
 <p><strong>RViz2</strong> is a powerful visualization tool for ROS2, helping you view sensor data, robot models, and more in a graphical environment.</p>
-<h3 id="install-rviz2">Install RViz2<a class="anchor" href="#install-rviz2" aria-hidden="true">#</a></h3>
+<h3 data-section-number="2.4.1" id="install-rviz2">Install RViz2<a class="anchor" href="#install-rviz2" aria-hidden="true">#</a></h3>
 <div class="code" data-lang="bash"><pre class="highlight"><code><span class="c1"># Install rviz2 package</span>
 sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>ros-&lt;ros2-distro&gt;-rviz2
 </code></pre></div>
 <p>Example:</p>
 <div class="code" data-lang="bash"><pre class="highlight"><code>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>ros-humble-rviz2
 </code></pre></div>
-<h3 id="launch-rviz2">Launch RViz2<a class="anchor" href="#launch-rviz2" aria-hidden="true">#</a></h3>
+<h3 data-section-number="2.4.2" id="launch-rviz2">Launch RViz2<a class="anchor" href="#launch-rviz2" aria-hidden="true">#</a></h3>
 <div class="code" data-lang="bash"><pre class="highlight"><code>rviz2
 </code></pre></div>
 <p>You can load robot models, display sensor topics like point clouds, lasers, maps, and more in real-time.</p>
@@ -389,17 +389,17 @@ sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w
   <aside class="toc toc-side" aria-label="Contents">
     <p class="toc-title">Contents</p>
 <ol>
-  <li class="toc-l2"><a href="#what-is-ros2">What is ROS2?</a></li>
-  <li class="toc-l2"><a href="#key-differences-between-ros1-and-ros2">Key Differences Between ROS1 and ROS2</a></li>
+  <li class="toc-l2"><a href="#what-is-ros2" data-section-number="1.1">What is ROS2?</a></li>
+  <li class="toc-l2"><a href="#key-differences-between-ros1-and-ros2" data-section-number="1.2">Key Differences Between ROS1 and ROS2</a></li>
   <li class="toc-l2"><a href="#1.-workspace-setup">1. Workspace Setup</a></li>
   <li class="toc-l2"><a href="#2.-working-with-nodes-and-topics">2. Working with Nodes and Topics</a></li>
-  <li class="toc-l3"><a href="#node-commands">Node Commands</a></li>
-  <li class="toc-l3"><a href="#topic-commands">Topic Commands</a></li>
-  <li class="toc-l3"><a href="#service-commands">Service Commands</a></li>
+  <li class="toc-l3"><a href="#node-commands" data-section-number="2.2.1">Node Commands</a></li>
+  <li class="toc-l3"><a href="#topic-commands" data-section-number="2.2.2">Topic Commands</a></li>
+  <li class="toc-l3"><a href="#service-commands" data-section-number="2.2.3">Service Commands</a></li>
   <li class="toc-l2"><a href="#3.-recording-and-playing-data-with-rosbag">3. Recording and Playing Data with Rosbag</a></li>
   <li class="toc-l2"><a href="#4.-visualizing-data-with-rviz2">4. Visualizing Data with RViz2</a></li>
-  <li class="toc-l3"><a href="#install-rviz2">Install RViz2</a></li>
-  <li class="toc-l3"><a href="#launch-rviz2">Launch RViz2</a></li>
+  <li class="toc-l3"><a href="#install-rviz2" data-section-number="2.4.1">Install RViz2</a></li>
+  <li class="toc-l3"><a href="#launch-rviz2" data-section-number="2.4.2">Launch RViz2</a></li>
 </ol>  </aside>
 </div>
   </main>
@@ -415,6 +415,6 @@ sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w
     </div>
   </footer>
 
-  <script src="/assets/site.js?v=949954f10f" defer></script>
+  <script src="/assets/site.js?v=d2a6558958" defer></script>
 </body>
 </html>

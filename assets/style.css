@@ -506,6 +506,9 @@ html.js .reveal.in { opacity: 1; translate: 0 0; }
 .prose h4 { font-size: 1.05em; margin: 1.5em 0 .3em; }
 .prose h2 + *, .prose h3 + *, .prose h4 + * { margin-top: 0; }
 .prose .anchor { margin-left: .35em; color: var(--muted); opacity: 0; font-weight: 400; }
+.prose [data-section-number]::before, .toc [data-section-number]::before {
+  content: attr(data-section-number) " ";
+}
 .prose :is(h2, h3, h4):hover .anchor { opacity: 1; text-decoration: none; }
 .prose ul, .prose ol { padding-left: 1.4em; }
 .prose li::marker { color: var(--muted); }

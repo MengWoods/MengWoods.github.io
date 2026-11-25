@@ -26,8 +26,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
-  <link rel="stylesheet" href="/assets/style.css?v=949954f10f">
-  <link rel="stylesheet" href="/assets/pygments.css?v=949954f10f">
+  <link rel="stylesheet" href="/assets/style.css?v=d2a6558958">
+  <link rel="stylesheet" href="/assets/pygments.css?v=d2a6558958">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-7L1C01SX1E"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-7L1C01SX1E");</script>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2798956128980577" crossorigin="anonymous"></script>
@@ -123,7 +123,7 @@ rm<span class="w"> </span>-rf<span class="w"> </span>~/miniconda3/miniconda.sh
 </code></pre></div>
 <h3 id="1.2-remove-and-install">1.2 Remove and Install<a class="anchor" href="#1.2-remove-and-install" aria-hidden="true">#</a></h3>
 <p><a href="https://developer.nvidia.com/cuda-11-6-0-download-archive">CUDA 11.6</a> and Nvidia driver 510.39.01 are recommended in the guide. The Nvidia driver can be installed along with CUDA.</p>
-<h4 id="remove-cuda">Remove Cuda<a class="anchor" href="#remove-cuda" aria-hidden="true">#</a></h4>
+<h4 data-section-number="1.2.1" id="remove-cuda">Remove Cuda<a class="anchor" href="#remove-cuda" aria-hidden="true">#</a></h4>
 <ul>
 <li>Check cuda version: <code>nvcc --version</code></li>
 <li>Remove cuda:<div class="code" data-lang="bash"><pre class="highlight"><code>sudo<span class="w"> </span>apt-get<span class="w"> </span>--purge<span class="w"> </span>remove<span class="w"> </span><span class="s2">"*cuda*"</span><span class="w"> </span><span class="s2">"*cublas*"</span><span class="w"> </span><span class="s2">"*cufft*"</span><span class="w"> </span><span class="s2">"*cufile*"</span><span class="w"> </span><span class="s2">"*curand*"</span><span class="w"> </span><span class="s2">"*cusolver*"</span><span class="w"> </span><span class="s2">"*cusparse*"</span><span class="w"> </span><span class="s2">"*gds-tools*"</span><span class="w"> </span><span class="s2">"*npp*"</span><span class="w"> </span><span class="s2">"*nvjpeg*"</span><span class="w"> </span><span class="s2">"nsight*"</span><span class="w"> </span><span class="s2">"*nvvm*"</span>
@@ -131,21 +131,21 @@ rm<span class="w"> </span>-rf<span class="w"> </span>~/miniconda3/miniconda.sh
 </li>
 <li>or <code>sudo /usr/local/cuda-11.x/bin/cuda-uninstaller</code> (replace <code>x</code> with the version of cuda)</li>
 </ul>
-<h4 id="remove-nvidia-driver">Remove Nvidia Driver<a class="anchor" href="#remove-nvidia-driver" aria-hidden="true">#</a></h4>
+<h4 data-section-number="1.2.2" id="remove-nvidia-driver">Remove Nvidia Driver<a class="anchor" href="#remove-nvidia-driver" aria-hidden="true">#</a></h4>
 <ul>
 <li>Check nvidia driver version: <code>nvidia-smi</code></li>
 <li>Remove nvidia driver: <code>sudo /usr/bin/nvidia-uninstall</code> or <code>sudo apt-get --purge remove &quot;*nvidia*&quot; &quot;libxnvctrl*&quot;</code></li>
 <li><code>sudo apt-get autoremove</code> (caution)</li>
 </ul>
-<h4 id="installation">Installation<a class="anchor" href="#installation" aria-hidden="true">#</a></h4>
-<h5 id="option-1">Option 1<a class="anchor" href="#option-1" aria-hidden="true">#</a></h5>
+<h4 data-section-number="1.2.3" id="installation">Installation<a class="anchor" href="#installation" aria-hidden="true">#</a></h4>
+<h5 data-section-number="1.2.3.1" id="option-1">Option 1<a class="anchor" href="#option-1" aria-hidden="true">#</a></h5>
 <p>Install CUDA 11.6 and driver 510.39.01:</p>
 <div class="code" data-lang="bash"><pre class="highlight"><code>wget<span class="w"> </span>https://developer.download.nvidia.com/compute/cuda/11.6.0/local_installers/cuda_11.6.0_510.39.01_linux.run
 sudo<span class="w"> </span>sh<span class="w"> </span>cuda_11.6.0_510.39.01_linux.run
 </code></pre></div>
 <p>Select the Nvidia driver during CUDA installation in Terminal.</p>
 <p>For other versions, check method from Nvidia toolkit <a href="https://developer.nvidia.com/cuda-toolkit-archive">website</a>.</p>
-<h4 id="option-2">Option 2<a class="anchor" href="#option-2" aria-hidden="true">#</a></h4>
+<h4 data-section-number="1.2.4" id="option-2">Option 2<a class="anchor" href="#option-2" aria-hidden="true">#</a></h4>
 <p>Open <code>Software &amp; Updates</code>, click <code>Additional Drivers</code>, selecet Nvidia driver and click <code>Apply Changes</code>.</p>
 <h2 id="2.-install-dependencies">2. Install dependencies<a class="anchor" href="#2.-install-dependencies" aria-hidden="true">#</a></h2>
 <h3 id="2.1-create-envrionment-from-file">2.1 Create envrionment from file<a class="anchor" href="#2.1-create-envrionment-from-file" aria-hidden="true">#</a></h3>
@@ -350,6 +350,6 @@ print<span class="o">(</span>mmdet3d.__version__<span class="o">)</span>
     </div>
   </footer>
 
-  <script src="/assets/site.js?v=949954f10f" defer></script>
+  <script src="/assets/site.js?v=d2a6558958" defer></script>
 </body>
 </html>

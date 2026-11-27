@@ -335,7 +335,7 @@ html.js .reveal.in { opacity: 1; translate: 0 0; }
 
 @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
   .latest-card .card {
-    transform: perspective(900px) translateY(0) rotateX(5deg);
+    transform: perspective(900px) translateY(0) rotateX(-20deg);
     transition: transform .42s cubic-bezier(.2, .75, .25, 1), border-color .25s ease, box-shadow .25s ease;
   }
   .latest-card:hover .card,

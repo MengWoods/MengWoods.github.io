@@ -107,6 +107,19 @@
     update();
   }
 
+  // Keep the summary in view when collapsing a long code preview.
+  document.querySelectorAll(".code-preview-toggle summary").forEach(function (summary) {
+    var details = summary.parentElement;
+    summary.addEventListener("click", function (e) {
+      if (e.defaultPrevented || !details.open) return;
+      e.preventDefault();
+      var stickyTop = parseFloat(getComputedStyle(details).top);
+      var top = Math.max(stickyTop, summary.getBoundingClientRect().top);
+      details.open = false;
+      window.scrollBy({ top: summary.getBoundingClientRect().top - top, behavior: "instant" });
+    });
+  });
+
   // Copy buttons on code blocks.
   document.querySelectorAll(".code").forEach(function (block) {
     var btn = document.createElement("button");

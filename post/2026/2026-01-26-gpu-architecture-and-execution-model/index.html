@@ -1,0 +1,804 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GPU Architecture and Execution Model · Menghao Wu</title>
+  <meta name="description" content="Understand how CUDA code maps onto physical GPU hardware, how GPU resources are utilized, and why different kernel configurations produce different performance.">
+  <meta name="author" content="Menghao Wu">
+  <link rel="canonical" href="https://mengwoods.github.io/post/2026/2026-01-26-gpu-architecture-and-execution-model/">
+  <link rel="alternate" type="application/rss+xml" title="Menghao Wu" href="/index.xml">
+  <link rel="icon" href="/logos/logo.png">
+  <meta property="og:site_name" content="Menghao Wu">
+  <meta property="og:title" content="GPU Architecture and Execution Model">
+  <meta property="og:description" content="Understand how CUDA code maps onto physical GPU hardware, how GPU resources are utilized, and why different kernel configurations produce different performance.">
+  <meta property="og:type" content="article">
+<meta property="og:url" content="https://mengwoods.github.io/post/2026/2026-01-26-gpu-architecture-and-execution-model/">  <meta name="twitter:card" content="summary">
+  <script>
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem("theme"); } catch (e) {}
+      if (t !== "light" && t !== "dark") t = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      document.documentElement.setAttribute("data-theme", t);
+      document.documentElement.classList.add("js");
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="/assets/style.css?v=4a40e2629a">
+  <link rel="stylesheet" href="/assets/pygments.css?v=4a40e2629a">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7L1C01SX1E"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-7L1C01SX1E");</script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2798956128980577" crossorigin="anonymous"></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="/" aria-label="Woods — home">
+        <span class="brand-logo"><img src="/logos/logo.png" alt="" width="30" height="30"></span>
+        <span class="brand-text">Woods</span><span class="caret" aria-hidden="true"></span>
+      </a>
+      <nav class="nav" aria-label="Main">
+        <span class="nav-glider" aria-hidden="true"></span>
+        <a href="/categories/math/" style="--c: #8b5cf6">
+          <span class="nav-ico" aria-hidden="true">∑</span>Math
+        </a>
+        <a href="/categories/dl/" style="--c: #06b6d4">
+          <span class="nav-ico" aria-hidden="true">◇</span>AI
+        </a>
+        <a href="/categories/tech/" style="--c: #10b981" aria-current="page">
+          <span class="nav-ico" aria-hidden="true">⚙</span>Tech
+        </a>
+        <a href="/categories/code/" style="--c: #f59e0b">
+          <span class="nav-ico" aria-hidden="true">&lt;/&gt;</span>Code
+        </a>
+        <a href="/categories/hobby/" style="--c: #f43f5e">
+          <span class="nav-ico" aria-hidden="true">✦</span>Life
+        </a>
+        <a href="/about/" style="--c: var(--accent)">
+          <span class="nav-ico" aria-hidden="true">◉</span>About
+        </a>
+      </nav>
+      <div class="tools">
+        <a class="icon-btn" href="/search/" aria-label="Search" title="Search (/)">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </a>
+        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+          <svg class="sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></g></svg>
+          <svg class="moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z" fill="currentColor"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+<div class="progress" aria-hidden="true"></div>
+<div class="post-layout has-toc has-nav" style="--c: #10b981">
+  <article class="post">
+    <header class="post-header">
+      <p class="meta">
+<a class="pill" href="/categories/tech/" style="--c: #10b981"><span aria-hidden="true">⚙</span>Tech</a>
+        <time datetime="2026-01-26">Jan 26, 2026</time> · 12 min read
+      </p>
+      <h1>GPU Architecture and Execution Model</h1>
+      <ul class="tags">
+<li><a href="/tags/cuda/">#CUDA</a></li><li><a href="/tags/gpu/">#GPU</a></li><li><a href="/tags/hip/">#HIP</a></li></ul>
+
+    </header>
+
+    <details class="toc toc-inline">
+      <summary>Contents</summary>
+<ol>
+  <li class="toc-l2"><a href="#overview" data-section-number="1.">Overview</a></li>
+  <li class="toc-l2"><a href="#hardware-architecture" data-section-number="2.">Hardware Architecture</a></li>
+  <li class="toc-l3"><a href="#cpu-and-gpu" data-section-number="2.1">CPU and GPU</a></li>
+  <li class="toc-l3"><a href="#inside-a-gpu" data-section-number="2.2">Inside a GPU</a></li>
+  <li class="toc-l3"><a href="#nvidia-vs-amd-terminology" data-section-number="2.3">NVIDIA vs AMD Terminology</a></li>
+  <li class="toc-l2"><a href="#cuda-execution-model" data-section-number="3.">CUDA Execution Model</a></li>
+  <li class="toc-l3"><a href="#grid-block-warp-and-thread" data-section-number="3.1">Grid, Block, Warp and Thread</a></li>
+  <li class="toc-l3"><a href="#simt" data-section-number="3.2">SIMT</a></li>
+  <li class="toc-l2"><a href="#warp-scheduling-and-latency-hiding" data-section-number="4.">Warp Scheduling and Latency Hiding</a></li>
+  <li class="toc-l3"><a href="#lentency-hiding" data-section-number="4.1">Lentency Hiding</a></li>
+  <li class="toc-l3"><a href="#occupancy" data-section-number="4.2">Occupancy</a></li>
+  <li class="toc-l2"><a href="#practical-cuda-experiments" data-section-number="5.">Practical CUDA Experiments</a></li>
+  <li class="toc-l3"><a href="#inspect-gpu-hardware" data-section-number="5.1">Inspect GPU hardware</a></li>
+  <li class="toc-l3"><a href="#vector-addition-and-block-size" data-section-number="5.2">Vector Addition and Block Size</a></li>
+  <li class="toc-l2"><a href="#performance-limit" data-section-number="6.">Performance Limit</a></li>
+  <li class="toc-l3"><a href="#the-roofline-model" data-section-number="6.1">The Roofline model</a></li>
+  <li class="toc-l2"><a href="#gpu-profiling" data-section-number="7.">GPU Profiling</a></li>
+  <li class="toc-l3"><a href="#nsight-systems" data-section-number="7.1">Nsight Systems</a></li>
+</ol>    </details>
+
+    <div class="prose">
+      <p>Understand how CUDA code maps onto physical GPU hardware, how GPU resources are utilized, and why different kernel configurations produce different performance.</p>
+<!--more-->
+<h2 data-section-number="1." id="overview">Overview<a class="anchor" href="#overview" aria-hidden="true">#</a></h2>
+<p>Three major concepts:</p>
+<ol>
+<li>Hardware: GPU, SM, warp scheduler, execution units.</li>
+<li>Software execution model: Grid, block, warp, thread.</li>
+<li>Performance behaviour: Latency, throughput, occupancy, utilization.</li>
+</ol>
+<p><img src="image-10.webp" alt="alt text" loading="lazy" decoding="async" width="1021" height="933"></p>
+<h2 data-section-number="2." id="hardware-architecture">Hardware Architecture<a class="anchor" href="#hardware-architecture" aria-hidden="true">#</a></h2>
+<h3 data-section-number="2.1" id="cpu-and-gpu">CPU and GPU<a class="anchor" href="#cpu-and-gpu" aria-hidden="true">#</a></h3>
+<p>A CPU is designed to minimize the execution latency of individual tasks; A GPU is primarily designed to maximie the throughput of many parallel tasks.</p>
+<p><img src="image.webp" alt="alt text" loading="lazy" decoding="async" width="1129" height="787"></p>
+<h3 data-section-number="2.2" id="inside-a-gpu">Inside a GPU<a class="anchor" href="#inside-a-gpu" aria-hidden="true">#</a></h3>
+<p>An NVIDIA GPU contains multiple Streaming Multiprocessors (SMs). Each SM is an independent hardware execution resource capable of managing many concurrent threads.</p>
+<p><img src="image-1.webp" alt="alt text" loading="lazy" decoding="async" width="1038" height="1084"></p>
+<p>A SM contains hardware resources:</p>
+<ul>
+<li>CUDA cores: Arithmetic and logical operations</li>
+<li>Tensor cores: Matrix multiply-accumulate operations</li>
+<li>Warp schedulers: Select eligible warps for instruction issue</li>
+<li>Registers: Fast per-thread storage</li>
+<li>Shared memory: On-chip storage shared by threads in a block</li>
+<li>L1 cache: Local caching of memory accesses</li>
+<li>Load/store units: Memory operations</li>
+<li>Special function units: Specialized mathematical operations</li>
+</ul>
+<h3 data-section-number="2.3" id="nvidia-vs-amd-terminology">NVIDIA vs AMD Terminology<a class="anchor" href="#nvidia-vs-amd-terminology" aria-hidden="true">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>NVIDIA</th>
+<th>AMD</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Streaming Multiprocessor</td>
+<td>Compute Unit</td>
+</tr>
+<tr>
+<td>CUDA core</td>
+<td>Stream processor</td>
+</tr>
+<tr>
+<td>Warp</td>
+<td>Wavefront</td>
+</tr>
+<tr>
+<td>32 threads per warp</td>
+<td>Typically 32 or 64 lanes</td>
+</tr>
+<tr>
+<td>Shared memory</td>
+<td>Local Data Share</td>
+</tr>
+<tr>
+<td>Tensor Core</td>
+<td>Matrix Core</td>
+</tr>
+<tr>
+<td>MMA instruction</td>
+<td>MFMA instructions</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 data-section-number="3." id="cuda-execution-model">CUDA Execution Model<a class="anchor" href="#cuda-execution-model" aria-hidden="true">#</a></h2>
+<h3 data-section-number="3.1" id="grid-block-warp-and-thread">Grid, Block, Warp and Thread<a class="anchor" href="#grid-block-warp-and-thread" aria-hidden="true">#</a></h3>
+<div class="code" data-lang="c++"><pre class="highlight"><code><span class="n">vectorAdd</span><span class="o">&lt;&lt;&lt;</span><span class="mi">1024</span><span class="p">,</span><span class="w"> </span><span class="mi">256</span><span class="o">&gt;&gt;&gt;</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">);</span>
+</code></pre></div>
+<p>This creates:</p>
+<ul>
+<li>1024 thread blocks.</li>
+<li>256 threads per block.</li>
+<li>262144 logical threads.</li>
+<li>8 warps per block.</li>
+<li>8192 warps in total.</li>
+</ul>
+<p><img src="image-2.webp" alt="alt text" loading="lazy" decoding="async" width="1010" height="901"></p>
+<h4 data-section-number="3.1.1" id="tail-effect">Tail Effect<a class="anchor" href="#tail-effect" aria-hidden="true">#</a></h4>
+<p>When the end of a kernel's execution, there are not enough remaining thread blocks or warps to fully utilize the GPU. As a result, some GPU processing units become idel while others are still working, reducing overall hardware utilization.</p>
+<p><img src="image-3.webp" alt="alt text" loading="lazy" decoding="async" width="1206" height="878"></p>
+<p>Tail effect can also occure when different blocks take different amounts of time to complete. This is common in irregular workloads, such as: point cloud processing, sparse matrix multiplication, graph processing, mixture of experts, variable-length sequence processing.</p>
+<p><img src="image-4.webp" alt="alt text" loading="lazy" decoding="async" width="1174" height="718"></p>
+<p>How to reduce the tail effect:</p>
+<ul>
+<li>Grid size tuning: reduce partially filled execution waves</li>
+<li>Block size tuning: adjust concurrent block capacity</li>
+<li>Smaller tiles: increase the number of independent tasks</li>
+<li>Split-K GEMM (General Matrix Multiplication): Split the K dimension to expose more parallelism</li>
+<li>Stream-K GEMM: Distribute GEMM computation more evenly</li>
+<li>Persistent kernels: dynamically distribute work among resident blocks</li>
+<li>Load balancing: reduce differencs in block execution time</li>
+</ul>
+<h3 data-section-number="3.2" id="simt">SIMT<a class="anchor" href="#simt" aria-hidden="true">#</a></h3>
+<p>Threads within a warp generally execute a common instruction on different data.</p>
+<h4 data-section-number="3.2.1" id="warp-divergence">Warp divergence<a class="anchor" href="#warp-divergence" aria-hidden="true">#</a></h4>
+<div class="code" data-lang="c++"><pre class="highlight"><code><span class="kt">int</span><span class="w"> </span><span class="n">tid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">threadIdx</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">tid</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">    </span><span class="n">result</span><span class="p">[</span><span class="n">tid</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">tid</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="p">[</span><span class="n">tid</span><span class="p">];</span>
+<span class="k">else</span>
+<span class="w">    </span><span class="n">result</span><span class="p">[</span><span class="n">tid</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">tid</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">b</span><span class="p">[</span><span class="n">tid</span><span class="p">]</span>
+</code></pre></div>
+<p>It occurs when threads within the sam warp follow different execution paths becauses of conditional branches. It reduces parallel execution efficiency.</p>
+<p><img src="image-5.webp" alt="alt text" loading="lazy" decoding="async" width="1252" height="776"></p>
+<h5 data-section-number="3.2.1.1" id="branching-does-not-necessarily-cause-warp-divergence-divergence-is-a-problem-within-a-warp-not-between-warps."><strong>Branching does not necessarily cause warp divergence</strong>, Divergence is a problem within a warp, not between warps.<a class="anchor" href="#branching-does-not-necessarily-cause-warp-divergence-divergence-is-a-problem-within-a-warp-not-between-warps." aria-hidden="true">#</a></h5>
+<p>Case A: divergent branches</p>
+<div class="code" data-lang="c++"><pre class="highlight"><code><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">threadIdx</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">    </span><span class="n">operationA</span><span class="p">();</span>
+<span class="k">else</span>
+<span class="w">    </span><span class="n">operationB</span><span class="p">();</span>
+</code></pre></div>
+<p><img src="image-6.webp" alt="alt text" loading="lazy" decoding="async" width="1218" height="698"></p>
+<p>Case B: warp-uniform branching</p>
+<div class="code" data-lang="c++"><pre class="highlight"><code><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">threadIdx</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">32</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">    </span><span class="n">operationA</span><span class="p">();</span>
+<span class="k">else</span>
+<span class="w">    </span><span class="n">operationB</span><span class="p">();</span>
+</code></pre></div>
+<p><img src="image-7.webp" alt="alt text" loading="lazy" decoding="async" width="1218" height="698"></p>
+<h4 data-section-number="3.2.2" id="loop-divergence">Loop divergence<a class="anchor" href="#loop-divergence" aria-hidden="true">#</a></h4>
+<p>Divergence is not limited to if-else statements, Loops can also cause divergence.</p>
+<div class="code" data-lang="c++"><pre class="highlight"><code><span class="kt">int</span><span class="w"> </span><span class="n">tid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">threadIdx</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">lengths</span><span class="p">[</span><span class="n">tid</span><span class="p">];</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">process</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>If different threads have different loop lengths, some threads finish earlier than others:</p>
+<p><img src="image-8.webp" alt="alt text" loading="lazy" decoding="async" width="1218" height="752"></p>
+<p>This is particularly common in point cloud processing, graph algorithms, ray tracing and sparse matrix computation.</p>
+<h4 data-section-number="3.2.3" id="how-to-reduce-warp-divergence">How to reduce warp divergence<a class="anchor" href="#how-to-reduce-warp-divergence" aria-hidden="true">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>Technique</th>
+<th>Principle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Warp-aligned branching</td>
+<td>Ensure threads within a warp take the same path</td>
+</tr>
+<tr>
+<td>Data sorting</td>
+<td>Group elements with similar computational behavior</td>
+</tr>
+<tr>
+<td>Branchless programming</td>
+<td>Replace suitable branches with arithmetic or selection</td>
+</tr>
+<tr>
+<td>Workload bucketing</td>
+<td>Group tasks with similar execution lengths</td>
+</tr>
+<tr>
+<td>Kernel specialization</td>
+<td>Use separate kernels for different types of work</td>
+</tr>
+<tr>
+<td>Prediction</td>
+<td>Execute short conditional instructions using predictes.</td>
+</tr>
+</tbody>
+</table>
+<h4 data-section-number="3.2.4" id="how-to-detect-warp-divergence">How to detect warp divergence<a class="anchor" href="#how-to-detect-warp-divergence" aria-hidden="true">#</a></h4>
+<p>Using NVIDIA Nsight Compute, pay attention to metrics such as:</p>
+<ul>
+<li>Branch Efficiency: proportion of non-divergent branch targets</li>
+<li>Avg. Active Threads Per Warp: average numbers of active threads</li>
+<li>Avg. Not Predicted Off Threads Per Warp: threads actually participating in instructions</li>
+<li>Achieved Occupancy: Resident warp utilization. a separate concept.</li>
+</ul>
+<hr />
+<h2 data-section-number="4." id="warp-scheduling-and-latency-hiding">Warp Scheduling and Latency Hiding<a class="anchor" href="#warp-scheduling-and-latency-hiding" aria-hidden="true">#</a></h2>
+<h3 data-section-number="4.1" id="lentency-hiding">Lentency Hiding<a class="anchor" href="#lentency-hiding" aria-hidden="true">#</a></h3>
+<p>Suppose an operation depdends on the loaded value, if the data is not cached, the warp may need to wait hundreds of clock cycles. Instead of leaving the execution resources idle, the warp scheduler can select another eligible resident warp. This is called <strong>latency hiding</strong>.</p>
+<p><img src="image-9.webp" alt="alt text" loading="lazy" decoding="async" width="1036" height="957"></p>
+<p>The GPU does not eliminate memory latency, it attempts to perform useful work while other warps are waiting.</p>
+<h3 data-section-number="4.2" id="occupancy">Occupancy<a class="anchor" href="#occupancy" aria-hidden="true">#</a></h3>
+<p>Occupancy measures how many warps are resident on an SM relative to the maximum supported by that SM.</p>
+<p><span class="math">Occupancy = \frac{Resident warps per SM}{Maximum warps per SM} </span></p>
+<p>Occupancy is limited by several hardware resources: registers, shared memory, maximum resident blocks, maximum resident threads, and maximum resident warps.</p>
+<p>Think of an SM as a factory with limited resources. Every block entering the factory requires some of those resources:</p>
+<ol>
+<li>Registers: each thread needs registers</li>
+<li>Shared memory: each block may need shared memory</li>
+<li>Thread/warp capacity: each SM supports a limited number of threads and warps</li>
+<li>Block capacity: each SM supports a limited number of blocks</li>
+</ol>
+<p><strong>Does higer occupancy always mean higher performance?</strong></p>
+<p>No. For example, register tilling in GEMM may increase register usage and reduce occupancy, but imrprove performance bacuase it increases data reuse and reduces memory accesses; Occupancy is a means of enabling latency hiding, not the ultimate performance objective; A kernel with 50% occupancy can outperform a kernel with 100% occupancy.</p>
+<p>Consider three hypothetical GEMM implementations:
+<img src="image-11.webp" alt="alt text" loading="lazy" decoding="async" width="1042" height="620"></p>
+<p>Kernel B is the fastest, even though its occupancy is only 75%. It may have better data reuse, fewer memory accesses and sufficient warps to hide latency. <strong>Occupany is a means to improve performance, not the final optimization objective.</strong></p>
+<h2 data-section-number="5." id="practical-cuda-experiments">Practical CUDA Experiments<a class="anchor" href="#practical-cuda-experiments" aria-hidden="true">#</a></h2>
+<h3 data-section-number="5.1" id="inspect-gpu-hardware">Inspect GPU hardware<a class="anchor" href="#inspect-gpu-hardware" aria-hidden="true">#</a></h3>
+<div class="code code-preview" data-lang="cuda"><div class="code-preview-source"><a href="./device_info.cu">device_info.cu · View source ↗</a></div><details class="code-preview-toggle"><summary><span>Show full code</span><span>Collapse code</span></summary></details><pre class="highlight"><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cuda_runtime.h&gt;</span><span class="w">  </span><span class="c1">// CUDA Runtime API, including device queries and error codes.</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cstdio&gt;</span><span class="w">          </span><span class="c1">// C++ standard header for printf, which formats console output.</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// This program runs on the host (CPU). It queries the GPU without launching a kernel.</span>
+<span class="w">    </span><span class="n">cudaDeviceProp</span><span class="w"> </span><span class="n">prop</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// Device 0 is the first GPU visible to the CUDA application. On success, CUDA</span>
+<span class="w">    </span><span class="c1">// writes its properties into prop through the pointer &amp;prop.</span>
+<span class="w">    </span><span class="n">cudaError_t</span><span class="w"> </span><span class="n">err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cudaGetDeviceProperties</span><span class="p">(</span><span class="o">&amp;</span><span class="n">prop</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Check the status before reading prop. cudaGetErrorString turns a CUDA</span>
+<span class="w">    </span><span class="c1">// error code into readable text, and returning 1 signals failure to the shell.</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">cudaSuccess</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">"Failed to get device properties: %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">cudaGetErrorString</span><span class="p">(</span><span class="n">err</span><span class="p">));</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Compute capability is the GPU's CUDA architecture version, written as</span>
+<span class="w">    </span><span class="c1">// major.minor. It determines which CUDA hardware features are supported.</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">"Device name: %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">prop</span><span class="p">.</span><span class="n">name</span><span class="p">);</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">"Compute capability: %d.%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">prop</span><span class="p">.</span><span class="n">major</span><span class="p">,</span><span class="w"> </span><span class="n">prop</span><span class="p">.</span><span class="n">minor</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// An SM (streaming multiprocessor) runs thread blocks. A block's threads</span>
+<span class="w">    </span><span class="c1">// are grouped into warps, which are the units the SM schedules.</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">"SM count: %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">prop</span><span class="p">.</span><span class="n">multiProcessorCount</span><span class="p">);</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">"Warp size: %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">prop</span><span class="p">.</span><span class="nb">warpSize</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// The block limit applies to a single block. The SM limit counts resident</span>
+<span class="w">    </span><span class="c1">// threads across all blocks on one SM. Registers and shared memory used by</span>
+<span class="w">    </span><span class="c1">// each block can reduce the number of blocks that fit on an SM at once.</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">"Max threads per block: %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">prop</span><span class="p">.</span><span class="n">maxThreadsPerBlock</span><span class="p">);</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">"Max threads per SM: %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">prop</span><span class="p">.</span><span class="n">maxThreadsPerMultiProcessor</span><span class="p">);</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">"Registers per SM: %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">prop</span><span class="p">.</span><span class="n">regsPerMultiprocessor</span><span class="p">);</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">"Shared memory per SM: %.2f KiB</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">prop</span><span class="p">.</span><span class="n">sharedMemPerMultiprocessor</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">1024.0</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// Memory capacities are reported in bytes. Dividing by powers of 1024</span>
+<span class="w">    </span><span class="c1">// converts them to KiB (above), MiB, or GiB for display.</span>
+<span class="w">    </span><span class="c1">// L2 is a cache shared across SMs. Global memory is the GPU's main memory,</span>
+<span class="w">    </span><span class="c1">// and the bus width gives the number of bits in its memory interface.</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">"L2 cache: %.2f MiB</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">prop</span><span class="p">.</span><span class="n">l2CacheSize</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">1048576.0</span><span class="p">);</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">"Global memory: %.2f GiB</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">prop</span><span class="p">.</span><span class="n">totalGlobalMem</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">1073741824.0</span><span class="p">);</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">"Memory bus width: %d bits</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">prop</span><span class="p">.</span><span class="n">memoryBusWidth</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Compile and execute:</p>
+<div class="code" data-lang="bash"><pre class="highlight"><code>nvcc<span class="w"> </span>-O3<span class="w"> </span>-arch<span class="o">=</span>sm_120<span class="w"> </span>device_info.cu<span class="w"> </span>-o<span class="w"> </span>device_info
+./device_info
+</code></pre></div>
+<div class="code" data-lang="bash"><pre class="highlight"><code>$<span class="w"> </span>./device_info<span class="w"> </span>
+Device<span class="w"> </span>name:<span class="w"> </span>NVIDIA<span class="w"> </span>GeForce<span class="w"> </span>RTX<span class="w"> </span><span class="m">5080</span><span class="w"> </span>Laptop<span class="w"> </span>GPU
+Compute<span class="w"> </span>capability:<span class="w"> </span><span class="m">12</span>.0
+SM<span class="w"> </span>count:<span class="w"> </span><span class="m">60</span>
+Warp<span class="w"> </span>size:<span class="w"> </span><span class="m">32</span>
+Max<span class="w"> </span>threads<span class="w"> </span>per<span class="w"> </span>block:<span class="w"> </span><span class="m">1024</span>
+Max<span class="w"> </span>threads<span class="w"> </span>per<span class="w"> </span>SM:<span class="w"> </span><span class="m">1536</span>
+Registers<span class="w"> </span>per<span class="w"> </span>SM:<span class="w"> </span><span class="m">65536</span>
+Shared<span class="w"> </span>memory<span class="w"> </span>per<span class="w"> </span>SM:<span class="w"> </span><span class="m">100</span>.00<span class="w"> </span>KiB
+L2<span class="w"> </span>cache:<span class="w"> </span><span class="m">48</span>.00<span class="w"> </span>MiB
+Global<span class="w"> </span>memory:<span class="w"> </span><span class="m">15</span>.47<span class="w"> </span>GiB
+Memory<span class="w"> </span>bus<span class="w"> </span>width:<span class="w"> </span><span class="m">256</span><span class="w"> </span>bits
+</code></pre></div>
+<h3 data-section-number="5.2" id="vector-addition-and-block-size">Vector Addition and Block Size<a class="anchor" href="#vector-addition-and-block-size" aria-hidden="true">#</a></h3>
+<p><span class="math">C = A + B</span></p>
+<p><img src="image-12.webp" alt="alt text" loading="lazy" decoding="async" width="1012" height="573"></p>
+<div class="code code-preview" data-lang="cuda"><div class="code-preview-source"><a href="./vector_add.cu">vector_add.cu · View source ↗</a></div><details class="code-preview-toggle"><summary><span>Show full code</span><span>Collapse code</span></summary></details><pre class="highlight"><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cuda_runtime.h&gt;</span><span class="w">  </span><span class="c1">// CUDA memory, device, event, and occupancy APIs.</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cstdio&gt;</span><span class="w">          </span><span class="c1">// printf, fprintf, and stderr for console output.</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cstdlib&gt;</span><span class="w">         </span><span class="c1">// atoi for parsing a block size, plus exit and EXIT_FAILURE.</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span><span class="w">          </span><span class="c1">// std::vector owns the arrays in host memory.</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span><span class="w">           </span><span class="c1">// std::fabs computes the absolute error.</span>
+
+<span class="c1">// Run a CUDA API call once and exit on failure. __FILE__ and __LINE__ identify</span>
+<span class="c1">// the call site. The do/while wrapper lets CHECK behave like one statement.</span>
+<span class="cp">#define CHECK(call) do {                              \</span>
+<span class="cp">    cudaError_t err = (call);                         \</span>
+<span class="cp">    if (err != cudaSuccess) {                         \</span>
+<span class="cp">        fprintf(stderr, "%s:%d: %s\n",                \</span>
+<span class="cp">                __FILE__, __LINE__,                   \</span>
+<span class="cp">                cudaGetErrorString(err));             \</span>
+<span class="cp">        exit(EXIT_FAILURE);                           \</span>
+<span class="cp">    }                                                 \</span>
+<span class="cp">} while (0)</span>
+
+<span class="c1">// __global__ marks a kernel that the host launches and GPU threads execute.</span>
+<span class="c1">// a, b, and c point to device memory.</span>
+<span class="kr">__global__</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">vectorAdd</span><span class="p">(</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">float</span><span class="o">*</span><span class="w"> </span><span class="n">a</span><span class="p">,</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">float</span><span class="o">*</span><span class="w"> </span><span class="n">b</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">float</span><span class="o">*</span><span class="w"> </span><span class="n">c</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="c1">// A block starts at blockIdx.x * blockDim.x. threadIdx.x is this thread's</span>
+<span class="w">    </span><span class="c1">// offset within that block, so each thread gets a different array index.</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">blockIdx</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nb">blockDim</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">threadIdx</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Rounding up the grid size can leave extra threads in the final block.</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
+<span class="w">        </span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="p">}</span>
+
+
+<span class="kt">int</span><span class="w"> </span><span class="n">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="o">**</span><span class="w"> </span><span class="n">argv</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 1 &lt;&lt; 24 is 2^24 elements. CUDA allocation and copy sizes are in bytes.</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">24</span><span class="p">;</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">bytes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">);</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iterations</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Reuse one CPU array of ones to initialize both GPU input arrays.</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="w"> </span><span class="n">h</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0f</span><span class="p">);</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="w"> </span><span class="n">result</span><span class="p">(</span><span class="n">N</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="o">*</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">c</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// cudaMalloc writes a device pointer through its first argument.</span>
+<span class="w">    </span><span class="n">CHECK</span><span class="p">(</span><span class="n">cudaMalloc</span><span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">bytes</span><span class="p">));</span>
+<span class="w">    </span><span class="n">CHECK</span><span class="p">(</span><span class="n">cudaMalloc</span><span class="p">(</span><span class="o">&amp;</span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">bytes</span><span class="p">));</span>
+<span class="w">    </span><span class="n">CHECK</span><span class="p">(</span><span class="n">cudaMalloc</span><span class="p">(</span><span class="o">&amp;</span><span class="n">c</span><span class="p">,</span><span class="w"> </span><span class="n">bytes</span><span class="p">));</span>
+
+<span class="w">    </span><span class="c1">// cudaMemcpy takes the destination first. data() exposes the vector's</span>
+<span class="w">    </span><span class="c1">// contiguous CPU buffer for the host-to-device copy.</span>
+<span class="w">    </span><span class="n">CHECK</span><span class="p">(</span><span class="n">cudaMemcpy</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">h</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span><span class="w"> </span><span class="n">bytes</span><span class="p">,</span>
+<span class="w">                     </span><span class="n">cudaMemcpyHostToDevice</span><span class="p">));</span>
+
+<span class="w">    </span><span class="n">CHECK</span><span class="p">(</span><span class="n">cudaMemcpy</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">h</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span><span class="w"> </span><span class="n">bytes</span><span class="p">,</span>
+<span class="w">                     </span><span class="n">cudaMemcpyHostToDevice</span><span class="p">));</span>
+
+<span class="w">    </span><span class="c1">// Query CUDA device 0 for its block and SM thread limits.</span>
+<span class="w">    </span><span class="n">cudaDeviceProp</span><span class="w"> </span><span class="n">prop</span><span class="p">;</span>
+<span class="w">    </span><span class="n">CHECK</span><span class="p">(</span><span class="n">cudaGetDeviceProperties</span><span class="p">(</span><span class="o">&amp;</span><span class="n">prop</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">));</span>
+
+<span class="w">    </span><span class="c1">// CUDA events mark points in a stream and can measure elapsed GPU time.</span>
+<span class="w">    </span><span class="n">cudaEvent_t</span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="n">stop</span><span class="p">;</span>
+<span class="w">    </span><span class="n">CHECK</span><span class="p">(</span><span class="n">cudaEventCreate</span><span class="p">(</span><span class="o">&amp;</span><span class="n">start</span><span class="p">));</span>
+<span class="w">    </span><span class="n">CHECK</span><span class="p">(</span><span class="n">cudaEventCreate</span><span class="p">(</span><span class="o">&amp;</span><span class="n">stop</span><span class="p">));</span>
+
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">blockSizes</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">32</span><span class="p">,</span><span class="w"> </span><span class="mi">64</span><span class="p">,</span><span class="w"> </span><span class="mi">128</span><span class="p">,</span><span class="w"> </span><span class="mi">256</span><span class="p">,</span><span class="w"> </span><span class="mi">512</span><span class="p">,</span><span class="w"> </span><span class="mi">1024</span><span class="p">};</span>
+
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">"Block  Grid      Time(ms)  GB/s     GFLOPS  Occ(%%)</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">block</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">blockSizes</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// An optional command-line argument selects one block size to test.</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">argc</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">block</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">atoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+<span class="w">            </span><span class="k">continue</span><span class="p">;</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">block</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">prop</span><span class="p">.</span><span class="n">maxThreadsPerBlock</span><span class="p">)</span>
+<span class="w">            </span><span class="k">continue</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Round up so the grid covers all N elements.</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">grid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">N</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">block</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">block</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Warm up before timing. &lt;&lt;&lt;grid, block&gt;&gt;&gt; sets the number of blocks</span>
+<span class="w">        </span><span class="c1">// and the number of threads per block in this one-dimensional launch.</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span>
+<span class="w">            </span><span class="n">vectorAdd</span><span class="o">&lt;&lt;&lt;</span><span class="n">grid</span><span class="p">,</span><span class="w"> </span><span class="n">block</span><span class="o">&gt;&gt;&gt;</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Check for launch errors, then wait for GPU work and check for</span>
+<span class="w">        </span><span class="c1">// execution errors before starting the timer.</span>
+<span class="w">        </span><span class="n">CHECK</span><span class="p">(</span><span class="n">cudaGetLastError</span><span class="p">());</span>
+<span class="w">        </span><span class="n">CHECK</span><span class="p">(</span><span class="n">cudaDeviceSynchronize</span><span class="p">());</span>
+
+<span class="w">        </span><span class="c1">// The events and kernels are queued in order in the default stream.</span>
+<span class="w">        </span><span class="c1">// The stop event completes after the last kernel. The measured</span>
+<span class="w">        </span><span class="c1">// interval excludes the warm-up and host-device copies.</span>
+<span class="w">        </span><span class="n">CHECK</span><span class="p">(</span><span class="n">cudaEventRecord</span><span class="p">(</span><span class="n">start</span><span class="p">));</span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">iterations</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span>
+<span class="w">            </span><span class="n">vectorAdd</span><span class="o">&lt;&lt;&lt;</span><span class="n">grid</span><span class="p">,</span><span class="w"> </span><span class="n">block</span><span class="o">&gt;&gt;&gt;</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">CHECK</span><span class="p">(</span><span class="n">cudaGetLastError</span><span class="p">());</span>
+<span class="w">        </span><span class="n">CHECK</span><span class="p">(</span><span class="n">cudaEventRecord</span><span class="p">(</span><span class="n">stop</span><span class="p">));</span>
+<span class="w">        </span><span class="n">CHECK</span><span class="p">(</span><span class="n">cudaEventSynchronize</span><span class="p">(</span><span class="n">stop</span><span class="p">));</span>
+
+<span class="w">        </span><span class="kt">float</span><span class="w"> </span><span class="n">elapsed</span><span class="p">;</span>
+<span class="w">        </span><span class="n">CHECK</span><span class="p">(</span><span class="n">cudaEventElapsedTime</span><span class="p">(</span><span class="o">&amp;</span><span class="n">elapsed</span><span class="p">,</span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="n">stop</span><span class="p">));</span>
+
+<span class="w">        </span><span class="c1">// The event API reports milliseconds for the whole batch.</span>
+<span class="w">        </span><span class="kt">float</span><span class="w"> </span><span class="n">ms</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">elapsed</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">iterations</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">seconds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ms</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">1000.0</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Effective bandwidth counts two input reads and one output write</span>
+<span class="w">        </span><span class="c1">// per element. Actual traffic to GPU main memory can differ.</span>
+<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">bandwidth</span><span class="w"> </span><span class="o">=</span>
+<span class="w">            </span><span class="p">(</span><span class="mf">3.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">bytes</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">seconds</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">1e9</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Each element performs one floating-point addition.</span>
+<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">gflops</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">seconds</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">1e9</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Estimate how many blocks of this kernel can reside on one SM at</span>
+<span class="w">        </span><span class="c1">// once. The last argument is dynamic shared memory per block in bytes.</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">activeBlocks</span><span class="p">;</span>
+
+<span class="w">        </span><span class="n">CHECK</span><span class="p">(</span><span class="n">cudaOccupancyMaxActiveBlocksPerMultiprocessor</span><span class="p">(</span>
+<span class="w">            </span><span class="o">&amp;</span><span class="n">activeBlocks</span><span class="p">,</span><span class="w"> </span><span class="n">vectorAdd</span><span class="p">,</span><span class="w"> </span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">));</span>
+
+<span class="w">        </span><span class="c1">// Convert resident blocks to resident threads and divide by the SM's</span>
+<span class="w">        </span><span class="c1">// thread capacity. This is theoretical occupancy.</span>
+<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">occupancy</span><span class="w"> </span><span class="o">=</span>
+<span class="w">            </span><span class="mf">100.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">activeBlocks</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">block</span><span class="w"> </span><span class="o">/</span>
+<span class="w">            </span><span class="n">prop</span><span class="p">.</span><span class="n">maxThreadsPerMultiProcessor</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Copy the output back to CPU memory and check it against 1.0 + 1.0.</span>
+<span class="w">        </span><span class="n">CHECK</span><span class="p">(</span><span class="n">cudaMemcpy</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span><span class="w"> </span><span class="n">c</span><span class="p">,</span><span class="w"> </span><span class="n">bytes</span><span class="p">,</span>
+<span class="w">                         </span><span class="n">cudaMemcpyDeviceToHost</span><span class="p">));</span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">fabs</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">2.0f</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">1e-6f</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="s">"Incorrect result at %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">);</span>
+<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">"%5d  %7d  %8.4f  %7.2f  %7.2f  %6.1f</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span>
+<span class="w">               </span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">grid</span><span class="p">,</span><span class="w"> </span><span class="n">ms</span><span class="p">,</span><span class="w"> </span><span class="n">bandwidth</span><span class="p">,</span>
+<span class="w">               </span><span class="n">gflops</span><span class="p">,</span><span class="w"> </span><span class="n">occupancy</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Release the CUDA events and device allocations when the benchmark ends.</span>
+<span class="w">    </span><span class="n">CHECK</span><span class="p">(</span><span class="n">cudaEventDestroy</span><span class="p">(</span><span class="n">start</span><span class="p">));</span>
+<span class="w">    </span><span class="n">CHECK</span><span class="p">(</span><span class="n">cudaEventDestroy</span><span class="p">(</span><span class="n">stop</span><span class="p">));</span>
+
+<span class="w">    </span><span class="n">CHECK</span><span class="p">(</span><span class="n">cudaFree</span><span class="p">(</span><span class="n">a</span><span class="p">));</span>
+<span class="w">    </span><span class="n">CHECK</span><span class="p">(</span><span class="n">cudaFree</span><span class="p">(</span><span class="n">b</span><span class="p">));</span>
+<span class="w">    </span><span class="n">CHECK</span><span class="p">(</span><span class="n">cudaFree</span><span class="p">(</span><span class="n">c</span><span class="p">));</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Compile</p>
+<div class="code" data-lang="bash"><pre class="highlight"><code>nvcc<span class="w"> </span>-O3<span class="w"> </span>-arch<span class="o">=</span>sm_120<span class="w"> </span>-lineinfo<span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>-Xptxas<span class="o">=</span>-v<span class="w"> </span>vector_add.cu<span class="w"> </span>-o<span class="w"> </span>vector_add
+</code></pre></div>
+<p><code>-Xptxas=-v</code> reports useful kernel resource information, include register usage, shared memory usage and register spilling.</p>
+<div class="code" data-lang="bash"><pre class="highlight"><code>ptxas<span class="w"> </span>info<span class="w">    </span>:<span class="w"> </span><span class="m">0</span><span class="w"> </span>bytes<span class="w"> </span>gmem
+ptxas<span class="w"> </span>info<span class="w">    </span>:<span class="w"> </span>Compiling<span class="w"> </span>entry<span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="s1">'_Z9vectorAddPKfS0_Pfi'</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="s1">'sm_120'</span>
+ptxas<span class="w"> </span>info<span class="w">    </span>:<span class="w"> </span>Function<span class="w"> </span>properties<span class="w"> </span><span class="k">for</span><span class="w"> </span>_Z9vectorAddPKfS0_Pfi
+<span class="w">    </span><span class="m">0</span><span class="w"> </span>bytes<span class="w"> </span>stack<span class="w"> </span>frame,<span class="w"> </span><span class="m">0</span><span class="w"> </span>bytes<span class="w"> </span>spill<span class="w"> </span>stores,<span class="w"> </span><span class="m">0</span><span class="w"> </span>bytes<span class="w"> </span>spill<span class="w"> </span>loads
+ptxas<span class="w"> </span>info<span class="w">    </span>:<span class="w"> </span>Used<span class="w"> </span><span class="m">12</span><span class="w"> </span>registers,<span class="w"> </span>used<span class="w"> </span><span class="m">0</span><span class="w"> </span>barriers
+ptxas<span class="w"> </span>info<span class="w">    </span>:<span class="w"> </span>Compile<span class="w"> </span><span class="nb">time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span>.443<span class="w"> </span>ms
+</code></pre></div>
+<p>Run</p>
+<div class="code" data-lang="bash"><pre class="highlight"><code>$<span class="w"> </span>./vector_add<span class="w"> </span>
+Block<span class="w">  </span>Grid<span class="w">      </span>Time<span class="o">(</span>ms<span class="o">)</span><span class="w">  </span>GB/s<span class="w">     </span>GFLOPS<span class="w">  </span>Occ<span class="o">(</span>%<span class="o">)</span>
+<span class="w">   </span><span class="m">32</span><span class="w">   </span><span class="m">524288</span><span class="w">    </span><span class="m">0</span>.3884<span class="w">   </span><span class="m">518</span>.35<span class="w">    </span><span class="m">43</span>.20<span class="w">    </span><span class="m">50</span>.0
+<span class="w">   </span><span class="m">64</span><span class="w">   </span><span class="m">262144</span><span class="w">    </span><span class="m">0</span>.3762<span class="w">   </span><span class="m">535</span>.14<span class="w">    </span><span class="m">44</span>.59<span class="w">   </span><span class="m">100</span>.0
+<span class="w">  </span><span class="m">128</span><span class="w">   </span><span class="m">131072</span><span class="w">    </span><span class="m">0</span>.3762<span class="w">   </span><span class="m">535</span>.12<span class="w">    </span><span class="m">44</span>.59<span class="w">   </span><span class="m">100</span>.0
+<span class="w">  </span><span class="m">256</span><span class="w">    </span><span class="m">65536</span><span class="w">    </span><span class="m">0</span>.3770<span class="w">   </span><span class="m">534</span>.03<span class="w">    </span><span class="m">44</span>.50<span class="w">   </span><span class="m">100</span>.0
+<span class="w">  </span><span class="m">512</span><span class="w">    </span><span class="m">32768</span><span class="w">    </span><span class="m">0</span>.3383<span class="w">   </span><span class="m">595</span>.03<span class="w">    </span><span class="m">49</span>.59<span class="w">   </span><span class="m">100</span>.0
+<span class="w"> </span><span class="m">1024</span><span class="w">    </span><span class="m">16384</span><span class="w">    </span><span class="m">0</span>.2721<span class="w">   </span><span class="m">739</span>.97<span class="w">    </span><span class="m">61</span>.66<span class="w">    </span><span class="m">66</span>.7
+</code></pre></div>
+<p>The experiment processes 16777216 elements. Input and output metric are 64 MiB. Logical memory traffic per launch is 192 MiB. Floating-point operations are 16777216. Arithmetic intensity (AI) is 0.0833 FLOP/byte</p>
+<blockquote>
+<p>FLOP = Floating-Point Operation</p>
+</blockquote>
+<p>Arithmetic intensity is calculated as:
+<span class="math">AI = \frac{FLOPs}{Bytes transferred}</span></p>
+<p>For vector addition: <span class="math">AI = 1 / (4 + 4 + 4)</span>; this is extremely low arithmetic intensity. So for sufficiently large arrays, we expect vector addition to be primarily <strong>memory-bandwidth-bound</strong>, rather than <strong>compute-bound</strong>.</p>
+<p>For each thread:
+<img src="image-13.webp" alt="alt text" loading="lazy" decoding="async" width="788" height="517"></p>
+<h2 data-section-number="6." id="performance-limit">Performance Limit<a class="anchor" href="#performance-limit" aria-hidden="true">#</a></h2>
+<h3 data-section-number="6.1" id="the-roofline-model">The Roofline model<a class="anchor" href="#the-roofline-model" aria-hidden="true">#</a></h3>
+<p>The Roofline model estimates the upper performance bound of a kernel based on arithmetic intensity, memory bandwidth and peak computational throughput.</p>
+<p><span class="math">P_{max} = min (P_{peak}, BW \times AI)</span></p>
+<table>
+<thead>
+<tr>
+<th>Symbol</th>
+<th>Meaning</th>
+<th>Unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(P)</td>
+<td>Performance upper bound</td>
+<td>FLOP/s</td>
+</tr>
+<tr>
+<td>(P_{\text{peak}})</td>
+<td>Peak compute performance</td>
+<td>FLOP/s</td>
+</tr>
+<tr>
+<td>(BW)</td>
+<td>Memory bandwidth</td>
+<td>Byte/s</td>
+</tr>
+<tr>
+<td>(AI)</td>
+<td>Arithmetic intensity</td>
+<td>FLOP/byte</td>
+</tr>
+</tbody>
+</table>
+<p>The analysis model helps you understand:</p>
+<ol>
+<li>Is kernel memory-bound or compute-bound?</li>
+<li>What is the maximum theoretical performance or the kernel?</li>
+<li>Should you optimize memory access or computation?</li>
+</ol>
+<p>For example, suppose a GPU has 500 GB/s memory bandwidth, and 40 TFLOPS FP32 peak compute performance. The vector addtions performance limit is approximately:</p>
+<p><span class="math">500 \times \frac{1}{4 + 4 + 4} = 41.67 GFLOPS</span></p>
+<p>Vector addition can only achieve approximately  41 GFLOS under this DRAM-bandwidth model. This does not mean the kernel is poorly optimized, it may already be utilizing nearly all availabel memory bandwidth.</p>
+<h2 data-section-number="7." id="gpu-profiling">GPU Profiling<a class="anchor" href="#gpu-profiling" aria-hidden="true">#</a></h2>
+<h3 data-section-number="7.1" id="nsight-systems">Nsight Systems<a class="anchor" href="#nsight-systems" aria-hidden="true">#</a></h3>
+<div class="code" data-lang="bash"><pre class="highlight"><code>nsys<span class="w"> </span>profile<span class="w"> </span>--trace<span class="o">=</span>cuda<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-o<span class="w"> </span>day1_vector_add<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>./vector_add<span class="w"> </span><span class="m">256</span>
+
+<span class="c1"># Display the summary:</span>
+nsys<span class="w"> </span>stats<span class="w"> </span>day1_vector_add.nsys-rep
+</code></pre></div>
+
+    </div>
+
+    <section class="related" aria-label="Related posts">
+      <h2 class="section-title">Related posts</h2>
+      <div class="cards related-cards"><article class="card" style="--c: #10b981">
+  <p class="meta">
+<a class="pill" href="/categories/tech/" style="--c: #10b981"><span aria-hidden="true">⚙</span>Tech</a>
+    <time datetime="2025-05-18">May 18, 2025</time>
+  </p>
+  <h3><a class="stretched" href="/post/tech/011-structure-of-gpu/">GPU Architecture Overview</a></h3>
+  <p class="summary">CPU and GPU. CPU is designed to excel at executing a sequence of operations, called a thread. It can execute a few tens of threads in parallel. General purpose, good for serial processing, great for task parallelism…</p>
+  <p class="card-foot">10 min read<span class="arrow" aria-hidden="true">→</span></p>
+</article>
+<article class="card" style="--c: #10b981">
+  <p class="meta">
+<a class="pill" href="/categories/tech/" style="--c: #10b981"><span aria-hidden="true">⚙</span>Tech</a>
+    <time datetime="2025-03-26">Mar 26, 2025</time>
+  </p>
+  <h3><a class="stretched" href="/post/tech/007-kitti-introduction/">KITTI Dataset Introduction</a></h3>
+  <p class="summary">KITTI Detailed Introduction.</p>
+  <p class="card-foot">5 min read<span class="arrow" aria-hidden="true">→</span></p>
+</article>
+<article class="card" style="--c: #10b981">
+  <p class="meta">
+<a class="pill" href="/categories/tech/" style="--c: #10b981"><span aria-hidden="true">⚙</span>Tech</a>
+    <time datetime="2024-05-06">May 6, 2024</time>
+  </p>
+  <h3><a class="stretched" href="/post/tech/005-ros2/">Introduction to ROS2, Key Features and Common Commands</a></h3>
+  <p class="summary">ROS2. ROS2 (Robot Operating System 2) is the modern evolution of the original ROS project, designed for real-time, multi-robot systems with a focus on performance, flexibility, and production-readiness. If you&#39;re…</p>
+  <p class="card-foot">4 min read<span class="arrow" aria-hidden="true">→</span></p>
+</article>
+</div>
+    </section>
+
+    <details class="series-inline">
+      <summary>More in Tech <span class="count">7</span></summary>
+      <ol class="series-list">
+<li class="series-year">2026</li>  <li class="series-item current">
+    <a href="/post/2026/2026-01-26-gpu-architecture-and-execution-model/" aria-current="page">
+      <span class="series-title">GPU Architecture and Execution Model</span>
+      <time datetime="2026-01-26">Jan 26</time>
+    </a>
+  </li>
+<li class="series-year">2025</li>  <li class="series-item">
+    <a href="/post/tech/011-structure-of-gpu/">
+      <span class="series-title">GPU Architecture Overview</span>
+      <time datetime="2025-05-18">May 18</time>
+    </a>
+  </li>
+  <li class="series-item">
+    <a href="/post/tech/007-kitti-introduction/">
+      <span class="series-title">KITTI Dataset Introduction</span>
+      <time datetime="2025-03-26">Mar 26</time>
+    </a>
+  </li>
+<li class="series-year">2024</li>  <li class="series-item">
+    <a href="/post/tech/005-ros2/">
+      <span class="series-title">Introduction to ROS2, Key Features and Common Commands</span>
+      <time datetime="2024-05-06">May 06</time>
+    </a>
+  </li>
+  <li class="series-item">
+    <a href="/post/tech/002-run-conda-in-dockerfile/">
+      <span class="series-title">Dockerfile records</span>
+      <time datetime="2024-03-28">Mar 28</time>
+    </a>
+  </li>
+<li class="series-year">2023</li>  <li class="series-item">
+    <a href="/post/tech/003-some-docker-commands/en/">
+      <span class="series-title">Some Useful Docker Commands</span>
+      <time datetime="2023-11-04">Nov 04</time>
+    </a>
+  </li>
+  <li class="series-item">
+    <a href="/post/tech/001-install-openmm3d-lib/en/">
+      <span class="series-title">MMDetection3D Library Installation Guide</span>
+      <time datetime="2023-10-30">Oct 30</time>
+    </a>
+  </li>
+</ol>
+
+    </details>
+
+    <nav class="pager" aria-label="More posts">
+<a class="prev" href="/post/tech/011-structure-of-gpu/"><span>← Older</span>GPU Architecture Overview</a>    </nav>
+
+  </article>
+
+  <nav class="series-side" aria-label="Posts in Tech">
+    <a class="series-head" href="/categories/tech/"><span class="dot" aria-hidden="true"></span>Tech<span class="count">7</span></a>
+    <ol class="series-list">
+<li class="series-year">2026</li>  <li class="series-item current">
+    <a href="/post/2026/2026-01-26-gpu-architecture-and-execution-model/" aria-current="page">
+      <span class="series-title">GPU Architecture and Execution Model</span>
+      <time datetime="2026-01-26">Jan 26</time>
+    </a>
+  </li>
+<li class="series-year">2025</li>  <li class="series-item">
+    <a href="/post/tech/011-structure-of-gpu/">
+      <span class="series-title">GPU Architecture Overview</span>
+      <time datetime="2025-05-18">May 18</time>
+    </a>
+  </li>
+  <li class="series-item">
+    <a href="/post/tech/007-kitti-introduction/">
+      <span class="series-title">KITTI Dataset Introduction</span>
+      <time datetime="2025-03-26">Mar 26</time>
+    </a>
+  </li>
+<li class="series-year">2024</li>  <li class="series-item">
+    <a href="/post/tech/005-ros2/">
+      <span class="series-title">Introduction to ROS2, Key Features and Common Commands</span>
+      <time datetime="2024-05-06">May 06</time>
+    </a>
+  </li>
+  <li class="series-item">
+    <a href="/post/tech/002-run-conda-in-dockerfile/">
+      <span class="series-title">Dockerfile records</span>
+      <time datetime="2024-03-28">Mar 28</time>
+    </a>
+  </li>
+<li class="series-year">2023</li>  <li class="series-item">
+    <a href="/post/tech/003-some-docker-commands/en/">
+      <span class="series-title">Some Useful Docker Commands</span>
+      <time datetime="2023-11-04">Nov 04</time>
+    </a>
+  </li>
+  <li class="series-item">
+    <a href="/post/tech/001-install-openmm3d-lib/en/">
+      <span class="series-title">MMDetection3D Library Installation Guide</span>
+      <time datetime="2023-10-30">Oct 30</time>
+    </a>
+  </li>
+</ol>
+
+  </nav>
+
+  <aside class="toc toc-side" aria-label="Contents">
+    <p class="toc-title">Contents</p>
+<ol>
+  <li class="toc-l2"><a href="#overview" data-section-number="1.">Overview</a></li>
+  <li class="toc-l2"><a href="#hardware-architecture" data-section-number="2.">Hardware Architecture</a></li>
+  <li class="toc-l3"><a href="#cpu-and-gpu" data-section-number="2.1">CPU and GPU</a></li>
+  <li class="toc-l3"><a href="#inside-a-gpu" data-section-number="2.2">Inside a GPU</a></li>
+  <li class="toc-l3"><a href="#nvidia-vs-amd-terminology" data-section-number="2.3">NVIDIA vs AMD Terminology</a></li>
+  <li class="toc-l2"><a href="#cuda-execution-model" data-section-number="3.">CUDA Execution Model</a></li>
+  <li class="toc-l3"><a href="#grid-block-warp-and-thread" data-section-number="3.1">Grid, Block, Warp and Thread</a></li>
+  <li class="toc-l3"><a href="#simt" data-section-number="3.2">SIMT</a></li>
+  <li class="toc-l2"><a href="#warp-scheduling-and-latency-hiding" data-section-number="4.">Warp Scheduling and Latency Hiding</a></li>
+  <li class="toc-l3"><a href="#lentency-hiding" data-section-number="4.1">Lentency Hiding</a></li>
+  <li class="toc-l3"><a href="#occupancy" data-section-number="4.2">Occupancy</a></li>
+  <li class="toc-l2"><a href="#practical-cuda-experiments" data-section-number="5.">Practical CUDA Experiments</a></li>
+  <li class="toc-l3"><a href="#inspect-gpu-hardware" data-section-number="5.1">Inspect GPU hardware</a></li>
+  <li class="toc-l3"><a href="#vector-addition-and-block-size" data-section-number="5.2">Vector Addition and Block Size</a></li>
+  <li class="toc-l2"><a href="#performance-limit" data-section-number="6.">Performance Limit</a></li>
+  <li class="toc-l3"><a href="#the-roofline-model" data-section-number="6.1">The Roofline model</a></li>
+  <li class="toc-l2"><a href="#gpu-profiling" data-section-number="7.">GPU Profiling</a></li>
+  <li class="toc-l3"><a href="#nsight-systems" data-section-number="7.1">Nsight Systems</a></li>
+</ol>  </aside>
+</div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <p>© 2023–2026 Menghao Wu</p>
+      <p class="footer-links">
+<a href="https://github.com/MengWoods" rel="me noopener">Github</a><a href="https://www.linkedin.com/in/wumenghao/" rel="me noopener">Linkedin</a><a href="https://www.youtube.com/@menghao_w" rel="me noopener">Youtube</a>        <a href="/archives/">Archive</a>
+        <a href="/tags/">Tags</a>
+        <a href="/index.xml">RSS</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="/assets/site.js?v=4a40e2629a" defer></script>
+</body>
+</html>

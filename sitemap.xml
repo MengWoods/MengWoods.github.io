@@ -3,6 +3,7 @@
   <url><loc>https://mengwoods.github.io/</loc></url>
   <url><loc>https://mengwoods.github.io/archives/</loc></url>
   <url><loc>https://mengwoods.github.io/tags/</loc></url>
+  <url><loc>https://mengwoods.github.io/post/2026/2026-01-26-gpu-architecture-and-execution-model/</loc><lastmod>2026-01-26</lastmod></url>
   <url><loc>https://mengwoods.github.io/post/dl/014-tensorrt-usage/</loc><lastmod>2025-09-13</lastmod></url>
   <url><loc>https://mengwoods.github.io/post/tech/011-structure-of-gpu/</loc><lastmod>2025-05-18</lastmod></url>
   <url><loc>https://mengwoods.github.io/post/tech/007-kitti-introduction/</loc><lastmod>2025-03-26</lastmod></url>
@@ -24,13 +25,15 @@
   <url><loc>https://mengwoods.github.io/post/tech/003-some-docker-commands/en/</loc><lastmod>2023-11-04</lastmod></url>
   <url><loc>https://mengwoods.github.io/post/tech/001-install-openmm3d-lib/en/</loc><lastmod>2023-10-30</lastmod></url>
   <url><loc>https://mengwoods.github.io/about/</loc></url>
-  <url><loc>https://mengwoods.github.io/categories/dl/</loc></url>
   <url><loc>https://mengwoods.github.io/categories/tech/</loc></url>
+  <url><loc>https://mengwoods.github.io/categories/dl/</loc></url>
   <url><loc>https://mengwoods.github.io/categories/hobby/</loc></url>
   <url><loc>https://mengwoods.github.io/categories/code/</loc></url>
   <url><loc>https://mengwoods.github.io/categories/math/</loc></url>
-  <url><loc>https://mengwoods.github.io/tags/ai/</loc></url>
+  <url><loc>https://mengwoods.github.io/tags/cuda/</loc></url>
   <url><loc>https://mengwoods.github.io/tags/gpu/</loc></url>
+  <url><loc>https://mengwoods.github.io/tags/hip/</loc></url>
+  <url><loc>https://mengwoods.github.io/tags/ai/</loc></url>
   <url><loc>https://mengwoods.github.io/tags/lidar/</loc></url>
   <url><loc>https://mengwoods.github.io/tags/python/</loc></url>
   <url><loc>https://mengwoods.github.io/tags/ros2/</loc></url>

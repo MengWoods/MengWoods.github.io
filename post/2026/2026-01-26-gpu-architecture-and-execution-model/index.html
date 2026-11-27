@@ -26,8 +26,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
-  <link rel="stylesheet" href="/assets/style.css?v=be183841d8">
-  <link rel="stylesheet" href="/assets/pygments.css?v=be183841d8">
+  <link rel="stylesheet" href="/assets/style.css?v=cdf4884406">
+  <link rel="stylesheet" href="/assets/pygments.css?v=cdf4884406">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-7L1C01SX1E"></script>
@@ -101,13 +101,14 @@
   <li class="toc-l2"><a href="#gpu-profiling" data-section-number="7.">GPU Profiling</a></li>
   <li class="toc-l3"><a href="#nsight-systems" data-section-number="7.1">Nsight Systems</a></li>
   <li class="toc-l3"><a href="#nsight-compute" data-section-number="7.2">Nsight Compute</a></li>
+  <li class="toc-l2"><a href="#quiz" data-section-number="8.">Quiz</a></li>
 </ol>  </nav>
 
   <article class="post">
     <header class="post-header">
       <p class="meta">
 <a class="pill" href="/categories/tech/" style="--c: #10b981"><span aria-hidden="true">⚙</span>Tech</a>
-        <time datetime="2026-01-26">Jan 26, 2026</time> · 13 min read
+        <time datetime="2026-01-26">Jan 26, 2026</time> · 14 min read
       </p>
       <h1>GPU Architecture and Execution Model</h1>
       <ul class="tags">
@@ -137,6 +138,7 @@
   <li class="toc-l2"><a href="#gpu-profiling" data-section-number="7.">GPU Profiling</a></li>
   <li class="toc-l3"><a href="#nsight-systems" data-section-number="7.1">Nsight Systems</a></li>
   <li class="toc-l3"><a href="#nsight-compute" data-section-number="7.2">Nsight Compute</a></li>
+  <li class="toc-l2"><a href="#quiz" data-section-number="8.">Quiz</a></li>
 </ol>    </details>
 
     <div class="prose">
@@ -678,6 +680,41 @@ Time<span class="w"> </span><span class="o">(</span>%<span class="o">)</span><sp
 <span class="w">    </span>-o<span class="w"> </span>day1_ncu<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>./vector_add<span class="w"> </span><span class="m">256</span>
 </code></pre></div>
+<p>It generates the profiling report file <code>day1_ncu.ncu-rep</code>. It can be opened using NVIDIA Nsight Compute: <code>ncu-ui day1_ncu.ncu-rep</code>, or view the report in Termial: <code>ncu --import day1_ncu.ncu-rep</code></p>
+<h2 data-section-number="8." id="quiz">Quiz<a class="anchor" href="#quiz" aria-hidden="true">#</a></h2>
+<ol>
+<li>What is the difference between a CUDA core and an SM?</li>
+</ol>
+<p><img src="image-14.webp" alt="alt text" loading="lazy" decoding="async" width="1021" height="894"></p>
+<p>Think of an SM as a worshop and CUDA cores as arithmetic workers inside that workshop:</p>
+<ul>
+<li>GPU: entire factory</li>
+<li>SM: workshop</li>
+<li>CUDA core: arithmetic worker</li>
+<li>Warp scheduler: assigns instructions to execution unit</li>
+<li>Registers: fast storage for working data</li>
+<li>Shared memory: workspace shared by threads in a block.</li>
+</ul>
+<ol start="2">
+<li>Why does a GPU launch more threads than it has physical execution units?</li>
+<li>Can a CUDA thread block execute across multiple SMs?</li>
+<li>Does 100% occupancy gurantee maximum performance?</li>
+<li>Why might increasing register usage improve performance?</li>
+</ol>
+<p>Registers can enable data reuse, register tilling and instruction level parallelism. These benefits may outweigh reduced occupancy.</p>
+<ol start="6">
+<li>What is warp divergence?</li>
+<li>Why is vector addition memory-bound?</li>
+</ol>
+<p>It performs only one floating point operation per 12 logical bytes of FP32 memory traffic, resulting in very low arithmetic intensity.</p>
+<ol start="8">
+<li>Why might a block size of 32 be slower than 256?</li>
+</ol>
+<p>A 32 thread block contains only one warp. The hardware limit on resident blocks per SM may prevent enough warps from becoming resident, reducing latency-hiding capacity.</p>
+<ol start="9">
+<li>How to systematically optimize an unfamiliar GPU kernel?</li>
+</ol>
+<p>Verify correctness, establish a benchmark, profile the workload, identify the dominant bottleneck, form an optimization hypothesis, implement it, measure again and verify correctness.</p>
 
     </div>
 
@@ -830,6 +867,6 @@ Time<span class="w"> </span><span class="o">(</span>%<span class="o">)</span><sp
     </div>
   </footer>
 
-  <script src="/assets/site.js?v=be183841d8" defer></script>
+  <script src="/assets/site.js?v=cdf4884406" defer></script>
 </body>
 </html>

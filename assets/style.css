@@ -421,20 +421,21 @@ html.js .reveal.in { opacity: 1; translate: 0 0; }
 /* ========================================================================== post */
 .progress { position: fixed; top: 0; left: 0; height: 2px; width: 0; z-index: 30; background: var(--grad); }
 .post-layout { max-width: 780px; margin: 0 auto; padding: 44px 20px 0; }
-/* Use the left column for contents, or for the category timeline on posts without contents. */
 .post-layout > .post { grid-area: main; min-width: 0; }
-.post-layout > .series-side { grid-area: nav; }
+.post-layout > .series-side { grid-area: nav; display: none; }
 .post-layout > .toc-side { grid-area: toc; display: none; }
-@media (min-width: 900px) {
-  .post-layout.has-nav:not(.has-toc) { max-width: 1060px; display: grid; grid-template-columns: 220px minmax(0, 740px); grid-template-areas: "nav main"; gap: 44px; justify-content: center; }
-  .post-layout.has-nav:not(.has-toc) .series-inline { display: none; }
+@media screen and (min-width: 1050px) {
+  .post-layout:is(.has-toc, .has-nav) {
+    max-width: 1180px;
+    display: grid;
+    grid-template-columns: 172px minmax(0, 740px) 172px;
+    grid-template-areas: "toc main nav";
+    gap: 28px;
+    justify-content: center;
+  }
+  .post-layout > :is(.toc-side, .series-side) { display: block; }
+  .post-layout .series-inline, .post-layout .toc-inline { display: none; }
 }
-@media (min-width: 1050px) {
-  .post-layout.has-toc { max-width: 1064px; display: grid; grid-template-columns: 240px minmax(0, 740px); grid-template-areas: "toc main"; gap: 44px; justify-content: center; }
-  .post-layout > .toc-side { display: block; }
-  .post-layout.has-toc .toc-inline { display: none; }
-}
-@media (max-width: 899px) { .series-side { display: none; } }
 
 /* category timeline beside the article */
 .series-side { position: sticky; top: 86px; align-self: start; max-height: calc(100vh - 110px); overflow-y: auto; scrollbar-width: thin; padding: 2px 4px 12px 0; }
@@ -467,6 +468,11 @@ html.js .reveal.in { opacity: 1; translate: 0 0; }
 }
 .series-item a:hover { background: color-mix(in srgb, var(--c) 10%, transparent); color: var(--text); text-decoration: none; }
 .series-item a:hover::before { transform: scale(1.5); background: var(--c); }
+.series-title { overflow-wrap: anywhere; }
+@media (hover: hover) {
+  .series-side .series-title { display: block; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+  .series-side a:is(:hover, :focus-visible) .series-title { white-space: normal; }
+}
 .series-item time { display: block; font: 500 11px var(--mono); color: var(--muted); margin-top: 1px; }
 .series-item.current a { background: color-mix(in srgb, var(--c) 14%, transparent); color: var(--text); font-weight: 600; box-shadow: inset 2px 0 0 var(--c); }
 .series-item.current a::before { left: -17px; top: 11px; width: 8px; height: 8px; background: var(--c); box-shadow: 0 0 0 3px var(--bg), 0 0 10px var(--c); }
@@ -489,7 +495,7 @@ html.js .reveal.in { opacity: 1; translate: 0 0; }
 .toc a:hover { color: var(--text); text-decoration: none; }
 .toc a.active { color: var(--c, var(--accent)); border-left-color: var(--c, var(--accent)); }
 .toc .toc-l3 a { padding-left: 24px; font-size: 13px; }
-.toc-side { position: sticky; top: 86px; align-self: start; max-height: calc(100vh - 110px); overflow-y: auto; }
+.toc-side { position: sticky; top: 86px; align-self: start; max-height: calc(100vh - 110px); overflow-y: auto; overflow-wrap: anywhere; }
 .toc-title { font: 600 11.5px var(--mono); text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin: 8px 0 10px; }
 .toc-inline { border: 1px solid var(--border); border-radius: var(--radius); padding: 10px 16px; margin-bottom: 28px; background: var(--surface); }
 .toc-inline summary { cursor: pointer; font-weight: 600; color: var(--text-2); }

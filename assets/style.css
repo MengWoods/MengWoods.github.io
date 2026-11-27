@@ -421,20 +421,19 @@ html.js .reveal.in { opacity: 1; translate: 0 0; }
 /* ========================================================================== post */
 .progress { position: fixed; top: 0; left: 0; height: 2px; width: 0; z-index: 30; background: var(--grad); }
 .post-layout { max-width: 780px; margin: 0 auto; padding: 44px 20px 0; }
-/* grid: [category timeline] article [contents]; the side columns appear as the screen widens */
+/* Use the left column for contents, or for the category timeline on posts without contents. */
 .post-layout > .post { grid-area: main; min-width: 0; }
 .post-layout > .series-side { grid-area: nav; }
-.post-layout > .toc-side { grid-area: toc; }
+.post-layout > .toc-side { grid-area: toc; display: none; }
 @media (min-width: 900px) {
-  .post-layout.has-nav { max-width: 1060px; display: grid; grid-template-columns: 220px minmax(0, 740px); grid-template-areas: "nav main"; gap: 44px; justify-content: center; }
-  .post-layout.has-nav .series-inline { display: none; }
+  .post-layout.has-nav:not(.has-toc) { max-width: 1060px; display: grid; grid-template-columns: 220px minmax(0, 740px); grid-template-areas: "nav main"; gap: 44px; justify-content: center; }
+  .post-layout.has-nav:not(.has-toc) .series-inline { display: none; }
 }
-@media (min-width: 1180px) {
-  .post-layout.has-toc { max-width: 1120px; display: grid; grid-template-columns: minmax(0, 740px) 240px; grid-template-areas: "main toc"; gap: 64px; justify-content: center; }
-  .post-layout.has-toc.has-nav { max-width: 1340px; grid-template-columns: 220px minmax(0, 740px) 240px; grid-template-areas: "nav main toc"; gap: 44px; }
+@media (min-width: 1050px) {
+  .post-layout.has-toc { max-width: 1064px; display: grid; grid-template-columns: 240px minmax(0, 740px); grid-template-areas: "toc main"; gap: 44px; justify-content: center; }
+  .post-layout > .toc-side { display: block; }
   .post-layout.has-toc .toc-inline { display: none; }
 }
-@media (max-width: 1179px) { .toc-side { display: none; } }
 @media (max-width: 899px) { .series-side { display: none; } }
 
 /* category timeline beside the article */
@@ -521,7 +520,7 @@ html.js .reveal.in { opacity: 1; translate: 0 0; }
   display: block;
   width: auto;
   height: auto;
-  max-width: min(100%, var(--image-width, min(78%, 42rem)));
+  max-width: min(100%, var(--image-width, min(72%, 40rem)));
   max-height: min(70vh, 32rem);
   margin: 1.6em auto;
   border-radius: 10px;

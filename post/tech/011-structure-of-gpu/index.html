@@ -26,8 +26,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
-  <link rel="stylesheet" href="/assets/style.css?v=56a5f5824e">
-  <link rel="stylesheet" href="/assets/pygments.css?v=56a5f5824e">
+  <link rel="stylesheet" href="/assets/style.css?v=00cc735f82">
+  <link rel="stylesheet" href="/assets/pygments.css?v=00cc735f82">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-7L1C01SX1E"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-7L1C01SX1E");</script>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2798956128980577" crossorigin="anonymous"></script>
@@ -77,6 +77,25 @@
   <main id="main">
 <div class="progress" aria-hidden="true"></div>
 <div class="post-layout has-toc has-nav" style="--c: #10b981">
+  <nav class="toc toc-side" aria-label="Contents">
+    <p class="toc-title">Contents</p>
+<ol>
+  <li class="toc-l2"><a href="#cpu-and-gpu" data-section-number="1.">CPU and GPU</a></li>
+  <li class="toc-l2"><a href="#gpu-programming-model" data-section-number="2.">GPU Programming Model</a></li>
+  <li class="toc-l3"><a href="#key-concepts" data-section-number="2.1">Key Concepts</a></li>
+  <li class="toc-l3"><a href="#advantages-and-disadvantages" data-section-number="2.2">Advantages and Disadvantages</a></li>
+  <li class="toc-l3"><a href="#accelerator-models" data-section-number="2.3">Accelerator Models</a></li>
+  <li class="toc-l3"><a href="#hip" data-section-number="2.4">HIP</a></li>
+  <li class="toc-l2"><a href="#volta-gpu-microarchitecture" data-section-number="3.">Volta GPU Microarchitecture</a></li>
+  <li class="toc-l3"><a href="#gpu-architecture-scheme" data-section-number="3.1">GPU Architecture Scheme</a></li>
+  <li class="toc-l3"><a href="#streaming-multiprocessors" data-section-number="3.2">Streaming Multiprocessors</a></li>
+  <li class="toc-l2"><a href="#thread" data-section-number="4.">Thread</a></li>
+  <li class="toc-l3"><a href="#thread-hierarchy" data-section-number="4.1">Thread Hierarchy</a></li>
+  <li class="toc-l3"><a href="#thread-scheduling-simt" data-section-number="4.2">Thread Scheduling, SIMT</a></li>
+  <li class="toc-l2"><a href="#physical-and-logical-scheme" data-section-number="5.">Physical and Logical Scheme</a></li>
+  <li class="toc-l2"><a href="#memory-architecture" data-section-number="6.">Memory Architecture</a></li>
+</ol>  </nav>
+
   <article class="post">
     <header class="post-header">
       <p class="meta">
@@ -380,73 +399,7 @@
 
   </article>
 
-  <nav class="series-side" aria-label="Posts in Tech">
-    <a class="series-head" href="/categories/tech/"><span class="dot" aria-hidden="true"></span>Tech<span class="count">7</span></a>
-    <ol class="series-list">
-<li class="series-year">2026</li>  <li class="series-item">
-    <a href="/post/2026/2026-01-26-gpu-architecture-and-execution-model/">
-      <span class="series-title">GPU Architecture and Execution Model</span>
-      <time datetime="2026-01-26">Jan 26</time>
-    </a>
-  </li>
-<li class="series-year">2025</li>  <li class="series-item current">
-    <a href="/post/tech/011-structure-of-gpu/" aria-current="page">
-      <span class="series-title">GPU Architecture Overview</span>
-      <time datetime="2025-05-18">May 18</time>
-    </a>
-  </li>
-  <li class="series-item">
-    <a href="/post/tech/007-kitti-introduction/">
-      <span class="series-title">KITTI Dataset Introduction</span>
-      <time datetime="2025-03-26">Mar 26</time>
-    </a>
-  </li>
-<li class="series-year">2024</li>  <li class="series-item">
-    <a href="/post/tech/005-ros2/">
-      <span class="series-title">Introduction to ROS2, Key Features and Common Commands</span>
-      <time datetime="2024-05-06">May 06</time>
-    </a>
-  </li>
-  <li class="series-item">
-    <a href="/post/tech/002-run-conda-in-dockerfile/">
-      <span class="series-title">Dockerfile records</span>
-      <time datetime="2024-03-28">Mar 28</time>
-    </a>
-  </li>
-<li class="series-year">2023</li>  <li class="series-item">
-    <a href="/post/tech/003-some-docker-commands/en/">
-      <span class="series-title">Some Useful Docker Commands</span>
-      <time datetime="2023-11-04">Nov 04</time>
-    </a>
-  </li>
-  <li class="series-item">
-    <a href="/post/tech/001-install-openmm3d-lib/en/">
-      <span class="series-title">MMDetection3D Library Installation Guide</span>
-      <time datetime="2023-10-30">Oct 30</time>
-    </a>
-  </li>
-</ol>
 
-  </nav>
-
-  <aside class="toc toc-side" aria-label="Contents">
-    <p class="toc-title">Contents</p>
-<ol>
-  <li class="toc-l2"><a href="#cpu-and-gpu" data-section-number="1.">CPU and GPU</a></li>
-  <li class="toc-l2"><a href="#gpu-programming-model" data-section-number="2.">GPU Programming Model</a></li>
-  <li class="toc-l3"><a href="#key-concepts" data-section-number="2.1">Key Concepts</a></li>
-  <li class="toc-l3"><a href="#advantages-and-disadvantages" data-section-number="2.2">Advantages and Disadvantages</a></li>
-  <li class="toc-l3"><a href="#accelerator-models" data-section-number="2.3">Accelerator Models</a></li>
-  <li class="toc-l3"><a href="#hip" data-section-number="2.4">HIP</a></li>
-  <li class="toc-l2"><a href="#volta-gpu-microarchitecture" data-section-number="3.">Volta GPU Microarchitecture</a></li>
-  <li class="toc-l3"><a href="#gpu-architecture-scheme" data-section-number="3.1">GPU Architecture Scheme</a></li>
-  <li class="toc-l3"><a href="#streaming-multiprocessors" data-section-number="3.2">Streaming Multiprocessors</a></li>
-  <li class="toc-l2"><a href="#thread" data-section-number="4.">Thread</a></li>
-  <li class="toc-l3"><a href="#thread-hierarchy" data-section-number="4.1">Thread Hierarchy</a></li>
-  <li class="toc-l3"><a href="#thread-scheduling-simt" data-section-number="4.2">Thread Scheduling, SIMT</a></li>
-  <li class="toc-l2"><a href="#physical-and-logical-scheme" data-section-number="5.">Physical and Logical Scheme</a></li>
-  <li class="toc-l2"><a href="#memory-architecture" data-section-number="6.">Memory Architecture</a></li>
-</ol>  </aside>
 </div>
   </main>
 
@@ -461,6 +414,6 @@
     </div>
   </footer>
 
-  <script src="/assets/site.js?v=56a5f5824e" defer></script>
+  <script src="/assets/site.js?v=00cc735f82" defer></script>
 </body>
 </html>

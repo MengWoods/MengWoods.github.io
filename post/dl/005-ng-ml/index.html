@@ -26,8 +26,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
-  <link rel="stylesheet" href="/assets/style.css?v=56a5f5824e">
-  <link rel="stylesheet" href="/assets/pygments.css?v=56a5f5824e">
+  <link rel="stylesheet" href="/assets/style.css?v=00cc735f82">
+  <link rel="stylesheet" href="/assets/pygments.css?v=00cc735f82">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-7L1C01SX1E"></script>
@@ -79,6 +79,42 @@
   <main id="main">
 <div class="progress" aria-hidden="true"></div>
 <div class="post-layout has-toc has-nav" style="--c: #06b6d4">
+  <nav class="toc toc-side" aria-label="Contents">
+    <p class="toc-title">Contents</p>
+<ol>
+  <li class="toc-l2"><a href="#c1-supervised-machine-learning---regression-and-classification" data-section-number="1.">C1-Supervised Machine Learning - Regression and Classification</a></li>
+  <li class="toc-l3"><a href="#p25-feature-scaling" data-section-number="1.1">P25 Feature scaling</a></li>
+  <li class="toc-l3"><a href="#p29-feature-engineering-p30-multiple-linear-regression" data-section-number="1.2">P29 Feature Engineering, P30 Multiple linear regression</a></li>
+  <li class="toc-l3"><a href="#p31-motivation" data-section-number="1.3">P31 Motivation</a></li>
+  <li class="toc-l3"><a href="#p32-logistic-regression" data-section-number="1.4">P32 Logistic regression</a></li>
+  <li class="toc-l3"><a href="#p33-decision-boundary" data-section-number="1.5">P33 Decision Boundary</a></li>
+  <li class="toc-l3"><a href="#p34-cost-function-for-logistic-regression" data-section-number="1.6">P34 Cost Function for Logistic Regression</a></li>
+  <li class="toc-l3"><a href="#p35-simplified-loss-function" data-section-number="1.7">P35 Simplified Loss function</a></li>
+  <li class="toc-l3"><a href="#p37-overfitting" data-section-number="1.8">P37 Overfitting</a></li>
+  <li class="toc-l3"><a href="#p38-addressing-overfitting" data-section-number="1.9">P38 Addressing Overfitting</a></li>
+  <li class="toc-l3"><a href="#p39-regularization" data-section-number="1.10">P39 Regularization</a></li>
+  <li class="toc-l3"><a href="#p40-regularization-for-linear-regression" data-section-number="1.11">P40 Regularization for Linear Regression</a></li>
+  <li class="toc-l2"><a href="#c2-advanced-learning-algorithms" data-section-number="2.">C2-Advanced Learning Algorithms</a></li>
+  <li class="toc-l3"><a href="#p45-requirement-prediction" data-section-number="2.1">P45 Requirement prediction</a></li>
+  <li class="toc-l3"><a href="#p51" data-section-number="2.2">P51</a></li>
+  <li class="toc-l3"><a href="#p61" data-section-number="2.3">P61</a></li>
+  <li class="toc-l3"><a href="#p62-activation-function" data-section-number="2.4">P62 Activation function</a></li>
+  <li class="toc-l3"><a href="#p66-multiclass-softmax" data-section-number="2.5">P66 Multiclass, Softmax</a></li>
+  <li class="toc-l3"><a href="#p69-multi-label-classification" data-section-number="2.6">P69 Multi-label Classification</a></li>
+  <li class="toc-l3"><a href="#p79-advance-optimization-algorithm-adam" data-section-number="2.7">P79 Advance Optimization Algorithm (Adam)</a></li>
+  <li class="toc-l3"><a href="#p71-convolutional-layer" data-section-number="2.8">P71 Convolutional Layer</a></li>
+  <li class="toc-l3"><a href="#p75-diagnostic" data-section-number="2.9">P75 Diagnostic</a></li>
+  <li class="toc-l3"><a href="#p77-model-selection" data-section-number="2.10">P77 Model Selection</a></li>
+  <li class="toc-l3"><a href="#p78-biasvariance" data-section-number="2.11">P78 Bias/Variance</a></li>
+  <li class="toc-l3"><a href="#p84-ml-development" data-section-number="2.12">P84 ML Development</a></li>
+  <li class="toc-l3"><a href="#p89-data-augmentation" data-section-number="2.13">P89 Data Augmentation</a></li>
+  <li class="toc-l3"><a href="#p90-transfer-learning" data-section-number="2.14">P90 Transfer learning</a></li>
+  <li class="toc-l3"><a href="#p88-mlops" data-section-number="2.15">P88 MLOps</a></li>
+  <li class="toc-l3"><a href="#p90-skewed-datasets" data-section-number="2.16">P90 Skewed Datasets</a></li>
+  <li class="toc-l3"><a href="#p91-decision-trees" data-section-number="2.17">P91 Decision Trees</a></li>
+  <li class="toc-l2"><a href="#c3-unsupervised-learning" data-section-number="3.">C3-Unsupervised Learning</a></li>
+</ol>  </nav>
+
   <article class="post">
     <header class="post-header">
       <p class="meta">
@@ -1157,72 +1193,7 @@ Each example <span class="math">x_i</span> has <span class="math">n</span> featu
 
   </article>
 
-  <nav class="series-side" aria-label="Posts in AI &amp; Deep Learning">
-    <a class="series-head" href="/categories/dl/"><span class="dot" aria-hidden="true"></span>AI &amp; Deep Learning<span class="count">4</span></a>
-    <ol class="series-list">
-<li class="series-year">2025</li>  <li class="series-item">
-    <a href="/post/dl/014-tensorrt-usage/">
-      <span class="series-title">TensorRT Engine Deployment Guide</span>
-      <time datetime="2025-09-13">Sep 13</time>
-    </a>
-  </li>
-<li class="series-year">2024</li>  <li class="series-item">
-    <a href="/post/dl/008-drl-summary/">
-      <span class="series-title">An Introduction to the Fundamentals of Reinforcement Learning</span>
-      <time datetime="2024-07-07">Jul 07</time>
-    </a>
-  </li>
-  <li class="series-item current">
-    <a href="/post/dl/005-ng-ml/" aria-current="page">
-      <span class="series-title">Comprehensive Notes on Andrew Ng’s Machine Learning Course</span>
-      <time datetime="2024-04-25">Apr 25</time>
-    </a>
-  </li>
-  <li class="series-item">
-    <a href="/post/dl/001-probability/">
-      <span class="series-title">Probability Knowledge for Deep Learning</span>
-      <time datetime="2024-04-19">Apr 19</time>
-    </a>
-  </li>
-</ol>
 
-  </nav>
-
-  <aside class="toc toc-side" aria-label="Contents">
-    <p class="toc-title">Contents</p>
-<ol>
-  <li class="toc-l2"><a href="#c1-supervised-machine-learning---regression-and-classification" data-section-number="1.">C1-Supervised Machine Learning - Regression and Classification</a></li>
-  <li class="toc-l3"><a href="#p25-feature-scaling" data-section-number="1.1">P25 Feature scaling</a></li>
-  <li class="toc-l3"><a href="#p29-feature-engineering-p30-multiple-linear-regression" data-section-number="1.2">P29 Feature Engineering, P30 Multiple linear regression</a></li>
-  <li class="toc-l3"><a href="#p31-motivation" data-section-number="1.3">P31 Motivation</a></li>
-  <li class="toc-l3"><a href="#p32-logistic-regression" data-section-number="1.4">P32 Logistic regression</a></li>
-  <li class="toc-l3"><a href="#p33-decision-boundary" data-section-number="1.5">P33 Decision Boundary</a></li>
-  <li class="toc-l3"><a href="#p34-cost-function-for-logistic-regression" data-section-number="1.6">P34 Cost Function for Logistic Regression</a></li>
-  <li class="toc-l3"><a href="#p35-simplified-loss-function" data-section-number="1.7">P35 Simplified Loss function</a></li>
-  <li class="toc-l3"><a href="#p37-overfitting" data-section-number="1.8">P37 Overfitting</a></li>
-  <li class="toc-l3"><a href="#p38-addressing-overfitting" data-section-number="1.9">P38 Addressing Overfitting</a></li>
-  <li class="toc-l3"><a href="#p39-regularization" data-section-number="1.10">P39 Regularization</a></li>
-  <li class="toc-l3"><a href="#p40-regularization-for-linear-regression" data-section-number="1.11">P40 Regularization for Linear Regression</a></li>
-  <li class="toc-l2"><a href="#c2-advanced-learning-algorithms" data-section-number="2.">C2-Advanced Learning Algorithms</a></li>
-  <li class="toc-l3"><a href="#p45-requirement-prediction" data-section-number="2.1">P45 Requirement prediction</a></li>
-  <li class="toc-l3"><a href="#p51" data-section-number="2.2">P51</a></li>
-  <li class="toc-l3"><a href="#p61" data-section-number="2.3">P61</a></li>
-  <li class="toc-l3"><a href="#p62-activation-function" data-section-number="2.4">P62 Activation function</a></li>
-  <li class="toc-l3"><a href="#p66-multiclass-softmax" data-section-number="2.5">P66 Multiclass, Softmax</a></li>
-  <li class="toc-l3"><a href="#p69-multi-label-classification" data-section-number="2.6">P69 Multi-label Classification</a></li>
-  <li class="toc-l3"><a href="#p79-advance-optimization-algorithm-adam" data-section-number="2.7">P79 Advance Optimization Algorithm (Adam)</a></li>
-  <li class="toc-l3"><a href="#p71-convolutional-layer" data-section-number="2.8">P71 Convolutional Layer</a></li>
-  <li class="toc-l3"><a href="#p75-diagnostic" data-section-number="2.9">P75 Diagnostic</a></li>
-  <li class="toc-l3"><a href="#p77-model-selection" data-section-number="2.10">P77 Model Selection</a></li>
-  <li class="toc-l3"><a href="#p78-biasvariance" data-section-number="2.11">P78 Bias/Variance</a></li>
-  <li class="toc-l3"><a href="#p84-ml-development" data-section-number="2.12">P84 ML Development</a></li>
-  <li class="toc-l3"><a href="#p89-data-augmentation" data-section-number="2.13">P89 Data Augmentation</a></li>
-  <li class="toc-l3"><a href="#p90-transfer-learning" data-section-number="2.14">P90 Transfer learning</a></li>
-  <li class="toc-l3"><a href="#p88-mlops" data-section-number="2.15">P88 MLOps</a></li>
-  <li class="toc-l3"><a href="#p90-skewed-datasets" data-section-number="2.16">P90 Skewed Datasets</a></li>
-  <li class="toc-l3"><a href="#p91-decision-trees" data-section-number="2.17">P91 Decision Trees</a></li>
-  <li class="toc-l2"><a href="#c3-unsupervised-learning" data-section-number="3.">C3-Unsupervised Learning</a></li>
-</ol>  </aside>
 </div>
   </main>
 
@@ -1237,6 +1208,6 @@ Each example <span class="math">x_i</span> has <span class="math">n</span> featu
     </div>
   </footer>
 
-  <script src="/assets/site.js?v=56a5f5824e" defer></script>
+  <script src="/assets/site.js?v=00cc735f82" defer></script>
 </body>
 </html>

@@ -26,8 +26,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
-  <link rel="stylesheet" href="/assets/style.css?v=56a5f5824e">
-  <link rel="stylesheet" href="/assets/pygments.css?v=56a5f5824e">
+  <link rel="stylesheet" href="/assets/style.css?v=00cc735f82">
+  <link rel="stylesheet" href="/assets/pygments.css?v=00cc735f82">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-7L1C01SX1E"></script>
@@ -79,6 +79,30 @@
   <main id="main">
 <div class="progress" aria-hidden="true"></div>
 <div class="post-layout has-toc has-nav" style="--c: #10b981">
+  <nav class="toc toc-side" aria-label="Contents">
+    <p class="toc-title">Contents</p>
+<ol>
+  <li class="toc-l2"><a href="#overview" data-section-number="1.">Overview</a></li>
+  <li class="toc-l2"><a href="#hardware-architecture" data-section-number="2.">Hardware Architecture</a></li>
+  <li class="toc-l3"><a href="#cpu-and-gpu" data-section-number="2.1">CPU and GPU</a></li>
+  <li class="toc-l3"><a href="#inside-a-gpu" data-section-number="2.2">Inside a GPU</a></li>
+  <li class="toc-l3"><a href="#nvidia-vs-amd-terminology" data-section-number="2.3">NVIDIA vs AMD Terminology</a></li>
+  <li class="toc-l2"><a href="#cuda-execution-model" data-section-number="3.">CUDA Execution Model</a></li>
+  <li class="toc-l3"><a href="#grid-block-warp-and-thread" data-section-number="3.1">Grid, Block, Warp and Thread</a></li>
+  <li class="toc-l3"><a href="#simt" data-section-number="3.2">SIMT</a></li>
+  <li class="toc-l2"><a href="#warp-scheduling-and-latency-hiding" data-section-number="4.">Warp Scheduling and Latency Hiding</a></li>
+  <li class="toc-l3"><a href="#lentency-hiding" data-section-number="4.1">Lentency Hiding</a></li>
+  <li class="toc-l3"><a href="#occupancy" data-section-number="4.2">Occupancy</a></li>
+  <li class="toc-l2"><a href="#practical-cuda-experiments" data-section-number="5.">Practical CUDA Experiments</a></li>
+  <li class="toc-l3"><a href="#inspect-gpu-hardware" data-section-number="5.1">Inspect GPU hardware</a></li>
+  <li class="toc-l3"><a href="#vector-addition-and-block-size" data-section-number="5.2">Vector Addition and Block Size</a></li>
+  <li class="toc-l2"><a href="#performance-limit" data-section-number="6.">Performance Limit</a></li>
+  <li class="toc-l3"><a href="#the-roofline-model" data-section-number="6.1">The Roofline model</a></li>
+  <li class="toc-l2"><a href="#gpu-profiling" data-section-number="7.">GPU Profiling</a></li>
+  <li class="toc-l3"><a href="#nsight-systems" data-section-number="7.1">Nsight Systems</a></li>
+  <li class="toc-l3"><a href="#nsight-compute" data-section-number="7.2">Nsight Compute</a></li>
+</ol>  </nav>
+
   <article class="post">
     <header class="post-header">
       <p class="meta">
@@ -112,6 +136,7 @@
   <li class="toc-l3"><a href="#the-roofline-model" data-section-number="6.1">The Roofline model</a></li>
   <li class="toc-l2"><a href="#gpu-profiling" data-section-number="7.">GPU Profiling</a></li>
   <li class="toc-l3"><a href="#nsight-systems" data-section-number="7.1">Nsight Systems</a></li>
+  <li class="toc-l3"><a href="#nsight-compute" data-section-number="7.2">Nsight Compute</a></li>
 </ol>    </details>
 
     <div class="prose">
@@ -644,6 +669,15 @@ Time<span class="w"> </span><span class="o">(</span>%<span class="o">)</span><sp
 <span class="m">0</span>.0<span class="w">              </span><span class="m">421</span><span class="w">          </span><span class="m">1</span><span class="w">         </span><span class="m">421</span>.0<span class="w">         </span><span class="m">421</span>.0<span class="w">         </span><span class="m">421</span><span class="w">          </span><span class="m">421</span><span class="w">            </span><span class="m">0</span>.0<span class="w">  </span>cudaGetDeviceProperties_v12000
 <span class="m">0</span>.0<span class="w">              </span><span class="m">341</span><span class="w">          </span><span class="m">1</span><span class="w">         </span><span class="m">341</span>.0<span class="w">         </span><span class="m">341</span>.0<span class="w">         </span><span class="m">341</span><span class="w">          </span><span class="m">341</span><span class="w">            </span><span class="m">0</span>.0<span class="w">  </span>cuLibraryGetKernel<span class="w">   </span>
 </code></pre></div>
+<h3 data-section-number="7.2" id="nsight-compute">Nsight Compute<a class="anchor" href="#nsight-compute" aria-hidden="true">#</a></h3>
+<p>Nsight Compute provides detailed kernel-level hardware metrics.</p>
+<div class="code" data-lang="bash"><pre class="highlight"><code>ncu<span class="w"> </span>--set<span class="w"> </span>full<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--kernel-name<span class="w"> </span>regex:vectorAdd<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--launch-skip<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--launch-count<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-o<span class="w"> </span>day1_ncu<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>./vector_add<span class="w"> </span><span class="m">256</span>
+</code></pre></div>
 
     </div>
 
@@ -733,77 +767,7 @@ Time<span class="w"> </span><span class="o">(</span>%<span class="o">)</span><sp
 
   </article>
 
-  <nav class="series-side" aria-label="Posts in Tech">
-    <a class="series-head" href="/categories/tech/"><span class="dot" aria-hidden="true"></span>Tech<span class="count">7</span></a>
-    <ol class="series-list">
-<li class="series-year">2026</li>  <li class="series-item current">
-    <a href="/post/2026/2026-01-26-gpu-architecture-and-execution-model/" aria-current="page">
-      <span class="series-title">GPU Architecture and Execution Model</span>
-      <time datetime="2026-01-26">Jan 26</time>
-    </a>
-  </li>
-<li class="series-year">2025</li>  <li class="series-item">
-    <a href="/post/tech/011-structure-of-gpu/">
-      <span class="series-title">GPU Architecture Overview</span>
-      <time datetime="2025-05-18">May 18</time>
-    </a>
-  </li>
-  <li class="series-item">
-    <a href="/post/tech/007-kitti-introduction/">
-      <span class="series-title">KITTI Dataset Introduction</span>
-      <time datetime="2025-03-26">Mar 26</time>
-    </a>
-  </li>
-<li class="series-year">2024</li>  <li class="series-item">
-    <a href="/post/tech/005-ros2/">
-      <span class="series-title">Introduction to ROS2, Key Features and Common Commands</span>
-      <time datetime="2024-05-06">May 06</time>
-    </a>
-  </li>
-  <li class="series-item">
-    <a href="/post/tech/002-run-conda-in-dockerfile/">
-      <span class="series-title">Dockerfile records</span>
-      <time datetime="2024-03-28">Mar 28</time>
-    </a>
-  </li>
-<li class="series-year">2023</li>  <li class="series-item">
-    <a href="/post/tech/003-some-docker-commands/en/">
-      <span class="series-title">Some Useful Docker Commands</span>
-      <time datetime="2023-11-04">Nov 04</time>
-    </a>
-  </li>
-  <li class="series-item">
-    <a href="/post/tech/001-install-openmm3d-lib/en/">
-      <span class="series-title">MMDetection3D Library Installation Guide</span>
-      <time datetime="2023-10-30">Oct 30</time>
-    </a>
-  </li>
-</ol>
 
-  </nav>
-
-  <aside class="toc toc-side" aria-label="Contents">
-    <p class="toc-title">Contents</p>
-<ol>
-  <li class="toc-l2"><a href="#overview" data-section-number="1.">Overview</a></li>
-  <li class="toc-l2"><a href="#hardware-architecture" data-section-number="2.">Hardware Architecture</a></li>
-  <li class="toc-l3"><a href="#cpu-and-gpu" data-section-number="2.1">CPU and GPU</a></li>
-  <li class="toc-l3"><a href="#inside-a-gpu" data-section-number="2.2">Inside a GPU</a></li>
-  <li class="toc-l3"><a href="#nvidia-vs-amd-terminology" data-section-number="2.3">NVIDIA vs AMD Terminology</a></li>
-  <li class="toc-l2"><a href="#cuda-execution-model" data-section-number="3.">CUDA Execution Model</a></li>
-  <li class="toc-l3"><a href="#grid-block-warp-and-thread" data-section-number="3.1">Grid, Block, Warp and Thread</a></li>
-  <li class="toc-l3"><a href="#simt" data-section-number="3.2">SIMT</a></li>
-  <li class="toc-l2"><a href="#warp-scheduling-and-latency-hiding" data-section-number="4.">Warp Scheduling and Latency Hiding</a></li>
-  <li class="toc-l3"><a href="#lentency-hiding" data-section-number="4.1">Lentency Hiding</a></li>
-  <li class="toc-l3"><a href="#occupancy" data-section-number="4.2">Occupancy</a></li>
-  <li class="toc-l2"><a href="#practical-cuda-experiments" data-section-number="5.">Practical CUDA Experiments</a></li>
-  <li class="toc-l3"><a href="#inspect-gpu-hardware" data-section-number="5.1">Inspect GPU hardware</a></li>
-  <li class="toc-l3"><a href="#vector-addition-and-block-size" data-section-number="5.2">Vector Addition and Block Size</a></li>
-  <li class="toc-l2"><a href="#performance-limit" data-section-number="6.">Performance Limit</a></li>
-  <li class="toc-l3"><a href="#the-roofline-model" data-section-number="6.1">The Roofline model</a></li>
-  <li class="toc-l2"><a href="#gpu-profiling" data-section-number="7.">GPU Profiling</a></li>
-  <li class="toc-l3"><a href="#nsight-systems" data-section-number="7.1">Nsight Systems</a></li>
-</ol>  </aside>
 </div>
   </main>
 
@@ -818,6 +782,6 @@ Time<span class="w"> </span><span class="o">(</span>%<span class="o">)</span><sp
     </div>
   </footer>
 
-  <script src="/assets/site.js?v=56a5f5824e" defer></script>
+  <script src="/assets/site.js?v=00cc735f82" defer></script>
 </body>
 </html>
